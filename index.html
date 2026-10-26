@@ -1,0 +1,1793 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Bo'Bo'</title>
+<meta name="description" content="Quiet Knowledge, Deep Growth — ringkasan buku 8 bab, masing-masing satu menit.">
+<meta name="theme-color" content="#263B53">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bo'Bo'">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="firebase-config.js"></script>
+<style>
+:root{
+  --forest:#263B53;--forest-2:#1B2B3E;--cream:#F7FBFF;--gold:#FFE6A6;--gold-2:#3478C9;--sage:#FFF4D6;--blue:#3478C9;
+  --bg:#F6F0E4;--surface:#FBF7EE;--card:#FFFDF8;--ink:#17261F;--ink-2:#4A5A52;--muted:#7C8A82;--line:#E4DCCB;--line-2:#EDE6D7;
+  --accent:#3478C9;--on-accent:#FFFFFF;--chip:#E6F3FC;--bad:#A2412F;--ok:#2F6B4F;--warn:#9A6B12;
+  --shadow:0 1px 2px rgba(23,38,31,.05),0 8px 24px -12px rgba(23,38,31,.18);
+  --r:18px;--r-sm:12px;--serif:"Newsreader",Georgia,serif;--sans:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --fs-read:1.18rem;color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1A15;--surface:#13221C;--card:#172A22;--ink:#EDE7DA;--ink-2:#C2C9C1;--muted:#8E9B93;--line:#24382F;--line-2:#1D3028;
+  --accent:#FFE6A6;--on-accent:#10201A;--chip:#1E342A;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);color-scheme:dark;}}
+:root[data-theme="dark"]{--bg:#0E1A15;--surface:#13221C;--card:#172A22;--ink:#EDE7DA;--ink-2:#C2C9C1;--muted:#8E9B93;--line:#24382F;--line-2:#1D3028;
+  --accent:#FFE6A6;--on-accent:#10201A;--chip:#1E342A;--shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.6);color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased;min-height:100vh;
+  padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+body.has-mini{padding-bottom:calc(148px + env(safe-area-inset-bottom,0px))}
+body.auth{padding-bottom:0}
+body.auth .appbar,body.auth .dock,body.auth .mini{display:none!important}
+[hidden]{display:none!important}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:8px}
+h1,h2,h3{margin:0;line-height:1.2;font-weight:700;letter-spacing:-.01em}
+.d{font-family:var(--serif);font-weight:500;letter-spacing:-.015em}
+p{margin:0}
+.muted{color:var(--muted)}.small{font-size:.86rem}
+.label{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
+:root[data-theme="dark"] .label{color:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .label{color:var(--gold)}}
+
+/* app bar */
+.appbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:saturate(1.2) blur(14px);-webkit-backdrop-filter:saturate(1.2) blur(14px);
+  padding-top:env(safe-area-inset-top,0px);border-bottom:1px solid transparent;transition:border-color .2s}
+.appbar.scrolled{border-bottom-color:var(--line)}
+.appbar-in{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:10px 16px}
+.brand{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0}
+.brand img{width:34px;height:34px;border-radius:10px}
+.brand b{font-weight:800;font-size:1.15rem;letter-spacing:-.02em;color:var(--ink)}
+.sp{flex:1}
+.ib{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;border:0;background:transparent;color:var(--ink-2)}
+.ib:hover{background:var(--chip)}
+.ib svg{width:21px;height:21px}
+.avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--forest);color:var(--cream);font-weight:700;border:0;position:relative;overflow:hidden;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.avatar.dot::after{content:"";position:absolute;top:2px;right:2px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 2px var(--bg)}
+.top-nav{display:none;gap:4px}
+.top-nav button{border:0;background:none;padding:8px 12px;border-radius:10px;font-weight:600;color:var(--ink-2);font-size:.92rem}
+.top-nav button[aria-current="page"]{color:var(--ink);background:var(--chip)}
+@media (min-width:860px){.top-nav{display:flex}.dock{display:none!important}body{padding-bottom:40px}body.has-mini{padding-bottom:110px}}
+
+main{max-width:1080px;margin:0 auto;padding:8px 16px 32px}
+.view{animation:in .35s ease both}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}*{transition:none!important}}
+
+/* dock */
+.dock{position:fixed;left:0;right:0;bottom:0;z-index:30;background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+.dock button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;font-size:.7rem;font-weight:600;color:var(--muted);border-radius:12px;position:relative}
+.dock button svg{width:22px;height:22px}
+.dock button[aria-current="page"]{color:var(--accent)}
+.dock .badge{position:absolute;top:2px;left:calc(50% + 6px)}
+.badge{min-width:18px;height:18px;border-radius:9px;background:var(--gold);color:#1b1407;font-size:.68rem;font-weight:800;display:inline-grid;place-items:center;padding:0 5px}
+
+/* buttons, fields */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:11px 18px;border-radius:999px;font-weight:600;font-size:.93rem;transition:transform .12s,background .2s;white-space:nowrap}
+.btn:hover{background:var(--chip)}.btn:active{transform:scale(.98)}
+.btn svg{width:18px;height:18px}
+.btn.pri{background:var(--accent);color:var(--on-accent);border-color:transparent}
+.btn.pri:hover{filter:brightness(1.08);background:var(--accent)}
+.btn.gold{background:var(--gold);color:#1d1608;border-color:transparent}
+.btn.sm{padding:7px 13px;font-size:.84rem}
+.btn.ghost{background:transparent;border-color:transparent}
+.btn.danger{color:var(--bad)}
+.btn[disabled]{opacity:.5;pointer-events:none}
+.btn.block{width:100%}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:.84rem;font-weight:600;color:var(--ink-2)}
+.hint{font-size:.8rem;color:var(--muted)}
+input,textarea,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;width:100%}
+textarea{resize:vertical;line-height:1.55}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 22%,transparent)}
+.two{display:grid;gap:0 14px}
+@media (min-width:640px){.two{grid-template-columns:1fr 1fr}}
+.panel{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.panel h3{font-size:1rem;margin-bottom:6px}
+.notice{background:color-mix(in srgb,var(--gold) 14%,var(--card));border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);border-radius:var(--r-sm);padding:12px 14px;font-size:.9rem;margin-bottom:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--chip);font-size:.76rem;font-weight:600;color:var(--ink-2);border:0}
+.chip.on{background:var(--accent);color:var(--on-accent)}
+.chip.st-pending{background:color-mix(in srgb,var(--gold) 22%,var(--card));color:var(--warn)}
+.chip.st-processing{background:#E3ECF5;color:#2D5277}
+.chip.st-done,.chip.st-approved,.chip.st-published{background:color-mix(in srgb,var(--ok) 16%,var(--card));color:var(--ok)}
+.chip.st-rejected{background:color-mix(in srgb,var(--bad) 12%,var(--card));color:var(--bad)}
+.chip.st-draft{background:var(--chip);color:var(--muted)}
+.seg{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:none;border:1px solid var(--line);background:var(--card);padding:7px 14px;border-radius:999px;font-size:.85rem;font-weight:600;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:transparent}
+
+/* headings */
+.phead{padding:18px 0 16px}
+.phead h1{font-size:clamp(1.9rem,4.6vw,2.6rem)}
+.phead p{margin-top:8px;max-width:58ch;color:var(--ink-2)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:26px 0 12px}
+.sec-h h2{font-size:1.35rem}
+.linkbtn{border:0;background:none;color:var(--accent);font-weight:600;font-size:.88rem;padding:4px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-radius:24px;background:var(--forest);color:var(--cream);padding:26px 22px;margin-top:6px}
+.hero .label{color:var(--gold)}
+.hero h1{font-size:clamp(1.7rem,4.2vw,2.4rem);margin:8px 0 6px;max-width:20ch}
+.hero p{color:color-mix(in srgb,var(--cream) 78%,transparent);max-width:46ch}
+.hero .stats{display:flex;gap:22px;margin-top:18px;flex-wrap:wrap}
+.hero .stats div{display:flex;flex-direction:column}
+.hero .stats b{font-size:1.35rem;font-weight:700}
+.hero .stats span{font-size:.76rem;color:color-mix(in srgb,var(--cream) 65%,transparent)}
+.hero svg.orn{position:absolute;right:-30px;top:-30px;width:220px;height:220px;opacity:.13}
+.continue{display:grid;grid-template-columns:72px 1fr auto;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line-2);border-radius:var(--r);padding:12px;margin-top:14px;text-align:left;width:100%;box-shadow:var(--shadow)}
+.continue .cv{width:72px;border-radius:8px;overflow:hidden}
+.continue b{display:block;font-size:1rem}
+.continue .bar{height:4px;background:var(--line-2);border-radius:4px;margin-top:8px;overflow:hidden}
+.continue .bar i{display:block;height:100%;background:var(--blue)}
+.playfab{width:48px;height:48px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;border:0;flex:none}
+.playfab svg{width:20px;height:20px}
+
+/* covers & grids */
+.cover{position:relative;aspect-ratio:2/3;border-radius:6px 10px 10px 6px;overflow:hidden;background:var(--forest);box-shadow:0 1px 0 rgba(0,0,0,.05),0 10px 22px -12px rgba(38,59,83,.45)}
+.cover svg,.cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.cover::after{content:"";position:absolute;inset:0 auto 0 0;width:7%;background:linear-gradient(90deg,rgba(0,0,0,.18),rgba(255,255,255,.06) 60%,transparent)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:22px 16px}
+@media (min-width:640px){.grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}}
+.bcard{border:0;background:none;padding:0;text-align:left;display:flex;flex-direction:column;gap:9px}
+.bcard b{font-size:.94rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.bcard small{color:var(--muted);font-size:.8rem;display:block;margin-top:-6px}
+.bcard .tag{position:absolute;top:8px;left:12px;z-index:2}
+.bcard:hover .cover{transform:translateY(-3px)}.cover{transition:transform .25s}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(124px,150px);gap:16px;overflow-x:auto;padding:4px 2px 12px;scrollbar-width:none;margin:0 -16px;padding-left:16px;padding-right:16px}
+.rail::-webkit-scrollbar{display:none}
+.empty{text-align:center;padding:48px 16px;color:var(--muted)}
+.empty h3{color:var(--ink);font-family:var(--serif);font-weight:500;font-size:1.4rem;margin-bottom:6px}
+.searchbox{position:relative;margin-bottom:12px}
+.searchbox svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--muted)}
+.searchbox input{padding-left:40px;border-radius:999px}
+
+/* book detail */
+.bhead{display:grid;gap:22px;padding-top:12px}
+@media (min-width:720px){.bhead{grid-template-columns:220px 1fr;align-items:end;gap:34px}}
+.bhead .cover{width:min(200px,52vw);margin:0 auto}
+@media (min-width:720px){.bhead .cover{width:100%}}
+.bhead h1{font-size:clamp(1.8rem,4.5vw,2.7rem)}
+.bhead .by{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink-2);margin-top:6px}
+.meta{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.syn{font-family:var(--serif);font-size:1.12rem;line-height:1.65;color:var(--ink-2);max-width:62ch}
+.chlist{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+.chlist li{border-bottom:1px solid var(--line)}
+.chlist button.chrow{display:grid;grid-template-columns:38px 1fr auto;gap:12px;align-items:center;width:100%;border:0;background:none;padding:14px 4px;text-align:left}
+.chlist .no{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--chip);font-weight:700;font-size:.85rem;color:var(--ink-2)}
+.chlist .done .no{background:var(--blue);color:#fff}
+.chlist b{font-weight:600}
+.chlist small{display:block;color:var(--muted);font-size:.8rem}
+.chlist .act svg{width:20px;height:20px;color:var(--muted)}
+.chlist .playing .no{background:var(--gold);color:#1b1407}
+
+/* reader */
+.reader{max-width:680px;margin:0 auto}
+.rtop{display:flex;align-items:center;gap:6px;padding:6px 0}
+.rtop .t{flex:1;min-width:0;font-size:.85rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.dots{display:flex;gap:6px;justify-content:center;margin:10px 0 26px}
+.dots i{width:22px;height:4px;border-radius:3px;background:var(--line)}
+.dots i.on{background:var(--gold)}.dots i.seen{background:color-mix(in srgb,var(--forest) 55%,var(--line))}
+.reader .kicker{text-align:center}
+.reader h1{font-family:var(--serif);font-weight:500;font-size:clamp(1.8rem,5vw,2.5rem);text-align:center;margin:10px 0 6px}
+.reader .dur{text-align:center;color:var(--muted);font-size:.84rem;margin-bottom:28px}
+.prose{font-family:var(--serif);font-size:var(--fs-read);line-height:1.75;color:var(--ink)}
+.prose p{margin:0 0 1.05em}
+.prose p:first-child::first-letter{font-size:3.1em;float:left;line-height:.9;padding:6px 8px 0 0;color:var(--forest);font-weight:500}
+:root[data-theme="dark"] .prose p:first-child::first-letter{color:var(--gold)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .prose p:first-child::first-letter{color:var(--gold)}}
+.points{background:#FFF4D6;border-radius:var(--r);padding:18px 20px;margin:26px 0;color:#263B53}
+:root[data-theme="dark"] .points{background:#22364D;color:var(--ink)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .points{background:#22364D;color:var(--ink)}}
+.points h3{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px}
+.points ul{margin:0;padding-left:20px}.points li{margin:6px 0}
+.rnav{display:flex;justify-content:space-between;gap:10px;margin:30px 0 10px;flex-wrap:wrap}
+.markable::selection{background:color-mix(in srgb,var(--gold) 40%,transparent)}
+
+/* mini player */
+.mini{position:fixed;left:10px;right:10px;bottom:calc(72px + env(safe-area-inset-bottom,0px));z-index:29;background:var(--forest);color:var(--cream);border-radius:18px;
+  display:grid;grid-template-columns:44px 1fr auto auto;gap:10px;align-items:center;padding:8px 8px 8px 10px;box-shadow:0 12px 30px -10px rgba(38,59,83,.45);max-width:720px;margin:0 auto;overflow:hidden}
+@media (min-width:860px){.mini{bottom:18px}}
+.mini .art{width:44px;height:44px;border-radius:10px;background:var(--gold);color:#1b1407;display:grid;place-items:center;font-weight:800}
+.mini .tt{border:0;background:none;color:inherit;text-align:left;min-width:0;padding:0}
+.mini .tt b{display:block;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mini .tt span{font-size:.76rem;opacity:.75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.mini .ib{color:var(--cream)}.mini .ib:hover{background:rgba(255,255,255,.1)}
+.mini .pp{background:var(--cream);color:var(--forest);border-radius:50%}
+.mini .pp:hover{background:#fff}
+.mini .prog{position:absolute;left:0;bottom:0;height:3px;background:var(--gold);transition:width .3s linear}
+
+/* sheet (full player) */
+.sheet-bg{position:fixed;inset:0;background:rgba(10,20,16,.45);z-index:50;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:51;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 20px calc(24px + env(safe-area-inset-bottom,0px));max-height:92vh;overflow:auto;animation:up .28s cubic-bezier(.2,.8,.2,1);max-width:640px;margin:0 auto}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet .grab{width:42px;height:5px;border-radius:3px;background:var(--line);margin:4px auto 14px}
+.player{text-align:center}
+.player .cover{width:min(190px,48vw);margin:6px auto 18px}
+.player h2{font-family:var(--serif);font-weight:500;font-size:1.5rem}
+.player .sub{color:var(--muted);font-size:.88rem;margin-top:4px}
+.scrub{margin:20px 0 4px;width:100%;accent-color:var(--gold)}
+.times{display:flex;justify-content:space-between;font-size:.76rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.ctrls{display:flex;justify-content:center;align-items:center;gap:18px;margin:14px 0}
+.ctrls .big{width:66px;height:66px;border-radius:50%;background:var(--accent);color:var(--on-accent);border:0;display:grid;place-items:center}
+.ctrls .big svg{width:28px;height:28px}
+.ctrls .ib{width:48px;height:48px}
+.src-note{font-size:.76rem;color:var(--muted)}
+
+/* lists (admin, requests) */
+.list{display:flex;flex-direction:column;gap:10px}
+.lrow{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-sm);padding:12px 14px;flex-wrap:wrap}
+.lrow .main{min-width:0;flex:1 1 220px}
+.lrow .main b{display:block}
+.lrow .main small{display:block;color:var(--muted);font-size:.8rem}
+.lrow .act{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.lrow select{width:auto;padding:6px 10px;font-size:.84rem}
+
+/* chapter editor */
+.ched{border:1px solid var(--line);border-radius:var(--r);padding:14px;margin-bottom:12px;background:var(--surface)}
+.ched header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ched header .no{width:30px;height:30px;border-radius:50%;background:var(--forest);color:var(--cream);display:grid;place-items:center;font-weight:700;font-size:.82rem;flex:none}
+.ched .wc{font-size:.76rem;color:var(--muted);margin-left:auto}
+.ched .wc.over{color:var(--bad)}.ched .wc.good{color:var(--ok)}
+.audio-slot{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:6px;font-size:.84rem}
+pre.prompt{white-space:pre-wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:.8rem;max-height:260px;overflow:auto}
+details summary{cursor:pointer;font-weight:600}
+.drop{display:flex;gap:12px;align-items:center;border:1.5px dashed var(--line);border-radius:var(--r);padding:18px;margin:12px 0;cursor:pointer;background:var(--surface)}
+.drop svg{width:26px;height:26px;color:var(--gold-2)}
+.drop small{display:block;color:var(--muted)}
+.steps{list-style:none;padding:0;margin:10px 0 0;font-size:.86rem}
+.steps li{padding:4px 0;color:var(--ink-2)}
+
+/* marks */
+.mark{background:var(--card);border:1px solid var(--line-2);border-left:3px solid var(--gold);border-radius:var(--r-sm);padding:14px 16px}
+.mark q{font-family:var(--serif);font-size:1.08rem;display:block;quotes:"“" "”"}
+.mark small{display:block;color:var(--muted);margin-top:8px}
+
+/* login */
+.login{min-height:100vh;display:grid}
+@media (min-width:860px){.login{grid-template-columns:1.05fr 1fr}}
+.login-art{position:relative;background:var(--forest);color:var(--cream);display:flex;flex-direction:column;justify-content:flex-end;padding:40px 28px;min-height:38vh;overflow:hidden}
+.login-art img{width:84px;height:84px;border-radius:22px;margin-bottom:22px;box-shadow:0 10px 30px -10px rgba(0,0,0,.5)}
+.login-art h1{font-size:clamp(2.2rem,6vw,3.4rem);font-weight:800;letter-spacing:-.03em}
+.login-art p{font-family:var(--serif);font-style:italic;font-size:1.25rem;color:var(--gold);margin-top:6px}
+.login-art svg.orn{position:absolute;right:-60px;top:-60px;width:360px;height:360px;opacity:.12}
+.login-form{display:flex;flex-direction:column;justify-content:center;padding:32px 24px calc(32px + env(safe-area-inset-bottom,0px));max-width:440px;width:100%;margin:0 auto}
+.login-form h2{font-family:var(--serif);font-weight:500;font-size:1.9rem;margin:6px 0 8px}
+.or{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.8rem;margin:16px 0}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.gbtn svg{width:18px;height:18px}
+
+/* toast */
+#toastHost{position:fixed;left:0;right:0;bottom:calc(90px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;align-items:center;gap:8px;z-index:60;pointer-events:none}
+body.has-mini #toastHost{bottom:calc(160px + env(safe-area-inset-bottom,0px))}
+.toast{background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:.88rem;box-shadow:var(--shadow);pointer-events:auto;animation:up .25s;max-width:min(92vw,440px)}
+.skel{height:220px;border-radius:var(--r);background:linear-gradient(90deg,var(--line-2),var(--surface),var(--line-2));background-size:200% 100%;animation:sk 1.2s infinite;margin-top:20px}
+@keyframes sk{to{background-position:-200% 0}}
+.banner{background:var(--gold);color:#1b1407;text-align:center;font-size:.8rem;font-weight:600;padding:6px 12px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:.88rem}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2)}
+.switch:last-child{border-bottom:0}
+.switch input[type=checkbox]{width:auto;accent-color:var(--forest);transform:scale(1.25)}
+.cats{display:flex;flex-wrap:wrap;gap:8px}
+/* ===================== v2: gaya Namaa dengan palet Bo'Bo' ===================== */
+:root{--cond:"Barlow Condensed","Arial Narrow",sans-serif;--sans:"Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;--bg:#DDF2FF;--card:#FFFFFF;--surface:#F3FAFF;--line:#C9E2F4;--line-2:#E2F0FA;--ink:#263B53;--ink-2:#4A607A;--muted:#7489A1}
+:root[data-theme="dark"]{--bg:#0F1A28;--card:#172537;--surface:#132030;--line:#26384F;--line-2:#1D2D42;--ink:#EAF3FB;--ink-2:#BCCBDB;--muted:#8A9CB2;--accent:#5B97DE;--on-accent:#0F1A28}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1A28;--card:#172537;--surface:#132030;--line:#26384F;--line-2:#1D2D42;--ink:#EAF3FB;--ink-2:#BCCBDB;--muted:#8A9CB2;--accent:#5B97DE;--on-accent:#0F1A28}}
+body{font-size:16px}
+.appbar{background:color-mix(in srgb,var(--bg) 92%,transparent)}
+.appbar-in{padding:14px 20px;max-width:1180px}
+.wordmark{border:0;background:none;padding:0;font-family:var(--serif);font-weight:500;font-size:2rem;letter-spacing:-.01em;color:var(--forest);line-height:1;display:flex;align-items:baseline}
+.wordmark i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-left:4px}
+:root[data-theme="dark"] .wordmark{color:var(--cream)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .wordmark{color:var(--cream)}}
+.goal-chip{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:5px 14px 5px 5px;font-weight:600;font-size:.92rem;color:var(--ink-2)}
+.goal-chip b{color:var(--ink)}
+.ring{--p:0;width:28px;height:28px;border-radius:50%;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--line-2) 0);display:grid;place-items:center;flex:none}
+.ring::before{content:"";grid-area:1/1;width:20px;height:20px;border-radius:50%;background:var(--card)}
+.ring svg{grid-area:1/1;width:13px;height:13px;color:#D9A21B;position:relative}
+.avatar{background:var(--gold);color:#263B53;font-family:var(--serif);font-size:1.15rem;width:40px;height:40px}
+@media (max-width:520px){.goal-chip .gl{display:none}.wordmark{font-size:1.7rem}}
+main{max-width:1180px;padding:4px 20px 40px}
+/* dock: pil mengambang dengan tombol + */
+.dock{left:50%;right:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);width:min(560px,calc(100% - 24px));border:1px solid var(--line);border-radius:30px;
+  grid-template-columns:1fr 1fr 74px 1fr 1fr;padding:6px;background:color-mix(in srgb,var(--card) 90%,transparent);box-shadow:0 14px 40px -14px rgba(38,59,83,.25)}
+.dock button{font-size:.76rem;padding:8px 0;border-radius:22px}
+.dock button[aria-current="page"]{color:var(--ink);background:var(--line-2)}
+.dock .plus{width:58px;height:58px;border-radius:20px;background:var(--forest);color:#fff;display:grid;place-items:center;margin:-2px auto;box-shadow:0 8px 20px -8px rgba(52,120,201,.6)}
+:root[data-theme="dark"] .dock .plus{background:var(--gold);color:#1b1407}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .dock .plus{background:var(--gold);color:#1b1407}}
+.dock .plus svg{width:26px;height:26px}
+.dock button.addbtn{padding:0;background:none!important}
+body{padding-bottom:calc(104px + env(safe-area-inset-bottom,0px))}
+body.has-mini{padding-bottom:calc(176px + env(safe-area-inset-bottom,0px))}
+.mini{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+body.has-mini #toastHost{bottom:calc(180px + env(safe-area-inset-bottom,0px))}
+#toastHost{bottom:calc(110px + env(safe-area-inset-bottom,0px))}
+/* display condensed */
+.cd{font-family:var(--cond);font-weight:800;text-transform:uppercase;letter-spacing:.005em;line-height:.95}
+.kick{font-family:var(--cond);font-weight:700;letter-spacing:.18em;text-transform:uppercase;font-size:.95rem;color:var(--ink-2)}
+.kick em{font-style:normal;color:var(--gold)}
+.phead h1,.sec-h h2{font-family:var(--cond);font-weight:800;text-transform:uppercase;letter-spacing:.005em}
+.phead h1{font-size:clamp(2.4rem,7vw,3.6rem);line-height:.95}
+.sec-h h2{font-size:clamp(1.9rem,6vw,2.8rem);line-height:.95}
+.sec-h{margin:38px 0 14px;flex-wrap:wrap}
+.label{font-family:var(--cond);font-size:.9rem;letter-spacing:.18em}
+/* hero carousel */
+.stage{position:relative;overflow:hidden;border-radius:28px;color:var(--cream);min-height:min(78vh,620px);display:flex;flex-direction:column;margin:0 -20px;border-radius:0 0 28px 28px;
+  background:radial-gradient(120% 90% at 15% 0%,#3B6FA8 0%,#263B53 45%,#15212F 100%)}
+@media (min-width:860px){.stage{margin:0;border-radius:28px;min-height:520px}}
+.stage .pat{position:absolute;inset:0;opacity:.11;pointer-events:none}
+.stage .beam{position:absolute;top:-10%;bottom:-10%;left:52%;width:24%;background:rgba(246,240,228,.04);transform:skewX(-14deg);pointer-events:none}
+.steps3{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:26px 24px 0}
+.steps3 button{border:0;background:none;color:rgba(246,240,228,.55);text-align:left;padding:0;font-family:var(--cond);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:.95rem}
+.steps3 button em{font-style:normal;color:var(--gold);margin-right:6px}
+.steps3 button i{display:block;height:3px;background:rgba(246,240,228,.18);border-radius:2px;margin-bottom:12px;overflow:hidden}
+.steps3 button i b{display:block;height:100%;width:0;background:var(--gold)}
+.steps3 button.on{color:var(--cream)}
+.steps3 button.on i b{animation:fill 7s linear forwards}
+.steps3 button.past i b{width:100%}
+@keyframes fill{to{width:100%}}
+@media (prefers-reduced-motion:reduce){.steps3 button.on i b{animation:none;width:100%}}
+.slide{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:24px 24px 30px}
+.slide h1{font-size:clamp(3rem,11vw,5.6rem);color:var(--cream);margin:10px 0 14px;max-width:11ch;text-shadow:0 2px 30px rgba(0,0,0,.2)}
+.slide p{max-width:34ch;font-size:1.12rem;color:rgba(246,240,228,.82)}
+.slide .kick{color:var(--cream)}
+.slide .cta{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.btn.goldb{background:var(--gold);color:#16120a;border:0;padding:16px 30px;font-weight:700;font-size:1.02rem}
+.btn.glass{background:rgba(246,240,228,.1);color:var(--cream);border-color:rgba(246,240,228,.25);padding:15px 24px}
+.tilt{position:absolute;z-index:1;right:-34px;top:70px;width:min(42vw,250px);transform:rotate(8deg);border-radius:8px;box-shadow:-20px 30px 50px -16px rgba(0,0,0,.6);transition:transform .6s}
+.tilt .cover{border-radius:8px}
+.stage[data-s="1"] .tilt{transform:rotate(-4deg) translateY(10px)}
+.stage[data-s="2"] .tilt{transform:rotate(12deg) translateX(10px)}
+@media (min-width:860px){.tilt{right:60px;top:90px;width:250px}}
+.slide-anim{animation:in .5s ease both}
+/* target */
+.target{display:flex;gap:20px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px 22px;margin-top:20px;width:100%;text-align:left}
+.bigring{--p:0;width:84px;height:84px;border-radius:50%;background:conic-gradient(var(--gold) calc(var(--p)*1%),var(--line-2) 0);display:grid;place-items:center;flex:none}
+.bigring::before{content:"";grid-area:1/1;width:68px;height:68px;border-radius:50%;background:var(--card)}
+.bigring b{grid-area:1/1;position:relative;font-size:1.3rem;font-weight:700}
+.target .label{color:var(--blue)}
+.target h3{font-size:1.35rem;margin:4px 0}
+.target small{color:var(--muted);font-size:.9rem;display:flex;align-items:center;gap:6px}
+.target small svg{width:15px;height:15px;color:#D9A21B}
+/* bekal hari ini */
+.daily{position:relative;overflow:hidden;border-radius:28px;color:var(--cream);padding:30px 24px;background:radial-gradient(120% 120% at 0% 0%,#35679E,#23374D 60%,#151F2C)}
+.daily .pat{position:absolute;inset:0;opacity:.08}
+.daily .q{position:relative;font-family:var(--serif);font-size:clamp(1.45rem,4.6vw,2.1rem);line-height:1.3;margin:14px 0 18px;max-width:30ch}
+.daily .q::before{content:"“";display:block;font-size:3.4rem;line-height:.6;color:var(--gold);margin-bottom:8px}
+.daily .src{position:relative;font-size:.95rem;color:rgba(246,240,228,.75)}
+.daily .src b{color:var(--gold)}
+.daily .row{position:relative;margin-top:20px}
+.resume{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px 22px}
+.resume li{margin:8px 0}
+.resume ol{padding-left:20px;margin:10px 0 0}
+.resume .rb{font-weight:600}
+.resume .rp{color:var(--ink-2);font-size:.95rem}
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:120px;margin:14px 0 6px}
+.bars div{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end;font-size:.75rem;color:var(--muted)}
+.bars i{width:100%;max-width:34px;border-radius:8px 8px 4px 4px;background:var(--line);min-height:4px}
+.bars i.hit{background:var(--blue)}.bars .today{color:var(--ink);font-weight:700}
+/* login v2 */
+.login{background:var(--bg)}
+.login-art{background:radial-gradient(130% 100% at 10% 0%,#3B6FA8,#263B53 45%,#141F2D);padding:32px 26px 36px;min-height:56vh;justify-content:space-between}
+.login-art .pat{position:absolute;inset:0;opacity:.1}
+.login-art .top{position:relative;z-index:2;display:flex;align-items:center;gap:12px}
+.login-art .top img{width:46px;height:46px;border-radius:13px;margin:0;box-shadow:none}
+.login-art .top span{font-family:var(--serif);font-size:1.8rem;color:var(--cream)}
+.login-art .top span i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-left:3px}
+.fan{position:relative;z-index:1;height:230px;margin:18px 0 6px}
+.fan .cover{position:absolute;width:118px;left:50%;top:10px;box-shadow:-10px 20px 40px -12px rgba(0,0,0,.6)}
+.fan .c1{transform:translateX(-150%) rotate(-12deg)}.fan .c2{transform:translateX(-50%) translateY(-8px);z-index:2;width:132px}.fan .c3{transform:translateX(50%) rotate(12deg)}
+.login-art .copy{position:relative;z-index:2}
+.login-art .copy h1{font-family:var(--cond);font-weight:800;text-transform:uppercase;font-size:clamp(2.6rem,9vw,4.4rem);line-height:.92;letter-spacing:0}
+.login-art .copy p{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:1.2rem;margin-top:10px}
+.feat{position:relative;z-index:2;display:flex;gap:18px;flex-wrap:wrap;margin-top:18px;font-family:var(--cond);letter-spacing:.14em;text-transform:uppercase;font-weight:700;font-size:.85rem;color:rgba(246,240,228,.7)}
+.feat b{color:var(--gold);margin-right:6px}
+.login-form h2{font-family:var(--cond);font-weight:800;text-transform:uppercase;font-size:2.4rem;line-height:.95}
+@media (min-width:860px){.login-art{min-height:100vh;padding:48px}.fan{height:300px}.fan .cover{width:150px}.fan .c2{width:170px}}
+.login .quote{font-family:var(--serif);font-style:italic;color:var(--ink-2);border-left:2px solid var(--gold);padding-left:12px;margin-top:22px;font-size:1rem}
+/* studio suara */
+.studio{background:linear-gradient(135deg,color-mix(in srgb,var(--forest) 9%,var(--card)),var(--card));border:1px solid color-mix(in srgb,var(--forest) 25%,var(--line))}
+.studio h3{display:flex;align-items:center;gap:8px}
+.studio h3 svg{width:18px;height:18px;color:var(--gold-2)}
+.prog-line{height:4px;background:var(--line-2);border-radius:3px;overflow:hidden;margin-top:10px}
+.prog-line i{display:block;height:100%;background:var(--blue);transition:width .3s}
+</style>
+</head>
+<body>
+<div class="banner" id="demoBanner" hidden>Mode lokal · Firebase belum diatur (isi docs/firebase-config.js). Data hanya tersimpan di perangkat ini.</div>
+<header class="appbar" id="appbar"><div class="appbar-in">
+  <button class="wordmark" type="button" data-go="home" aria-label="Bo'Bo', ke beranda">Bo’Bo’<i></i></button>
+  <nav class="top-nav" aria-label="Navigasi" style="margin-left:18px">
+    <button type="button" data-go="home">Beranda</button>
+    <button type="button" data-go="library">Pustaka</button>
+    <button type="button" data-go="marks">Penanda</button>
+    <button type="button" data-go="requests">Permintaan</button>
+    <button type="button" data-go="admin" data-admin-only hidden>Admin <span class="badge" data-badge hidden></span></button>
+  </nav>
+  <span class="sp"></span>
+  <button class="goal-chip" type="button" id="goalChip" data-open-goal aria-label="Target harian"></button>
+  <button class="ib" type="button" data-search aria-label="Cari buku"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></button>
+  <button class="ib" type="button" data-theme-toggle aria-label="Ganti tema terang/gelap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg></button>
+  <button class="avatar" type="button" data-go="settings" data-avatar aria-label="Akun dan pengaturan">?</button>
+</div></header>
+<main id="app" tabindex="-1"><div class="skel"></div></main>
+<div class="mini" id="mini" hidden></div>
+<nav class="dock" aria-label="Navigasi utama">
+  <button type="button" data-go="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg>Beranda</button>
+  <button type="button" data-go="library"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H9v16H5.5A1.5 1.5 0 0 1 4 18.5Z"/><path d="M9 4h4v16H9z"/><path d="m14.5 5 3.4-.9 3 13.6-3.4.9z"/></svg>Pustaka</button>
+  <button type="button" class="addbtn" data-add aria-label="Tambah buku atau minta buku"><span class="plus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg></span></button>
+  <button type="button" data-go="marks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h12v18l-6-4-6 4z"/></svg>Penanda</button>
+  <button type="button" data-go="admin" data-admin-only hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>Admin<span class="badge" data-badge hidden></span></button>
+  <button type="button" data-go="settings" data-member-only><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>Akun</button>
+</nav>
+<div id="sheetHost"></div>
+<div id="toastHost" aria-live="polite"></div>
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+(() => {
+"use strict";
+/* =====================================================================
+   Bo'Bo' — Quiet Knowledge, Deep Growth
+   Ringkasan buku: maksimal 8 bab, tiap bab ±1 menit (dibaca atau didengar).
+   - Firebase Spark: Auth (Email/Password + Google), Firestore (buku, anggota, permintaan, audio)
+   - Admin (email di firebase-config.js & firestore.rules) membuat/menerbitkan buku, mengunggah audio
+   - Anggota: mendaftar, menunggu persetujuan, membaca/mendengar, menandai, meminta buku
+   - Tanpa konfigurasi Firebase: MODE LOKAL (untuk mencoba)
+   ===================================================================== */
+const $ = (s, el = document) => el.querySelector(s);
+const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+const app = $("#app");
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ls = {
+  get(k, d) { try { const v = localStorage.getItem("bobo:" + k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("bobo:" + k, JSON.stringify(v)); } catch {} },
+};
+const slug = (s) => String(s || "").toLowerCase().normalize("NFKD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 50) || "buku";
+const hueOf = (s) => { let h = 0; for (const c of String(s)) h = (h * 31 + c.charCodeAt(0)) % 360; return h; };
+const fmtTime = (s) => { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); };
+const fmtDate = (iso) => { try { return new Date(iso).toLocaleDateString("id-ID", { day: "numeric", month: "short", year: "numeric" }); } catch { return ""; } };
+const dayKey = (d = new Date()) => d.toLocaleDateString("sv-SE");
+const fold = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[‘’'`]/g, "'").trim();
+const words = (t) => String(t || "").trim().split(/\s+/).filter(Boolean).length;
+const now = () => new Date().toISOString();
+let MAX_CH = 8, CH_MIN = 1; const WPM = 140; // diatur admin (Admin → AI → Format ringkasan); 1 menit ≈ 130–150 kata
+const ADMIN_EMAIL = String(window.BOBO_ADMIN || "31azwar@gmail.com").toLowerCase();
+const CFG = window.BOBO_FIREBASE || {};
+const DEMO = !CFG.apiKey;
+const CATS = ["Pengembangan Diri", "Psikologi & Hubungan", "Bisnis & Keuangan", "Kepemimpinan & Strategi", "Filsafat & Pemikiran", "Agama & Spiritualitas", "Parenting & Keluarga", "Sejarah & Biografi", "Sains & Kesehatan", "Sastra & Fiksi"];
+
+const ic = (d, fill) => `<svg viewBox="0 0 24 24" fill="${fill ? "currentColor" : "none"}" stroke="${fill ? "none" : "currentColor"}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+const I = {
+  back: ic('<path d="M15 18 9 12l6-6"/>'), next: ic('<path d="m9 18 6-6-6-6"/>'), close: ic('<path d="M6 6l12 12M18 6 6 18"/>'),
+  play: ic('<path d="M7 4.5v15l13-7.5z"/>', true), pause: ic('<rect x="6" y="4.5" width="4" height="15" rx="1"/><rect x="14" y="4.5" width="4" height="15" rx="1"/>', true),
+  read: ic('<path d="M3 5.5C5.5 4 8.5 4 12 6c3.5-2 6.5-2 9-.5V19c-2.5-1.5-5.5-1.5-9 .5-3.5-2-6.5-2-9-.5Z"/><path d="M12 6v13.5"/>'),
+  listen: ic('<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4.5" height="6" rx="1.5"/><rect x="16.5" y="14" width="4.5" height="6" rx="1.5"/>'),
+  mark: ic('<path d="M6 3h12v18l-6-4-6 4z"/>'), markF: ic('<path d="M6 3h12v18l-6-4-6 4z"/>', true),
+  search: ic('<circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/>'), upload: ic('<path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/>'),
+  down: ic('<path d="M12 4v11M7 10l5 5 5-5"/><path d="M5 20h14"/>'), copy: ic('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>'),
+  trash: ic('<path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/>'), pen: ic('<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>'),
+  back10: ic('<path d="M11 5 6 9l5 4"/><path d="M6 9h8a5 5 0 0 1 0 10h-3"/>'), fwd10: ic('<path d="m13 5 5 4-5 4"/><path d="M18 9h-8a5 5 0 0 0 0 10h3"/>'),
+  prev: ic('<path d="M6 5v14M19 5 9 12l10 7z"/>'), nextT: ic('<path d="M18 5v14M5 5l10 7-10 7z"/>'), check: ic('<path d="m5 12 5 5 9-10"/>'),
+  plus: ic('<path d="M12 5v14M5 12h14"/>'), wave: ic('<path d="M3 12h2M7 8v8M11 5v14M15 9v6M19 7v10"/>'), spark: ic('<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>'),
+  flame: ic('<path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.5 1.5-4 2.5-5.5.5 2 1.5 3 2.5 3C12 8 11 6 12 3Z"/>'),
+  font: ic('<path d="M4 19 9 5l5 14M5.8 14h6.4M15 19l3-8 3 8M15.9 16.5h4.2"/>'), image: ic('<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 9"/>'),
+};
+const ORN = `<svg class="orn" viewBox="0 0 200 200" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M100 30c-25-14-55-14-80 0v120c25-14 55-14 80 0 25-14 55-14 80 0V30c-25-14-55-14-80 0z"/><path d="M100 30v120"/><path d="M100 46c-20-10-44-10-64 0M100 62c-20-10-44-10-64 0M100 78c-20-10-44-10-64 0M100 46c20-10 44-10 64 0M100 62c20-10 44-10 64 0M100 78c20-10 44-10 64 0"/></g></svg>`;
+
+/* ================================================================ IndexedDB (cache buku & audio di perangkat) */
+const Local = {
+  idb: null,
+  open() {
+    return new Promise((res) => {
+      let req; try { req = indexedDB.open("bobo", 1); } catch { res(); return; }
+      req.onupgradeneeded = () => { const d = req.result; for (const [n, k] of [["books", "id"], ["files", "id"]]) if (!d.objectStoreNames.contains(n)) d.createObjectStore(n, { keyPath: k }); };
+      req.onsuccess = () => { this.idb = req.result; res(); }; req.onerror = () => res(); req.onblocked = () => res();
+    });
+  },
+  tx(store, mode, fn) {
+    return new Promise((res, rej) => {
+      if (!this.idb) { rej(new Error("Penyimpanan perangkat tidak tersedia.")); return; }
+      const t = this.idb.transaction(store, mode); const r = fn(t.objectStore(store));
+      t.oncomplete = () => res(r ? r.result : undefined); t.onerror = () => rej(t.error);
+    });
+  },
+  all(s) { return this.idb ? this.tx(s, "readonly", (o) => o.getAll()).then((r) => r || []) : Promise.resolve([]); },
+  get(s, k) { return this.idb ? this.tx(s, "readonly", (o) => o.get(k)) : Promise.resolve(undefined); },
+  put(s, v) { return this.idb ? this.tx(s, "readwrite", (o) => o.put(v)) : Promise.resolve(); },
+  del(s, k) { return this.idb ? this.tx(s, "readwrite", (o) => o.delete(k)) : Promise.resolve(); },
+};
+
+/* ================================================================ FIREBASE */
+const FB_VER = "10.14.1";
+const Cloud = {
+  fb: null, user: null, member: null, ready: false, err: "", unsub: [], pendingMembers: 0, pendingReq: 0,
+  get isAdmin() { if (DEMO) return true; const u = this.user; if (!u) return false; if (window.BOBO_ADMIN_UID) return u.uid === window.BOBO_ADMIN_UID; const e = String(u.email || "").toLowerCase(); return e === ADMIN_EMAIL && (u.emailVerified || u.providerData?.some((p) => p.providerId === "password")); },
+  get approved() { return DEMO || this.isAdmin || this.member?.status === "approved"; },
+  async load() {
+    if (this.fb) return this.fb;
+    const base = `https://www.gstatic.com/firebasejs/${FB_VER}/`;
+    const [A0, A, F] = await Promise.all([import(base + "firebase-app.js"), import(base + "firebase-auth.js"), import(base + "firebase-firestore.js")]);
+    const a = A0.initializeApp(CFG);
+    this.fb = { A, F, auth: A.getAuth(a), db: F.getFirestore(a) }; this.fb.auth.languageCode = "id";
+    return this.fb;
+  },
+  async init() {
+    if (DEMO) { this.ready = true; return; }
+    try {
+      const { A, auth } = await this.load();
+      try { await A.getRedirectResult(auth); } catch (e) { this.err = authMsg(e); }
+      await new Promise((res) => { const un = A.onAuthStateChanged(auth, (u) => { this.user = u; un(); res(); }); });
+      A.onAuthStateChanged(auth, (u) => { const was = this.user?.uid; this.user = u; if (u?.uid !== was) { this.stop(); if (u) this.start().then(render); else { this.member = null; render(); } } });
+      if (this.user) await this.start();
+    } catch (e) { console.warn(e); this.err = "Firebase tidak termuat. Periksa koneksi lalu muat ulang."; }
+    this.ready = true;
+  },
+  stop() { this.unsub.forEach((f) => { try { f(); } catch {} }); this.unsub = []; },
+  async start() {
+    const { F, db } = this.fb, u = this.user;
+    if (this.isAdmin) { this.member = { status: "approved", admin: true }; await this.afterApproved(); this.watchAdmin(); return; }
+    const ref = F.doc(db, "members", u.uid), mk = "member:" + u.uid;
+    this.member = ls.get(mk, null);
+    try { const s = await F.getDoc(ref); if (!s.exists()) await F.setDoc(ref, { uid: u.uid, email: u.email || "", name: u.displayName || ls.get("regName", "") || (u.email || "").split("@")[0], photo: u.photoURL || "", status: "pending", createdAt: now() }); }
+    catch (e) { this.err = "Gagal mendaftar: " + (e.code || e.message); }
+    await new Promise((res) => {
+      let first = true; setTimeout(() => { if (first) { first = false; res(); } }, 5000);
+      this.unsub.push(F.onSnapshot(ref, (s) => {
+        const prev = this.member?.status; this.member = s.exists() ? s.data() : null; ls.set(mk, this.member ? { status: this.member.status } : null);
+        if (first) { first = false; res(); }
+        if (this.member?.status === "approved" && prev !== "approved") { this.afterApproved().then(() => { if (prev) { toast("Akunmu sudah disetujui. Selamat datang!"); render(); } }); }
+        else if (prev && prev !== this.member?.status) render();
+      }, (e) => { this.err = e.code === "permission-denied" ? "Akses ditolak Firestore. Pastikan firestore.rules sudah dideploy." : String(e.message || e); if (first) { first = false; res(); } }));
+    });
+    if (this.approved) await this.afterApproved();
+  },
+  _after: null,
+  afterApproved() { if (!this._after) this._after = (async () => { await Lib.sync(); await Me.load(); })().finally(() => setTimeout(() => (this._after = null), 1000)); return this._after; },
+  watchAdmin() {
+    const { F, db } = this.fb;
+    this.unsub.push(F.onSnapshot(F.query(F.collection(db, "members"), F.where("status", "==", "pending")), (s) => { this.pendingMembers = s.size; paintBadges(); }, () => {}));
+    this.unsub.push(F.onSnapshot(F.query(F.collection(db, "requests"), F.where("status", "==", "pending")), (s) => { this.pendingReq = s.size; paintBadges(); }, () => {}));
+  },
+  async google() {
+    const { A, auth } = await this.load(); const p = new A.GoogleAuthProvider(); p.setCustomParameters({ prompt: "select_account" });
+    if (matchMedia("(display-mode: standalone)").matches || navigator.standalone) return A.signInWithRedirect(auth, p);
+    try { await A.signInWithPopup(auth, p); } catch (e) { if (/popup/.test(e.code || "")) return A.signInWithRedirect(auth, p); throw e; }
+  },
+  async emailLogin(email, pass) { const { A, auth } = await this.load(); return A.signInWithEmailAndPassword(auth, email, pass); },
+  async emailRegister(name, email, pass) { const { A, auth } = await this.load(); ls.set("regName", name); const c = await A.createUserWithEmailAndPassword(auth, email, pass); try { await A.updateProfile(c.user, { displayName: name }); } catch {} return c; },
+  async reset(email) { const { A, auth } = await this.load(); return A.sendPasswordResetEmail(auth, email); },
+  async signOut() { Player.stop(); this.stop(); if (this.fb) await this.fb.A.signOut(this.fb.auth); this.user = null; this.member = null; Me.reset(); },
+};
+function authMsg(e) {
+  const c = e?.code || "";
+  if (/invalid-credential|wrong-password|user-not-found|invalid-login/.test(c)) return "Email atau kata sandi salah.";
+  if (/email-already-in-use/.test(c)) return "Email ini sudah terdaftar. Silakan masuk.";
+  if (/weak-password/.test(c)) return "Kata sandi minimal 6 karakter.";
+  if (/invalid-email/.test(c)) return "Format email tidak valid.";
+  if (/too-many-requests/.test(c)) return "Terlalu banyak percobaan. Tunggu beberapa menit.";
+  if (/unauthorized-domain/.test(c)) return "Domain ini belum diizinkan: Firebase > Authentication > Settings > Authorized domains.";
+  if (/operation-not-allowed/.test(c)) return "Metode masuk ini belum diaktifkan di Firebase Authentication.";
+  if (/popup-closed|cancelled-popup/.test(c)) return "Jendela masuk ditutup sebelum selesai.";
+  if (/network/.test(c)) return "Tidak ada koneksi internet.";
+  return e?.message || "Gagal masuk.";
+}
+
+/* ================================================================ PERPUSTAKAAN
+   Firestore books/{id}: { title, author, category, status: draft|published, updatedAt, chapterCount, requestId, data: JSON buku lengkap }
+   meta/library: { books: { id: updatedAt } } hanya buku terbit → anggota cukup 1 baca untuk tahu buku mana yang berubah. */
+const Lib = {
+  books: [],
+  get visible() { return this.books.filter((b) => Cloud.isAdmin || b.pub === "published"); },
+  get published() { return this.books.filter((b) => b.pub === "published"); },
+  find(id) { return this.books.find((b) => b.id === id); },
+  async loadLocal() { this.books = (await Local.all("books")).sort((a, z) => String(z.publishedAt || z.updatedAt || "").localeCompare(String(a.publishedAt || a.updatedAt || ""))); },
+  pack(b) {
+    const data = JSON.stringify(b);
+    if (new Blob([data]).size > 900000) throw new Error("Buku terlalu besar (>900 KB). Kecilkan gambar sampul.");
+    return { title: b.title || "", author: b.author || "", category: b.category || "", status: b.pub === "published" ? "published" : "draft", updatedAt: b.updatedAt, chapterCount: b.chapters.length, requestId: b.requestId || null, data };
+  },
+  unpack(id, doc) { try { const b = JSON.parse(doc.data); return { ...b, id, pub: doc.status, updatedAt: doc.updatedAt }; } catch { return null; } },
+  async sync() {
+    if (DEMO) { await this.loadLocal(); return; }
+    const { F, db } = Cloud.fb;
+    try {
+      if (Cloud.isAdmin) {
+        const remote = (await F.getDocs(F.collection(db, "books"))).docs.map((d) => this.unpack(d.id, d.data())).filter(Boolean);
+        const local = await Local.all("books");
+        for (const r of remote) await Local.put("books", r);
+        for (const l of local) if (!remote.some((r) => r.id === l.id)) await Local.del("books", l.id);
+      } else {
+        const meta = await F.getDoc(F.doc(db, "meta", "library")); const map = meta.exists() ? meta.data().books || {} : {};
+        const mine = ls.get("libMap", {});
+        for (const [id, ts] of Object.entries(map)) {
+          if (mine[id] === ts && (await Local.get("books", id))) continue;
+          const s = await F.getDoc(F.doc(db, "books", id)); if (s.exists()) { const b = this.unpack(id, s.data()); if (b) await Local.put("books", b); }
+        }
+        for (const b of await Local.all("books")) if (!map[b.id]) await Local.del("books", b.id);
+        ls.set("libMap", map);
+      }
+      ls.set("lastSync", now());
+    } catch (e) { console.warn(e); Cloud.err = e.code === "permission-denied" ? "Ditolak Firestore: periksa Rules." : "Sinkron gagal (offline?)."; }
+    await this.loadLocal();
+  },
+  async save(b) { // admin
+    b.updatedAt = now(); b.chapterCount = b.chapters.length;
+    if (!DEMO) { const { F, db } = Cloud.fb; const doc = this.pack(b); await F.setDoc(F.doc(db, "books", b.id), doc); await this.metaSet(b.id, doc.status === "published" ? doc.updatedAt : null); }
+    await Local.put("books", b); await this.loadLocal(); return b;
+  },
+  async metaSet(id, ts) {
+    const { F, db } = Cloud.fb; const ref = F.doc(db, "meta", "library");
+    if (ts) await F.setDoc(ref, { books: { [id]: ts }, updatedAt: now() }, { merge: true });
+    else { try { await F.updateDoc(ref, new F.FieldPath("books", id), F.deleteField()); } catch (e) { if (e.code !== "not-found") throw e; } }
+  },
+  async setPub(id, pub) {
+    const b = this.find(id); if (!b) return; b.pub = pub; if (pub === "published" && !b.publishedAt) b.publishedAt = now();
+    await this.save(b);
+    if (pub === "published" && b.requestId) await Req.setStatus(b.requestId, "done", id).catch(() => {});
+  },
+  async remove(id) {
+    const b = this.find(id); if (!b) return;
+    for (const c of b.chapters) if (c.audio) await AudioStore.remove(b, c, true).catch(() => {});
+    if (!DEMO) { const { F, db } = Cloud.fb; await F.deleteDoc(F.doc(db, "books", id)); await this.metaSet(id, null); }
+    await Local.del("books", id); await this.loadLocal();
+  },
+};
+const bookMinutes = (b) => b.chapters.reduce((s, c) => s + chMinutes(c), 0);
+const chMinutes = (c) => (c.audio?.dur ? c.audio.dur / 60 : Math.max(0.5, words(c.text) / WPM));
+const minLabel = (m) => (m < 1.5 ? "±1 menit" : `±${Math.round(m)} menit`);
+const adm = (t) => (Cloud.isAdmin ? t : "");
+
+/* ================================================================ DATA PRIBADI (1 dokumen: users/{uid}) */
+const Me = {
+  s: { marks: [], prog: {}, log: {}, prefs: {}, days: {} },
+  key() { return "me:" + (Cloud.user?.uid || "local"); },
+  reset() { this.s = { marks: [], prog: {}, log: {}, prefs: {} }; },
+  async load() {
+    this.s = { marks: [], prog: {}, log: {}, prefs: {}, ...ls.get(this.key(), {}) };
+    if (DEMO || !Cloud.user) return;
+    try {
+      const { F, db } = Cloud.fb; const s = await F.getDoc(F.doc(db, "users", Cloud.user.uid));
+      if (s.exists()) { const r = s.data(); if (String(r.updatedAt || "") >= String(this.s.updatedAt || "")) this.s = { marks: [], prog: {}, log: {}, prefs: {}, ...r }; }
+    } catch (e) { console.warn(e); }
+    Prefs.apply();
+  },
+  _t: null,
+  save() {
+    this.s.updatedAt = now(); ls.set(this.key(), this.s);
+    if (DEMO || !Cloud.user) return;
+    clearTimeout(this._t);
+    this._t = setTimeout(() => { const { F, db } = Cloud.fb; const keep = Object.entries(this.s.log).sort().slice(-120); F.setDoc(F.doc(db, "users", Cloud.user.uid), JSON.parse(JSON.stringify({ ...this.s, log: Object.fromEntries(keep) }))).catch((e) => console.warn(e)); }, 2500);
+  },
+  prog(id) { return this.s.prog[id] || { ch: 0, done: [] }; },
+  setProg(id, patch) { const p = { ...this.prog(id), ...patch, at: now() }; this.s.prog[id] = p; this.save(); },
+  done(id, n) { const p = this.prog(id); if (!p.done.includes(n)) this.setProg(id, { done: [...p.done, n] }); const k = dayKey(); this.s.days = this.s.days || {}; const L = this.s.days[k] || []; if (!L.some((x) => x.b === id && x.n === n)) { this.s.days[k] = [...L, { b: id, n }]; const ks = Object.keys(this.s.days).sort(); while (ks.length > 60) delete this.s.days[ks.shift()]; this.save(); } },
+  addSeconds(sec) { const k = dayKey(); this.s.log[k] = Math.round(((this.s.log[k] || 0) + sec) * 10) / 10; this.save(); paintGoalChip(); },
+  streak() { let n = 0; const d = new Date(); if (!this.s.log[dayKey(d)]) d.setDate(d.getDate() - 1); while (this.s.log[dayKey(d)] >= 30) { n++; d.setDate(d.getDate() - 1); } return n; },
+  isMarked(bookId, n) { return this.s.marks.some((m) => m.bookId === bookId && m.ch === n && !m.quote); },
+  toggleMark(bookId, n) { const i = this.s.marks.findIndex((m) => m.bookId === bookId && m.ch === n && !m.quote); if (i >= 0) this.s.marks.splice(i, 1); else this.s.marks.unshift({ id: "m" + Date.now().toString(36), bookId, ch: n, at: now() }); this.save(); return i < 0; },
+  addQuote(bookId, n, quote) { this.s.marks.unshift({ id: "q" + Date.now().toString(36), bookId, ch: n, quote: quote.slice(0, 600), at: now() }); this.save(); },
+  delMark(id) { this.s.marks = this.s.marks.filter((m) => m.id !== id); this.save(); },
+};
+const Prefs = {
+  get(k, d) { return Me.s.prefs?.[k] ?? ls.get(k, d); },
+  set(k, v) { ls.set(k, v); Me.s.prefs = { ...(Me.s.prefs || {}), [k]: v }; Me.save(); this.apply(); },
+  apply() {
+    const t = this.get("theme", "auto"); if (t === "auto") document.documentElement.removeAttribute("data-theme"); else document.documentElement.dataset.theme = t;
+    document.documentElement.style.setProperty("--fs-read", this.get("fs", 1.18) + "rem");
+    document.querySelector('meta[name="theme-color"]').content = isDark() ? "#0E1A15" : "#263B53";
+  },
+};
+const isDark = () => { const t = document.documentElement.dataset.theme; return t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; };
+
+/* ================================================================ PERMINTAAN BUKU */
+const REQ_ST = { pending: "Menunggu", processing: "Diproses", done: "Selesai", rejected: "Ditolak" };
+const Req = {
+  async list() {
+    if (DEMO) return ls.get("demoReq", []);
+    const { F, db } = Cloud.fb; return (await F.getDocs(F.query(F.collection(db, "requests"), F.orderBy("createdAt", "desc"), F.limit(200)))).docs.map((d) => ({ id: d.id, ...d.data() }));
+  },
+  async add(title, author, note) {
+    const u = Cloud.user; const r = { uid: u?.uid || "local", name: u?.displayName || Me.s.prefs?.name || (u?.email || "Saya").split("@")[0], email: u?.email || "", title, author, note: note || "", status: "pending", createdAt: now() };
+    if (DEMO) { ls.set("demoReq", [{ id: "r" + Date.now(), ...r }, ...ls.get("demoReq", [])]); return; }
+    const { F, db } = Cloud.fb; await F.addDoc(F.collection(db, "requests"), r);
+  },
+  async setStatus(id, status, bookId) {
+    if (DEMO) { ls.set("demoReq", ls.get("demoReq", []).map((r) => (r.id === id ? { ...r, status, bookId: bookId || r.bookId } : r))); return; }
+    const { F, db } = Cloud.fb; await F.updateDoc(F.doc(db, "requests", id), { status, updatedAt: now(), ...(bookId ? { bookId } : {}) });
+  },
+  async remove(id) { if (DEMO) { ls.set("demoReq", ls.get("demoReq", []).filter((r) => r.id !== id)); return; } const { F, db } = Cloud.fb; await F.deleteDoc(F.doc(db, "requests", id)); },
+};
+
+/* ================================================================ AUDIO PER BAB (Firestore, dipotong 700 KB) */
+const AudioStore = {
+  PART: 700 * 1024,
+  docId: (bookId, n, i) => `${bookId}__c${n}__${i}`.replace(/[\/#?\[\]]/g, "_"),
+  cacheKey: (bookId, c) => `a:${bookId}/${c.n}@${c.audio?.at || ""}`,
+  _url: {},
+  async store(b, c, blob, meta) {
+    const bytes = new Uint8Array(await blob.arrayBuffer()); const n = Math.ceil(bytes.length / this.PART), oldN = c.audio?.parts || 0;
+    if (!DEMO) {
+      const { F, db } = Cloud.fb;
+      for (let i = 0; i < n; i++) await F.setDoc(F.doc(db, "audio", this.docId(b.id, c.n, i)), { bookId: b.id, ch: c.n, i, n, data: F.Bytes.fromUint8Array(bytes.subarray(i * this.PART, (i + 1) * this.PART)) });
+      for (let i = n; i < oldN; i++) await F.deleteDoc(F.doc(db, "audio", this.docId(b.id, c.n, i))).catch(() => {});
+    }
+    if (c.audio) await Local.del("files", this.cacheKey(b.id, c)).catch(() => {});
+    c.audio = { ...meta, parts: n, bytes: bytes.length, mime: blob.type || "audio/mpeg", at: now() };
+    await Local.put("files", { id: this.cacheKey(b.id, c), blob }).catch(() => {});
+  },
+  async remove(b, c, skipSave) {
+    if (!c.audio) return;
+    if (!DEMO) { const { F, db } = Cloud.fb; for (let i = 0; i < c.audio.parts; i++) await F.deleteDoc(F.doc(db, "audio", this.docId(b.id, c.n, i))).catch(() => {}); }
+    await Local.del("files", this.cacheKey(b.id, c)).catch(() => {});
+    delete c.audio; if (!skipSave) await Lib.save(b);
+  },
+  async cached(b, c) { try { return !!(await Local.get("files", this.cacheKey(b.id, c))); } catch { return false; } },
+  async url(b, c) {
+    if (!c?.audio) return null; const k = this.cacheKey(b.id, c);
+    if (this._url[k]) return this._url[k];
+    let rec = await Local.get("files", k).catch(() => null);
+    if (!rec && !DEMO) {
+      const { F, db } = Cloud.fb; const chunks = [];
+      for (let i = 0; i < c.audio.parts; i++) { const s = await F.getDoc(F.doc(db, "audio", this.docId(b.id, c.n, i))); if (!s.exists()) return null; chunks.push(s.data().data.toUint8Array()); }
+      rec = { id: k, blob: new Blob(chunks, { type: c.audio.mime || "audio/mpeg" }) }; await Local.put("files", rec).catch(() => {});
+    }
+    return rec ? (this._url[k] = URL.createObjectURL(rec.blob)) : null;
+  },
+};
+/* Kompresi audio di peramban: WAV/MP3/M4A dari Google AI Studio → MP3 mono 24 kHz 48 kbps (±360 KB/menit, cocok untuk Firestore) */
+let _lame = null;
+function loadLame() {
+  if (window.lamejs) return Promise.resolve(); if (_lame) return _lame;
+  const srcs = ["lame.min.js", "https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js", "https://unpkg.com/lamejs@1.2.1/lame.min.js"];
+  _lame = (async () => {
+    for (const u of srcs) { try { await new Promise((res, rej) => { const sc = document.createElement("script"); sc.src = u; sc.onload = () => (window.lamejs ? res() : rej()); sc.onerror = rej; document.head.appendChild(sc); }); return; } catch {} }
+    _lame = null; throw new Error("Pustaka MP3 tidak tersedia");
+  })();
+  return _lame;
+}
+/* cadangan bila MP3 tidak bisa dibuat: WAV 16 kHz 16-bit (±1,9 MB/menit, tetap bisa disimpan) */
+function wav16(f32, rate) {
+  const k = rate / 16000, n = Math.floor(f32.length / k), b = new Uint8Array(44 + n * 2), dv = new DataView(b.buffer);
+  const w = (o, t) => [...t].forEach((c, i) => (b[o + i] = c.charCodeAt(0)));
+  w(0, "RIFF"); dv.setUint32(4, 36 + n * 2, true); w(8, "WAVE"); w(12, "fmt "); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+  dv.setUint32(24, 16000, true); dv.setUint32(28, 32000, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); w(36, "data"); dv.setUint32(40, n * 2, true);
+  for (let i = 0; i < n; i++) dv.setInt16(44 + i * 2, Math.max(-32768, Math.min(32767, Math.round(f32[Math.floor(i * k)] * 32767))), true);
+  return new Blob([b], { type: "audio/wav" });
+}
+async function compressAudio(file, onStep) {
+  onStep && onStep("membaca berkas");
+  const buf = await file.arrayBuffer();
+  const AC = window.AudioContext || window.webkitAudioContext; const ctx = new AC();
+  let decoded; try { decoded = await ctx.decodeAudioData(buf.slice(0)); } finally { ctx.close?.(); }
+  const dur = decoded.duration, SR = 24000;
+  onStep && onStep(`menyesuaikan (${fmtTime(dur)})`);
+  const off = new OfflineAudioContext(1, Math.ceil(dur * SR), SR); const src = off.createBufferSource(); src.buffer = decoded; src.connect(off.destination); src.start();
+  const out = (await off.startRendering()).getChannelData(0);
+  // normalisasi ringan agar volume antarbab seragam
+  let peak = 0; for (let i = 0; i < out.length; i++) peak = Math.max(peak, Math.abs(out[i])); const g = peak > 0 ? Math.min(3, 0.95 / peak) : 1;
+  try {
+    await loadLame(); onStep && onStep("mengompres ke MP3");
+    const enc = new lamejs.Mp3Encoder(1, SR, 48), pcm = new Int16Array(out.length);
+    for (let i = 0; i < out.length; i++) pcm[i] = Math.max(-32768, Math.min(32767, Math.round(out[i] * g * 32767)));
+    const parts = []; for (let i = 0; i < pcm.length; i += 1152) { const m = enc.encodeBuffer(pcm.subarray(i, i + 1152)); if (m.length) parts.push(new Uint8Array(m)); }
+    const end = enc.flush(); if (end.length) parts.push(new Uint8Array(end));
+    return { blob: new Blob(parts, { type: "audio/mpeg" }), dur };
+  } catch (e) {
+    console.warn(e);
+    if (file.size <= 900 * 1024) return { blob: file, dur }; // berkas asli sudah kecil
+    const f = new Float32Array(out.length); for (let i = 0; i < out.length; i++) f[i] = out[i] * g; return { blob: wav16(f, SR), dur };
+  }
+}
+
+/* ================================================================ AI (opsional, khusus admin)
+   Kunci disimpan di Firestore secrets/keys (Rules: hanya admin). Anggota tidak memerlukannya. */
+const KEY_FIELDS = ["aiProvider", "gemKey", "gemModel", "ttsModel", "antKey", "antModel", "maxCh", "chMin"];
+const Keys = {
+  v: {},
+  async load() { if (DEMO) { this.v = ls.get("keys", {}); } else { try { const { F, db } = Cloud.fb; const s = await F.getDoc(F.doc(db, "secrets", "keys")); this.v = s.exists() ? s.data() : {}; } catch (e) { console.warn(e); } } MAX_CH = +this.v.maxCh || 8; CH_MIN = +this.v.chMin || 1; },
+  async save(p) { this.v = { ...this.v, ...p, updatedAt: now() }; if (DEMO) { ls.set("keys", this.v); return; } const { F, db } = Cloud.fb; await F.setDoc(F.doc(db, "secrets", "keys"), Object.fromEntries(Object.entries(this.v).filter(([k]) => KEY_FIELDS.includes(k) || k === "updatedAt"))); },
+  get ok() { return this.v.aiProvider === "claude" ? !!this.v.antKey : !!this.v.gemKey; },
+};
+async function aiText(prompt) {
+  if (Keys.v.aiProvider === "claude") {
+    const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "content-type": "application/json", "x-api-key": Keys.v.antKey, "anthropic-version": "2023-06-01", "anthropic-dangerous-direct-browser-access": "true" },
+      body: JSON.stringify({ model: Keys.v.antModel || "claude-sonnet-5-5", max_tokens: 8000, messages: [{ role: "user", content: prompt }] }) });
+    if (!r.ok) throw new Error("Claude menolak (" + r.status + "): " + (await r.text()).slice(0, 200));
+    return ((await r.json()).content || []).filter((c) => c.type === "text").map((c) => c.text).join("");
+  }
+  const model = Keys.v.gemModel || "gemini-3.8-flash";
+  const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": Keys.v.gemKey },
+    body: JSON.stringify({ contents: [{ role: "user", parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 12000, responseMimeType: "application/json" } }) });
+  if (!r.ok) { let m = ""; try { m = (await r.json()).error?.message || ""; } catch {} throw new Error("Gemini menolak (" + r.status + "): " + m.slice(0, 200)); }
+  return ((await r.json()).candidates?.[0]?.content?.parts || []).map((p) => p.text || "").join("");
+}
+const wordTarget = () => `${CH_MIN * 120}–${CH_MIN * 150}`;
+const SUMMARY_RULES = () => `Aturan:
+- Paling banyak ${MAX_CH} bab (boleh kurang bila bukunya pendek). Pilih gagasan terpenting, urut sesuai alur buku.
+- Setiap bab DIBACAKAN ±${CH_MIN} MENIT: "text" ${wordTarget()} kata, 2–3 paragraf pendek dipisah baris kosong.
+- Gaya: tenang, jernih, hangat; kalimat pendek yang enak didengar (untuk narasi suara). Tanpa markdown, tanpa emoji, tanpa daftar di dalam "text".
+- Tulis dengan kata-kata sendiri, jangan menyalin kalimat buku. Jangan mengarang fakta di luar isi buku.
+- "points": 2–3 poin inti per bab, masing-masing ≤ 14 kata.
+- "title" bab: singkat dan bermakna (≤ 7 kata).`;
+const summaryPrompt = (title, author) => `Buatkan ringkasan buku "${title}"${author ? " karya " + author : ""} dalam bahasa Indonesia untuk aplikasi Bo'Bo' (tema: Quiet Knowledge, Deep Growth).
+Balas HANYA dengan SATU blok JSON valid, tanpa teks lain, dengan format:
+{
+  "schema_version": 1,
+  "book": { "title": "", "author": "", "category": "${CATS.join(" | ")}", "synopsis": "2-3 kalimat yang mengundang rasa ingin tahu" },
+  "chapters": [
+    { "order": 1, "title": "", "text": "", "points": ["", ""] }
+  ]
+}
+${SUMMARY_RULES()}`;
+function parseJSON(t) { const s = String(t).replace(/^\s*```(?:json)?/i, "").replace(/```\s*$/, "").trim(); const a = s.indexOf("{"), b = s.lastIndexOf("}"); return JSON.parse(a >= 0 ? s.slice(a, b + 1) : s); }
+
+/* ================================================================ VISUAL: sampul */
+function coverSVG(b) {
+  const hue = Number.isFinite(b.hue) ? b.hue : hueOf(b.title); const v = hue % 4;
+  const bgs = [["#263B53", "#1B2B3E"], ["#2A4565", "#1A2B40"], ["#2F5A86", "#1C3350"], ["#34506E", "#1F3047"]][v];
+  const id = "c" + Math.random().toString(36).slice(2, 7);
+  const lines = wrap(b.title, 14).slice(0, 4); const fs = lines.length > 2 ? 26 : 31;
+  const t = lines.map((l, i) => `<tspan x="24" dy="${i ? fs * 1.08 : 0}">${esc(l)}</tspan>`).join("");
+  const motif = [`<circle cx="230" cy="110" r="70" fill="none" stroke="#FFE6A6" stroke-width="1" opacity=".35"/><circle cx="230" cy="110" r="44" fill="none" stroke="#FFE6A6" stroke-width="1" opacity=".25"/>`,
+    `<path d="M150 40 Q230 120 300 60" fill="none" stroke="#FFE6A6" stroke-width="1.2" opacity=".35"/><path d="M150 70 Q230 150 300 90" fill="none" stroke="#FFE6A6" stroke-width="1.2" opacity=".2"/>`,
+    `<g stroke="#FFE6A6" opacity=".3" stroke-width="1">${[0, 1, 2, 3, 4, 5].map((i) => `<path d="M${160 + i * 22} 30v130"/>`).join("")}</g>`,
+    `<path d="M200 40c30 20 60 20 90 0v100c-30 20-60 20-90 0z" fill="none" stroke="#FFE6A6" stroke-width="1.2" opacity=".35"/>`][v];
+  return `<svg viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sampul ${esc(b.title)}"><defs><linearGradient id="${id}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${bgs[0]}"/><stop offset="1" stop-color="${bgs[1]}"/></linearGradient></defs>
+    <rect width="300" height="450" fill="url(#${id})"/>${motif}
+    <text x="24" y="210" font-family="'Newsreader',Georgia,serif" font-size="${fs}" font-weight="500" fill="#F6F0E4">${t}</text>
+    <rect x="24" y="380" width="28" height="2" fill="#FFE6A6"/>
+    <text x="24" y="408" font-family="'Plus Jakarta Sans',sans-serif" font-size="13" font-weight="600" letter-spacing=".5" fill="#FFE6A6">${esc((b.author || "").slice(0, 30))}</text>
+    <text x="276" y="40" text-anchor="end" font-family="'Plus Jakarta Sans',sans-serif" font-size="10" font-weight="800" letter-spacing="2" fill="#DDF2FF" opacity=".7">BO’BO’</text></svg>`;
+}
+function wrap(s, n) { const out = []; let cur = ""; for (const w of String(s || "").split(/\s+/)) { if ((cur + " " + w).trim().length > n && cur) { out.push(cur); cur = w; } else cur = (cur + " " + w).trim(); } if (cur) out.push(cur); return out; }
+const coverHTML = (b) => `<div class="cover">${coverSVG(b)}${b.cover ? `<img src="${esc(b.cover)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">` : ""}</div>`;
+function resizeImage(src, w = 360, h = 540) {
+  return new Promise((res, rej) => {
+    const img = new Image(); img.crossOrigin = "anonymous";
+    img.onload = () => { try { const c = document.createElement("canvas"); c.width = w; c.height = h; const x = c.getContext("2d"); const r = Math.max(w / img.width, h / img.height), dw = img.width * r, dh = img.height * r; x.drawImage(img, (w - dw) / 2, (h - dh) / 2, dw, dh); res(c.toDataURL("image/jpeg", 0.8)); } catch (e) { rej(e); } };
+    img.onerror = () => rej(new Error("Gambar tidak bisa dibuka.")); img.src = src;
+  });
+}
+
+/* ================================================================ SUARA PERANGKAT (cadangan bila bab belum punya audio) */
+function deviceVoice() {
+  const vs = speechSynthesis.getVoices().filter((v) => /^id|^in/i.test(v.lang));
+  const pick = Prefs.get("voiceName", ""); return vs.find((v) => v.name === pick) || vs.find((v) => /google/i.test(v.name)) || vs[0] || null;
+}
+function utter(text, rate) { const u = new SpeechSynthesisUtterance(text); const v = deviceVoice(); if (v) u.voice = v; u.lang = v?.lang || "id-ID"; u.rate = 0.95 * rate; return u; }
+const narration = (c) => `Bab ${c.n}. ${c.title}.\n\n${c.text}`;
+
+/* ================================================================ PLAYER */
+const Player = {
+  book: null, idx: -1, kind: null, playing: false, time: 0, dur: 0, rate: Prefs.get("rate", 1), chunks: [], ci: 0, est: 0, pending: null, a: null, _tick: 0,
+  get ch() { return this.book?.chapters[this.idx]; },
+  get frac() { return this.dur ? Math.min(1, this.time / this.dur) : 0; },
+  init() {
+    const a = (this.a = $("#audio"));
+    a.addEventListener("loadedmetadata", () => { this.dur = a.duration; this.emit(); });
+    a.addEventListener("timeupdate", () => { const d = a.currentTime - this.time; if (d > 0 && d < 2) this.count(d); this.time = a.currentTime; this.dur = a.duration || this.dur; this.emit(); });
+    a.addEventListener("play", () => { this.playing = true; this.emit(); });
+    a.addEventListener("pause", () => { this.playing = false; this.emit(); });
+    a.addEventListener("ended", () => { this.playing = false; this.ended(); });
+    a.addEventListener("error", () => { if (this.kind === "audio" && this.book) { toast("Audio gagal diputar, memakai suara perangkat"); const b = this.book, i = this.idx; this.kind = null; this.loadTTS(b, i); this.play(); } });
+    if ("mediaSession" in navigator) { const ms = navigator.mediaSession; try { ms.setActionHandler("play", () => this.play()); ms.setActionHandler("pause", () => this.pause()); ms.setActionHandler("seekbackward", () => this.skip(-10)); ms.setActionHandler("seekforward", () => this.skip(10)); ms.setActionHandler("nexttrack", () => this.jump(1)); ms.setActionHandler("previoustrack", () => this.jump(-1)); } catch {} }
+  },
+  count(sec) { this._acc = (this._acc || 0) + sec; if (this._acc >= 5) { Me.addSeconds(this._acc); this._acc = 0; } },
+  async load(book, idx, { autoplay = false } = {}) {
+    if (this.book?.id === book.id && this.idx === idx && this.kind) { if (autoplay && !this.playing) this.play(); return; }
+    this.stop(true); Object.assign(this, { book, idx, time: 0, dur: 0, ci: 0, pending: null });
+    const c = book.chapters[idx]; let url = null;
+    if (c.audio) { try { url = await AudioStore.url(book, c); } catch (e) { console.warn(e); } }
+    if (url) { this.kind = "audio"; this.a.src = url; this.a.playbackRate = this.rate; } else this.loadTTS(book, idx);
+    Me.setProg(book.id, { ch: idx });
+    if ("mediaSession" in navigator) try { navigator.mediaSession.metadata = new MediaMetadata({ title: `${c.n}. ${c.title}`, artist: book.title, album: "Bo'Bo'", artwork: [{ src: "icon-512.png", sizes: "512x512", type: "image/png" }] }); } catch {}
+    this.emit(); if (autoplay) this.play();
+  },
+  loadTTS(book, idx) {
+    this.kind = window.speechSynthesis ? "tts" : null;
+    this.chunks = narration(book.chapters[idx]).split(/\n{2,}/).flatMap((p) => p.match(/[^.!?]+[.!?]*\s*/g) || [p]).map((s) => s.trim()).filter(Boolean);
+    this.est = words(this.chunks.join(" ")) / (WPM / 60); this.dur = this.est;
+  },
+  play() {
+    if (!this.kind) { toast("Suara tidak tersedia di peramban ini"); return; }
+    if (this.kind === "audio") this.a.play().catch(() => toast("Ketuk sekali lagi untuk memutar"));
+    else { speechSynthesis.cancel(); this.playing = true; this._ts = Date.now(); this.speak(); this.emit(); }
+  },
+  speak() {
+    if (!this.playing) return;
+    if (this.ci >= this.chunks.length) { this.playing = false; this.ended(); return; }
+    const u = utter(this.chunks[this.ci], this.rate);
+    u.onend = () => { if (!this.playing) return; const n = (Date.now() - this._ts) / 1000; this._ts = Date.now(); if (n < 60) this.count(n); this.ci++; this.time = (this.ci / this.chunks.length) * this.est; this.emit(); this.speak(); };
+    u.onerror = () => { this.playing = false; this.emit(); };
+    speechSynthesis.speak(u);
+  },
+  pause() { if (this.kind === "audio") this.a.pause(); else { this.playing = false; speechSynthesis.cancel(); this.emit(); } },
+  toggle() { this.playing ? this.pause() : this.play(); },
+  seekFrac(f) { if (this.kind === "audio") { if (this.a.duration) this.a.currentTime = f * this.a.duration; } else { this.ci = Math.max(0, Math.min(this.chunks.length - 1, Math.floor(f * this.chunks.length))); this.time = (this.ci / this.chunks.length) * this.est; if (this.playing) { speechSynthesis.cancel(); this.speak(); } } this.emit(); },
+  skip(sec) { if (this.kind === "audio") this.a.currentTime = Math.max(0, this.a.currentTime + sec); else this.seekFrac(Math.max(0, (this.ci + (sec > 0 ? 1 : -1)) / this.chunks.length)); },
+  setRate(r) { this.rate = r; Prefs.set("rate", r); if (this.kind === "audio") this.a.playbackRate = r; else if (this.playing) { speechSynthesis.cancel(); this.speak(); } this.emit(); },
+  ended() {
+    if (this._acc) { Me.addSeconds(this._acc); this._acc = 0; }
+    Me.done(this.book.id, this.ch.n); this.emit();
+    if (this.idx >= this.book.chapters.length - 1) { toast("Selesai. Satu buku lagi tumbuh dalam dirimu."); return; }
+    if (Prefs.get("autoNext", true)) setTimeout(() => this.jump(1), 900);
+  },
+  async jump(dir) {
+    if (!this.book) return; const n = this.idx + dir;
+    if (n < 0 || n >= this.book.chapters.length) { toast(dir > 0 ? "Ini bab terakhir" : "Ini bab pertama"); return; }
+    await this.load(this.book, n, { autoplay: true });
+    if (route.name === "read" && route.a === this.book.id) go("read", this.book.id, n, { replace: true });
+  },
+  stop(silent) { if (this.a) { this.a.pause(); this.a.removeAttribute("src"); try { this.a.load(); } catch {} } if (window.speechSynthesis) speechSynthesis.cancel(); this.playing = false; if (!silent) { this.book = null; this.kind = null; this.emit(); } },
+  emit() { renderMini(); paintPlayerSheet(); paintChapterRows(); },
+};
+function renderMini() {
+  const P = Player, mini = $("#mini"), show = !!(P.book && P.kind) && !$(".sheet") && !document.body.classList.contains("auth");
+  document.body.classList.toggle("has-mini", show); mini.hidden = !show; if (!show) return;
+  mini.innerHTML = `<div class="art">${P.ch.n}</div><button class="tt" type="button" data-open-player><b>${esc(P.ch.title)}</b><span>${esc(P.book.title)} · ${fmtTime(P.time)} / ${fmtTime(P.dur)}</span></button>
+    <button class="ib pp" type="button" data-pp aria-label="${P.playing ? "Jeda" : "Putar"}">${P.playing ? I.pause : I.play}</button>
+    <button class="ib" type="button" data-pstop aria-label="Tutup pemutar">${I.close}</button><i class="prog" style="width:${(P.frac * 100).toFixed(1)}%"></i>`;
+}
+function openPlayer() {
+  const P = Player; if (!P.book) return;
+  openSheet(`<div class="player" id="playerSheet"></div>`); paintPlayerSheet(true);
+}
+function paintPlayerSheet(full) {
+  const el = $("#playerSheet"); if (!el) return; const P = Player; if (!P.book) { closeSheet(); return; }
+  if (full || el.dataset.k !== P.book.id + P.idx) {
+    el.dataset.k = P.book.id + P.idx;
+    el.innerHTML = `${coverHTML(P.book)}<span class="label">Bab ${P.ch.n} dari ${P.book.chapters.length}</span><h2>${esc(P.ch.title)}</h2><p class="sub">${esc(P.book.title)}${P.book.author ? " · " + esc(P.book.author) : ""}</p>
+      <input class="scrub" type="range" min="0" max="1000" value="0" aria-label="Posisi" data-scrub><div class="times"><span data-t0>0:00</span><span data-t1>0:00</span></div>
+      <div class="ctrls"><button class="ib" type="button" data-pjump="-1" aria-label="Bab sebelumnya">${I.prev}</button><button class="ib" type="button" data-pskip="-10" aria-label="Mundur 10 detik">${I.back10}</button>
+        <button class="big" type="button" data-pp aria-label="Putar/jeda"></button>
+        <button class="ib" type="button" data-pskip="10" aria-label="Maju 10 detik">${I.fwd10}</button><button class="ib" type="button" data-pjump="1" aria-label="Bab berikutnya">${I.nextT}</button></div>
+      <div class="row" style="justify-content:center"><div class="seg" role="group" aria-label="Kecepatan">${[0.8, 1, 1.25, 1.5].map((r) => `<button type="button" data-rate="${r}">${r}×</button>`).join("")}</div></div>
+      <p class="src-note" style="margin-top:12px" data-srcnote></p>
+      <div class="row" style="justify-content:center;margin-top:10px"><button class="btn sm" type="button" data-read-now>${I.read}Baca teks bab ini</button></div>`;
+  }
+  const sc = $("[data-scrub]", el); if (sc && !sc._drag) sc.value = Math.round(P.frac * 1000);
+  $("[data-t0]", el).textContent = fmtTime(P.time); $("[data-t1]", el).textContent = fmtTime(P.dur);
+  $("[data-pp]", el).innerHTML = P.playing ? I.pause : I.play;
+  $$("[data-rate]", el).forEach((b) => b.setAttribute("aria-pressed", +b.dataset.rate === P.rate));
+  $("[data-srcnote]", el).textContent = P.kind === "audio" ? "Narasi rekaman" + (P.ch.audio?.voice ? " · " + P.ch.audio.voice : "") : "Belum ada rekaman · dibacakan suara perangkat";
+}
+function paintChapterRows() {
+  $$("[data-chrow]").forEach((li) => { const on = Player.book?.id === li.dataset.book && Player.idx === +li.dataset.chrow; li.classList.toggle("playing", on); const ic = $(".act", li); if (ic) ic.innerHTML = on && Player.playing ? I.pause : I.play; });
+}
+
+/* ================================================================ SHEET, TOAST */
+function openSheet(html) {
+  closeSheet(); const h = $("#sheetHost");
+  h.innerHTML = `<div class="sheet-bg" data-close-sheet></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>${html}</div>`;
+  renderMini(); $(".sheet button, .sheet input")?.focus({ preventScroll: true });
+}
+function closeSheet() { const h = $("#sheetHost"); if (h.innerHTML) { h.innerHTML = ""; renderMini(); } }
+function toast(msg) { const t = document.createElement("div"); t.className = "toast"; t.textContent = msg; $("#toastHost").appendChild(t); setTimeout(() => t.remove(), 3200); }
+async function copyText(t) { try { await navigator.clipboard.writeText(t); toast("Disalin"); } catch { toast("Gagal menyalin"); } }
+function saveFile(name, data, type) { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([data], { type })); a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); }
+function confirmBtn(btn, q) { if (btn.dataset.sure) return true; btn.dataset.sure = "1"; const old = btn.innerHTML; btn.textContent = q; setTimeout(() => { btn.innerHTML = old; delete btn.dataset.sure; }, 3000); return false; }
+
+/* ================================================================ ROUTER (hash: cocok untuk GitHub Pages) */
+let route = { name: "home" };
+function parseHash() { const p = location.hash.replace(/^#\/?/, "").split("/").map(decodeURIComponent); return { name: p[0] || "home", a: p[1], b: p[2] }; }
+function go(name, a, b, { replace } = {}) {
+  const h = "#/" + [name, a, b].filter((x) => x !== undefined && x !== null && x !== "").map((x) => encodeURIComponent(x)).join("/");
+  if (location.hash === h) { render(); return; }
+  if (replace) { history.replaceState(null, "", h); render(); } else location.hash = h;
+}
+addEventListener("hashchange", () => { closeSheet(); render(); });
+function setNav() {
+  const n = route.name === "book" || route.name === "read" ? "library" : route.name;
+  $$("[data-go]").forEach((b) => (b.dataset.go === n ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current")));
+  $$("[data-admin-only]").forEach((el) => (el.hidden = !Cloud.isAdmin));
+  $$("[data-member-only]").forEach((el) => (el.hidden = Cloud.isAdmin));
+  const av = $("[data-avatar]"), u = Cloud.user, name = u?.displayName || Me.s.prefs?.name || u?.email || (DEMO ? "Admin" : "?");
+  av.innerHTML = u?.photoURL ? `<img src="${esc(u.photoURL)}" alt="" referrerpolicy="no-referrer">` : esc(String(name).trim()[0]?.toUpperCase() || "?");
+  paintBadges(); paintGoalChip();
+}
+function paintBadges() { const n = Cloud.pendingMembers + Cloud.pendingReq; $$("[data-badge]").forEach((el) => { el.textContent = n; el.hidden = !n || !Cloud.isAdmin; }); $("[data-avatar]")?.classList.toggle("dot", !!n && Cloud.isAdmin); }
+async function render() {
+  clearTimeout(heroT);
+  route = parseHash();
+  const gate = authGate(); if (gate) { gate(); return; }
+  document.body.classList.remove("auth"); setNav(); renderMini();
+  const V = { home: viewHome, library: viewLibrary, book: viewBook, read: viewRead, marks: viewMarks, requests: viewRequests, settings: viewSettings, admin: viewAdmin, edit: viewEdit, import: viewImport }[route.name] || viewHome;
+  if (["admin", "edit", "import"].includes(route.name) && !Cloud.isAdmin) { go("home", null, null, { replace: true }); return; }
+  try { await V(); } catch (e) { console.error(e); app.innerHTML = `<section class="view"><div class="notice">Terjadi kesalahan: ${esc(e.message || e)}</div></section>`; }
+  if (!route.keepScroll) window.scrollTo(0, 0);
+}
+function authGate() {
+  if (DEMO) return null;
+  if (!Cloud.ready) return () => { app.innerHTML = `<div class="skel"></div>`; };
+  if (!Cloud.user) return viewLogin;
+  if (!Cloud.approved) return viewPending;
+  return null;
+}
+
+/* ================================================================ LOGIN */
+const GICON = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8Z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24Z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8l4-3.1Z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9Z"/></svg>`;
+const FAN = [{ title: "Diam yang Bertumbuh", author: "Bo’Bo’", hue: 1 }, { title: "Satu Gagasan Sehari", author: "Bo’Bo’", hue: 0 }, { title: "Membaca Perlahan", author: "Bo’Bo’", hue: 2 }];
+const QUOTES = [["Membaca adalah percakapan diam dengan orang-orang terbaik dari masa lalu.", "Descartes"], ["Sedikit demi sedikit, lama-lama menjadi bukit.", "Peribahasa"], ["Ilmu tanpa amal seperti pohon tanpa buah.", "Pepatah Arab"]];
+const loginArt = () => `<div class="login-art">${patSVG()}<div class="top"><img src="icon-192.png" alt=""><span>Bo’Bo’<i></i></span></div>
+  <div class="fan">${FAN.map((b, i) => `<div class="c${i + 1} cover" style="position:absolute">${coverSVG(b)}</div>`).join("")}</div>
+  <div class="copy"><h1>Quiet knowledge,<br>deep growth.</h1><p>Satu buku, satu langkah tumbuh.</p>
+    <div class="feat"><span><b>01</b>Baca</span><span><b>02</b>Dengar</span><span><b>03</b>Tumbuh</span></div></div></div>`;
+let loginMode = "in";
+function viewLogin() {
+  document.body.classList.add("auth"); renderMini();
+  const reg = loginMode === "up", q = QUOTES[dayNum() % QUOTES.length];
+  app.innerHTML = `<section class="login">${loginArt()}<div class="login-form">
+    <span class="label">${greet()}</span><h2>${reg ? "Daftar akun" : "Masuk ke Bo’Bo’"}</h2>
+    <p class="muted" style="margin:10px 0 22px">${reg ? "Setelah mendaftar, admin akan menyetujui akunmu terlebih dahulu." : "Lanjutkan bacaan dan narasi yang tersimpan di akunmu."}</p>
+    <form id="lf" autocomplete="on">
+      ${reg ? `<div class="field"><label for="lfN">Nama</label><input id="lfN" name="name" autocomplete="name" required maxlength="60" placeholder="Nama panggilan"></div>` : ""}
+      <div class="field"><label for="lfE">Email</label><input id="lfE" name="email" type="email" autocomplete="${reg ? "email" : "username"}" required placeholder="nama@email.com"></div>
+      <div class="field"><label for="lfP">Kata sandi</label><input id="lfP" name="password" type="password" autocomplete="${reg ? "new-password" : "current-password"}" required minlength="6" placeholder="Minimal 6 karakter"></div>
+      <button class="btn pri block" type="submit" style="padding:14px">${reg ? "Daftar" : "Masuk"}</button>
+    </form>
+    <div class="or">atau</div>
+    <button class="btn block gbtn" type="button" id="lgG" style="padding:13px">${GICON}Lanjut dengan Google</button>
+    <p class="small" style="margin-top:18px;text-align:center">${reg ? `Sudah punya akun? <button class="linkbtn" type="button" data-lmode="in">Masuk</button>` : `Belum punya akun? <button class="linkbtn" type="button" data-lmode="up">Daftar</button> · <button class="linkbtn" type="button" id="lgR">Lupa sandi</button>`}</p>
+    <p class="small" id="lgMsg" aria-live="polite" style="color:var(--bad);text-align:center;margin-top:8px">${esc(Cloud.err || "")}</p>
+    <p class="quote">“${esc(q[0])}” <span class="small muted" style="font-style:normal">— ${esc(q[1])}</span></p></div></section>`;
+  const msg = (t, ok) => { const m = $("#lgMsg"); m.textContent = t; m.style.color = ok ? "var(--ok)" : "var(--bad)"; };
+  $("#lf").onsubmit = async (e) => {
+    e.preventDefault(); const em = $("#lfE").value.trim(), pw = $("#lfP").value; const btn = e.target.querySelector("button");
+    if (!em || pw.length < 6) { msg("Isi email dan kata sandi (minimal 6 karakter)."); return; }
+    btn.disabled = true; msg("Memproses…", true);
+    try { if (reg) { const n = $("#lfN").value.trim(); if (!n) { msg("Isi nama dulu."); btn.disabled = false; return; } await Cloud.emailRegister(n, em, pw); } else await Cloud.emailLogin(em, pw); }
+    catch (err) { msg(authMsg(err)); btn.disabled = false; }
+  };
+  $("#lgG").onclick = async () => { msg("Membuka Google…", true); try { await Cloud.google(); } catch (e) { msg(authMsg(e)); } };
+  const r = $("#lgR"); if (r) r.onclick = async () => { const em = $("#lfE").value.trim(); if (!em) { msg("Isi email dulu, lalu tekan Lupa sandi."); return; } try { await Cloud.reset(em); msg("Tautan atur ulang sandi dikirim ke " + em + ". Cek juga folder Spam.", true); } catch (e) { msg(authMsg(e)); } };
+}
+function viewPending() {
+  document.body.classList.add("auth"); renderMini();
+  const st = Cloud.member?.status;
+  app.innerHTML = `<section class="login">${loginArt()}<div class="login-form"><span class="label">${st === "rejected" ? "Akses ditolak" : "Menunggu persetujuan"}</span>
+    <h2>${st === "rejected" ? "Belum bisa masuk" : "Sebentar lagi"}</h2>
+    <p class="muted" style="margin-top:10px">${st === "rejected" ? "Admin belum memberi akses untuk akun ini." : `Akun <b>${esc(Cloud.user?.email || "")}</b> sudah terdaftar. Halaman ini terbuka otomatis setelah admin menyetujui.`}</p>
+    ${Cloud.err ? `<p class="small" style="color:var(--bad);margin-top:10px">${esc(Cloud.err)}</p>` : ""}
+    <button class="btn block" type="button" data-logout style="margin-top:20px">Keluar / ganti akun</button></div></section>`;
+}
+
+/* ================================================================ BERANDA */
+function greet() { const h = new Date().getHours(); return h < 11 ? "Selamat pagi" : h < 15 ? "Selamat siang" : h < 18 ? "Selamat sore" : "Selamat malam"; }
+function patSVG() {
+  const id = "pt" + Math.random().toString(36).slice(2, 7);
+  return `<svg class="pat" aria-hidden="true" width="100%" height="100%"><defs><pattern id="${id}" width="150" height="150" patternUnits="userSpaceOnUse"><g fill="none" stroke="#F6F0E4" stroke-width="1.4"><rect x="40" y="40" width="70" height="70"/><rect x="40" y="40" width="70" height="70" transform="rotate(45 75 75)"/></g></pattern></defs><rect width="100%" height="100%" fill="url(#${id})"/></svg>`;
+}
+function bookCard(b) {
+  const p = Me.prog(b.id), d = p.done.length, n = b.chapters.length;
+  return `<button class="bcard" type="button" data-open-book="${esc(b.id)}"><div style="position:relative">${coverHTML(b)}${Cloud.isAdmin && b.pub !== "published" ? `<span class="chip st-draft tag">Draf</span>` : ""}</div>
+    <div><b>${esc(b.title)}</b></div><small>${esc(b.author || "")}${d ? ` · ${d}/${n} bab` : adm(` · ${minLabel(bookMinutes(b))}`)}</small></button>`;
+}
+/* ---- target harian, riwayat, resume ---- */
+const goalMin = () => Prefs.get("goal", 10);
+const todayMin = () => (Me.s.log[dayKey()] || 0) / 60;
+function paintGoalChip() {
+  const el = $("#goalChip"); if (!el) return; const pct = Math.min(100, Math.round((todayMin() / goalMin()) * 100));
+  el.innerHTML = `<span class="ring" style="--p:${pct}">${I.flame}</span><b>${Me.streak()}</b><span class="gl">${Math.floor(todayMin())}/${goalMin()} mnt</span>`;
+  el.setAttribute("aria-label", `Target harian ${Math.floor(todayMin())} dari ${goalMin()} menit, ${Me.streak()} hari beruntun`);
+}
+function todayList(day = dayKey()) { return (Me.s.days?.[day] || []).map((x) => { const b = Lib.find(x.b); const c = b?.chapters.find((y) => y.n === x.n); return b && c ? { b, c } : null; }).filter(Boolean); }
+function resumeHTML(day = dayKey()) {
+  const L = todayList(day);
+  if (!L.length) return `<p class="small muted" style="margin-top:8px">Belum ada bab yang selesai hari ini. Satu bab sudah cukup untuk memulai.</p>`;
+  return `<ol>${L.map(({ b, c }) => `<li><span class="rb">${esc(c.title)}</span> <span class="muted small">· ${esc(b.title)}</span>${c.points?.[0] ? `<div class="rp">${esc(c.points[0])}</div>` : ""}</li>`).join("")}</ol>`;
+}
+function resumeText(day = dayKey()) {
+  const L = todayList(day); if (!L.length) return "";
+  return `Resume Bo'Bo' · ${new Date(day).toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long" })}\n${Math.round((Me.s.log[day] || 0) / 60)} menit · ${L.length} bab\n\n` + L.map(({ b, c }, i) => `${i + 1}. ${c.title} (${b.title})${(c.points || []).map((p) => "\n   • " + p).join("")}`).join("\n\n");
+}
+function openGoal() {
+  const days = [...Array(7)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - (6 - i)); const k = dayKey(d); return { k, m: (Me.s.log[k] || 0) / 60, lbl: d.toLocaleDateString("id-ID", { weekday: "short" }).slice(0, 3) }; });
+  const max = Math.max(goalMin(), ...days.map((d) => d.m)), total = Object.values(Me.s.log).reduce((a, s) => a + s, 0) / 60;
+  openSheet(`<span class="label">Target & riwayat</span><h2 class="cd" style="font-size:2.4rem;margin:6px 0 4px">${Math.floor(todayMin())} dari ${goalMin()} menit</h2>
+    <p class="muted small">${Me.streak()} hari beruntun · total ${Math.round(total)} menit bersama Bo’Bo’</p>
+    <div class="bars">${days.map((d, i) => `<div class="${i === 6 ? "today" : ""}"><i class="${d.m >= goalMin() ? "hit" : ""}" style="height:${Math.max(4, (d.m / max) * 100)}%"></i>${d.lbl}</div>`).join("")}</div>
+    <div class="field" style="margin-top:14px"><label>Target harian</label><div class="seg">${[5, 10, 15, 20, 30].map((m) => `<button type="button" data-goal="${m}" aria-pressed="${m === goalMin()}">${m} menit</button>`).join("")}</div></div>
+    <div class="resume" style="margin-top:6px"><span class="label">Resume hari ini</span>${resumeHTML()}${todayList().length ? `<div class="row" style="margin-top:12px"><button class="btn sm" type="button" data-copy-resume>${I.copy}Salin resume</button></div>` : ""}</div>`);
+}
+/* ---- bekal hari ini: satu gagasan per hari, sama untuk semua anggota ---- */
+const dayNum = (d = new Date()) => Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000);
+function dailyPick() {
+  const pool = Lib.visible.filter((b) => b.pub === "published" || Cloud.isAdmin).slice().sort((a, z) => a.id.localeCompare(z.id)).flatMap((b) => b.chapters.map((c, i) => ({ b, c, i })));
+  if (!pool.length) return null; const x = pool[(dayNum() * 7) % pool.length];
+  const first = String(x.c.text || "").split(/(?<=[.!?])\s+/).find((s) => s.length > 40 && s.length < 220);
+  return { ...x, quote: x.c.points?.[0] ? x.c.points[0] + "." : first || x.c.title };
+}
+/* ---- beranda ---- */
+const SLIDES = [
+  ["01", "Baca", "Baca dalam diam.", "Ringkasan per bab yang jernih, tenang, dan mudah dicerna."],
+  ["02", "Dengar", "Satu bab, satu gagasan.", "Dengarkan narasi tiap bab saat berkendara, berjalan, atau sebelum tidur."],
+  ["03", "Tumbuh", "Tumbuh perlahan.", "Simpan kutipan, ulangi yang bermakna. Pengetahuan yang tenang, pertumbuhan yang dalam."],
+];
+let heroT = null, heroS = 0;
+function viewHome() {
+  const books = Lib.visible, name = (Cloud.user?.displayName || Me.s.prefs?.name || (Cloud.user?.email || "").split("@")[0] || "").split(" ")[0];
+  const cont = Object.entries(Me.s.prog).map(([id, p]) => ({ b: Lib.find(id), p })).filter((x) => x.b && (Cloud.isAdmin || x.b.pub === "published") && x.p.done.length < x.b.chapters.length).sort((a, z) => String(z.p.at).localeCompare(String(a.p.at)))[0];
+  const feat = cont?.b || books[0] || null, featCh = cont ? Math.min(cont.p.ch || 0, cont.b.chapters.length - 1) : 0;
+  const pct = Math.min(100, Math.round((todayMin() / goalMin()) * 100)), dp = dailyPick();
+  const cats = [...new Set(books.map((b) => b.category).filter(Boolean))];
+  app.innerHTML = `<section class="view">
+    <div class="stage" id="stage" data-s="${heroS}">${patSVG()}<span class="beam"></span>
+      <div class="steps3">${SLIDES.map((s, i) => `<button type="button" data-slide="${i}"><i><b></b></i><em>${s[0]}</em>${s[1]}</button>`).join("")}</div>
+      ${feat ? `<button class="tilt" type="button" data-open-book="${esc(feat.id)}" aria-label="Buka ${esc(feat.title)}" style="border:0;padding:0;background:none">${coverHTML(feat)}</button>` : ""}
+      <div class="slide" id="slide"></div></div>
+    <button class="target" type="button" data-open-goal><span class="bigring" style="--p:${pct}"><b>${pct}%</b></span><span><span class="label">Target hari ini</span><h3>${Math.floor(todayMin())} dari ${goalMin()} menit</h3>
+      <small>${I.flame} ${Me.streak()} hari beruntun · lihat riwayat & resume</small></span></button>
+    ${dp ? `<div class="sec-h"><div><span class="label">${greet()}${name ? ", " + esc(name) : ""}</span><h2>Bekal hari ini</h2></div></div>
+      <div class="daily">${patSVG()}<span class="kick" style="color:var(--gold);position:relative">Bab ${dp.c.n}</span><p class="q">${esc(dp.quote)}</p>
+        <p class="src"><b>${esc(dp.c.title)}</b> — ${esc(dp.b.title)}${dp.b.author ? ", " + esc(dp.b.author) : ""}</p>
+        <div class="row"><button class="btn goldb" type="button" data-listen="${esc(dp.b.id)}" data-ch="${dp.i}">${I.play}Dengarkan</button><button class="btn glass" type="button" data-read="${esc(dp.b.id)}" data-ch="${dp.i}">${I.read}Baca</button>
+        <button class="btn glass" type="button" data-copy="${esc(`“${dp.quote}”\n— ${dp.c.title}, ${dp.b.title}\n\nBo'Bo' · Quiet Knowledge, Deep Growth`)}">${I.copy}Salin</button></div></div>` : ""}
+    <div class="sec-h"><h2>Resume hari ini</h2>${todayList().length ? `<button class="linkbtn" type="button" data-copy-resume>Salin resume</button>` : ""}</div>
+    <div class="resume"><span class="label">${new Date().toLocaleDateString("id-ID", { weekday: "long", day: "numeric", month: "long" })} · ${Math.floor(todayMin())} menit</span>${resumeHTML()}</div>
+    ${cont ? `<div class="sec-h"><h2>Lanjutkan</h2></div>${continueCard(cont.b, cont.p)}` : ""}
+    ${books.length ? `<div class="sec-h"><h2>Terbaru</h2><button class="linkbtn" type="button" data-go="library">Lihat semua</button></div><div class="rail">${books.slice(0, 12).map(bookCard).join("")}</div>`
+      : `<div class="empty"><h3>Rak masih sepi</h3><p>${Cloud.isAdmin ? "Tambahkan buku pertama lewat tombol +." : "Buku akan muncul setelah admin menerbitkannya. Sementara itu, kamu bisa meminta buku."}</p>
+        <div class="row" style="justify-content:center;margin-top:14px">${Cloud.isAdmin ? `<button class="btn pri" type="button" data-go="edit">${I.plus}Tambah buku</button>` : `<button class="btn pri" type="button" data-go="requests">Minta buku</button>`}</div></div>`}
+    ${cats.length > 1 ? `<div class="sec-h"><h2>Jelajahi</h2></div><div class="cats">${cats.map((c) => `<button class="chip" type="button" data-cat="${esc(c)}">${esc(c)}</button>`).join("")}</div>` : ""}
+    <div class="panel" style="margin-top:30px;display:flex;gap:14px;align-items:center;flex-wrap:wrap"><div style="flex:1 1 240px"><h3>Ada buku yang ingin kamu dengar?</h3><p class="small muted">Kirim judulnya. Admin akan meringkasnya untukmu.</p></div><button class="btn" type="button" data-go="requests">Minta buku</button></div>
+  </section>`;
+  heroData = { feat, featCh, cont: !!cont };
+  showSlide(heroS);
+}
+let heroData = {};
+function showSlide(i) {
+  heroS = i; clearTimeout(heroT); const st = $("#stage"); if (!st) return; st.dataset.s = i;
+  $$(".steps3 button", st).forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("past", k < i); const bar = $("i b", b); bar.style.animation = "none"; void bar.offsetWidth; bar.style.animation = ""; });
+  const s = SLIDES[i], f = heroData.feat;
+  $("#slide").innerHTML = `<div class="slide-anim"><span class="kick"><em>${s[0]}</em> — ${s[1]}</span><h1 class="cd">${esc(s[2])}</h1><p>${esc(s[3])}</p>
+    <div class="cta">${f ? `<button class="btn goldb" type="button" data-listen="${esc(f.id)}" data-ch="${heroData.featCh}">${heroData.cont ? "Lanjutkan dengar" : "Mulai dengar"}</button><button class="btn glass" type="button" data-read="${esc(f.id)}" data-ch="${heroData.featCh}">Baca</button>` : `<button class="btn goldb" type="button" data-go="requests">Minta buku pertama</button>`}</div></div>`;
+  if (!reducedMotion) heroT = setTimeout(() => { if (route.name === "home" && $("#stage")) showSlide((heroS + 1) % 3); }, 7000);
+}
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function continueCard(b, p) {
+  const n = b.chapters.length, i = Math.min(p.ch || 0, n - 1);
+  return `<div class="continue"><div class="cv">${coverHTML(b)}</div><button type="button" data-open-book="${esc(b.id)}" style="border:0;background:none;text-align:left;padding:0;min-width:0"><span class="label">Lanjutkan</span><b>${esc(b.title)}</b><small class="muted">Bab ${i + 1} · ${esc(b.chapters[i]?.title || "")}</small><div class="bar"><i style="width:${(p.done.length / n) * 100}%"></i></div></button>
+    <button class="playfab" type="button" data-listen="${esc(b.id)}" data-ch="${i}" aria-label="Dengarkan">${I.play}</button></div>`;
+}
+
+/* ================================================================ PUSTAKA */
+let libQ = "", libCat = "";
+function viewLibrary() {
+  const books = Lib.visible, cats = [...new Set(books.map((b) => b.category).filter(Boolean))].sort();
+  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Pustaka</span><h1 class="d">Rak buku</h1><p>${books.length} buku · ringkas, tenang, dan bisa didengar.</p></div>
+    <div class="searchbox">${I.search}<input id="lq" type="search" placeholder="Cari judul, penulis, atau isi…" value="${esc(libQ)}" aria-label="Cari buku"></div>
+    ${cats.length ? `<div class="seg" style="margin-bottom:18px"><button type="button" data-lcat="" aria-pressed="${!libCat}">Semua</button>${cats.map((c) => `<button type="button" data-lcat="${esc(c)}" aria-pressed="${libCat === c}">${esc(c)}</button>`).join("")}</div>` : ""}
+    <div id="lgrid"></div></section>`;
+  const draw = () => {
+    const q = fold(libQ); const list = books.filter((b) => (!libCat || b.category === libCat) && (!q || fold([b.title, b.author, b.synopsis, ...b.chapters.map((c) => c.title + " " + c.text)].join(" ")).includes(q)));
+    $("#lgrid").innerHTML = list.length ? `<div class="grid">${list.map(bookCard).join("")}</div>` : `<div class="empty"><h3>Tidak ditemukan</h3><p>Coba kata lain, atau <button class="linkbtn" type="button" data-go="requests">minta buku ini</button>.</p></div>`;
+  };
+  $("#lq").oninput = (e) => { libQ = e.target.value; draw(); }; draw();
+}
+
+/* ================================================================ DETAIL BUKU */
+function viewBook() {
+  const b = Lib.find(route.a); if (!b || (!Cloud.isAdmin && b.pub !== "published")) { app.innerHTML = `<section class="view"><div class="empty"><h3>Buku tidak ditemukan</h3><button class="btn" type="button" data-go="library">Ke Pustaka</button></div></section>`; return; }
+  const p = Me.prog(b.id), n = b.chapters.length, withAudio = b.chapters.filter((c) => c.audio).length;
+  const startAt = Math.min(p.done.length >= n ? 0 : (p.ch || 0), n - 1);
+  app.innerHTML = `<section class="view">
+    <button class="btn ghost sm" type="button" data-back style="margin-left:-10px">${I.back}Kembali</button>
+    <div class="bhead">${coverHTML(b)}<div>
+      <span class="label">${esc(b.category || "Ringkasan")}</span><h1 class="d">${esc(b.title)}</h1>${b.author ? `<p class="by">${esc(b.author)}</p>` : ""}
+      <div class="meta"><span class="chip">${n} bab</span>${adm(`<span class="chip">${minLabel(bookMinutes(b))}</span>`)}${withAudio ? `<span class="chip">${I.listen.replace("<svg", '<svg width="14" height="14"')}${withAudio === n ? "Narasi lengkap" : `${withAudio}/${n} bab bernarasi`}</span>` : ""}${Cloud.isAdmin ? `<span class="chip st-${b.pub === "published" ? "published" : "draft"}">${b.pub === "published" ? "Terbit" : "Draf"}</span>` : ""}</div>
+      <div class="row"><button class="btn pri" type="button" data-listen="${esc(b.id)}" data-ch="${startAt}">${I.play}${p.done.length && p.done.length < n ? "Lanjut dengar" : "Dengarkan"}</button>
+        <button class="btn" type="button" data-read="${esc(b.id)}" data-ch="${startAt}">${I.read}Baca</button>
+        ${Cloud.isAdmin ? `<button class="btn" type="button" data-go="edit" data-arg="${esc(b.id)}">${I.pen}Sunting</button>` : ""}</div>
+    </div></div>
+    ${b.synopsis ? `<p class="syn" style="margin-top:26px">${esc(b.synopsis)}</p>` : ""}
+    <div class="sec-h"><h2 class="d">Daftar bab</h2><span class="small muted">${p.done.length}/${n} selesai</span></div>
+    <ul class="chlist">${b.chapters.map((c, i) => `<li data-chrow="${i}" data-book="${esc(b.id)}" class="${p.done.includes(c.n) ? "done" : ""}"><button class="chrow" type="button" data-listen="${esc(b.id)}" data-ch="${i}" data-toggle>
+      <span class="no">${p.done.includes(c.n) ? I.check.replace("<svg", '<svg width="16" height="16"') : c.n}</span><span><b>${esc(c.title)}</b><small>${c.audio ? "Narasi tersedia" : "Teks"}${adm(" · " + minLabel(chMinutes(c)))}</small></span><span class="act">${I.play}</span></button></li>`).join("")}</ul>
+  </section>`;
+  paintChapterRows();
+}
+
+/* ================================================================ BACA */
+function viewRead() {
+  const b = Lib.find(route.a); if (!b) { go("library", null, null, { replace: true }); return; }
+  const i = Math.max(0, Math.min(b.chapters.length - 1, +route.b || 0)), c = b.chapters[i], p = Me.prog(b.id), marked = Me.isMarked(b.id, c.n);
+  Me.setProg(b.id, { ch: i });
+  app.innerHTML = `<section class="view reader">
+    <div class="rtop"><button class="ib" type="button" data-open-book="${esc(b.id)}" aria-label="Kembali ke buku">${I.back}</button><span class="t">${esc(b.title)}</span>
+      <button class="ib" type="button" data-fs aria-label="Ukuran huruf">${I.font}</button><button class="ib" type="button" data-markch="${c.n}" aria-label="Tandai bab" aria-pressed="${marked}">${marked ? I.markF : I.mark}</button></div>
+    <div class="dots">${b.chapters.map((x, k) => `<i class="${k === i ? "on" : p.done.includes(x.n) ? "seen" : ""}"></i>`).join("")}</div>
+    <div class="kicker"><span class="label">Bab ${c.n} dari ${b.chapters.length}</span></div><h1>${esc(c.title)}</h1><p class="dur">${adm(minLabel(chMinutes(c)) + " · ")}<button class="linkbtn" type="button" data-listen="${esc(b.id)}" data-ch="${i}">${c.audio ? "dengarkan narasi" : "dengarkan"}</button></p>
+    <div class="prose markable" id="prose">${String(c.text || "").split(/\n{2,}/).map((x) => `<p>${esc(x.trim())}</p>`).join("")}</div>
+    ${c.points?.length ? `<div class="points"><h3>Yang perlu diingat</h3><ul>${c.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>` : ""}
+    <p class="small muted" style="text-align:center">Pilih kalimat untuk menyimpannya sebagai kutipan.</p>
+    <div class="rnav">${i > 0 ? `<button class="btn" type="button" data-read="${esc(b.id)}" data-ch="${i - 1}">${I.back}Sebelumnya</button>` : "<span></span>"}
+      ${i < b.chapters.length - 1 ? `<button class="btn pri" type="button" data-read-done="${i}">Selesai, lanjut${I.next}</button>` : `<button class="btn pri" type="button" data-read-done="${i}">${I.check}Selesai membaca</button>`}</div>
+    <div id="qbar" hidden style="position:fixed;left:50%;transform:translateX(-50%);bottom:calc(90px + env(safe-area-inset-bottom,0px));z-index:40"><button class="btn gold" type="button" data-save-quote>${I.mark}Simpan kutipan</button></div>
+  </section>`;
+  const t0 = Date.now(); app._readT = t0; app._readB = b.id;
+  const prose = $("#prose"), qbar = $("#qbar");
+  const onSel = () => { const s = getSelection(); const ok = s && !s.isCollapsed && prose.contains(s.anchorNode) && s.toString().trim().length > 8; qbar.hidden = !ok; };
+  document.onselectionchange = onSel;
+}
+function finishRead(i) {
+  const b = Lib.find(route.a); if (!b) return; const c = b.chapters[i];
+  const sec = Math.min(90, (Date.now() - (app._readT || Date.now())) / 1000); if (sec > 10) Me.addSeconds(sec);
+  Me.done(b.id, c.n);
+  if (i < b.chapters.length - 1) go("read", b.id, i + 1, { replace: true });
+  else { toast("Selesai. Satu buku lagi tumbuh dalam dirimu."); go("book", b.id, null, { replace: true }); }
+}
+
+/* ================================================================ PENANDA */
+function viewMarks() {
+  const ms = Me.s.marks.filter((m) => Lib.find(m.bookId));
+  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Penanda</span><h1 class="d">Yang ingin kamu ingat</h1><p>Bab yang ditandai dan kutipan yang kamu simpan saat membaca.</p></div>
+    ${ms.length ? `<div class="list">${ms.map((m) => { const b = Lib.find(m.bookId), c = b.chapters.find((x) => x.n === m.ch) || b.chapters[0];
+      return `<div class="mark">${m.quote ? `<q>${esc(m.quote)}</q>` : `<b>Bab ${c.n} · ${esc(c.title)}</b>`}<small>${esc(b.title)} · ${esc(fmtDate(m.at))}</small>
+        <div class="row" style="margin-top:10px"><button class="btn sm" type="button" data-read="${esc(b.id)}" data-ch="${b.chapters.indexOf(c)}">${I.read}Buka</button>${m.quote ? `<button class="btn sm" type="button" data-copy="${esc(`“${m.quote}” — ${b.title}${b.author ? ", " + b.author : ""}`)}">${I.copy}Salin</button>` : ""}<button class="btn sm ghost danger" type="button" data-delmark="${esc(m.id)}">${I.trash}Hapus</button></div></div>`; }).join("")}</div>`
+      : `<div class="empty"><h3>Belum ada penanda</h3><p>Saat membaca, ketuk ikon penanda atau pilih kalimat untuk menyimpannya.</p></div>`}</section>`;
+}
+
+/* ================================================================ PERMINTAAN */
+function reqRow(r) {
+  const mine = r.uid === (Cloud.user?.uid || "local");
+  return `<div class="lrow"><div class="main"><b>${esc(r.title)}</b><small>${esc(r.author || "Penulis tidak diisi")} · ${esc(r.name || "")} · ${esc(fmtDate(r.createdAt))}</small>${r.note ? `<small>“${esc(r.note)}”</small>` : ""}</div>
+    <div class="act"><span class="chip st-${r.status}">${REQ_ST[r.status] || r.status}</span>
+    ${r.status === "done" && r.bookId && Lib.find(r.bookId) ? `<button class="btn sm" type="button" data-open-book="${esc(r.bookId)}">Buka</button>` : ""}
+    ${Cloud.isAdmin ? `<select data-req-status="${esc(r.id)}" aria-label="Ubah status">${Object.entries(REQ_ST).map(([k, l]) => `<option value="${k}" ${k === r.status ? "selected" : ""}>${l}</option>`).join("")}</select>
+      <button class="btn sm pri" type="button" data-req-make="${esc(r.id)}">Buat buku</button>` : ""}
+    ${Cloud.isAdmin || (mine && r.status === "pending") ? `<button class="ib" type="button" data-req-del="${esc(r.id)}" aria-label="Hapus permintaan">${I.trash}</button>` : ""}</div></div>`;
+}
+async function viewRequests() {
+  app.innerHTML = `<div class="skel"></div>`;
+  let list = []; try { list = await Req.list(); } catch (e) { app.innerHTML = `<section class="view"><div class="notice">${esc(e.message || e)}</div></section>`; return; }
+  if (route.name !== "requests") return;
+  const me = Cloud.user?.uid || "local", minePending = list.filter((r) => r.uid === me && r.status === "pending").length, LIMIT = 5;
+  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Permintaan</span><h1 class="d">Minta buku</h1><p>Sebutkan judul dan penulisnya. Admin akan meringkasnya, lalu buku muncul di Pustaka.</p></div>
+    ${Cloud.isAdmin && !DEMO ? "" : `<form class="panel" id="rf"><div class="two"><div class="field"><label for="rT">Judul buku</label><input id="rT" required maxlength="200" autocomplete="off"></div>
+      <div class="field"><label for="rA">Penulis</label><input id="rA" maxlength="120" autocomplete="off"></div></div>
+      <div class="field"><label for="rN">Catatan (opsional)</label><input id="rN" maxlength="300" autocomplete="off" placeholder="Misal: fokus pada bagian kebiasaan pagi"></div>
+      <div class="row"><button class="btn pri" type="submit" ${minePending >= LIMIT ? "disabled" : ""}>Kirim permintaan</button><span class="small muted">${minePending}/${LIMIT} permintaanmu masih menunggu</span></div><p class="small" id="rM" aria-live="polite" style="margin-top:8px"></p></form>`}
+    <div class="sec-h"><h2 class="d">Semua permintaan</h2></div>
+    ${list.length ? `<div class="list">${list.map(reqRow).join("")}</div>` : `<div class="empty"><h3>Belum ada permintaan</h3><p>Jadilah yang pertama.</p></div>`}</section>`;
+  const f = $("#rf"); if (f) f.onsubmit = async (e) => {
+    e.preventDefault(); const t = $("#rT").value.trim(), a = $("#rA").value.trim(), m = $("#rM");
+    if (!t) { m.textContent = "Isi judul bukunya dulu."; return; }
+    if (list.some((r) => fold(r.title) === fold(t) && r.status !== "rejected")) { m.textContent = "Buku ini sudah pernah diminta. Lihat statusnya di daftar."; return; }
+    if (Lib.published.some((b) => fold(b.title) === fold(t))) { m.textContent = "Buku ini sudah ada di Pustaka."; return; }
+    f.querySelector("[type=submit]").disabled = true; m.textContent = "Mengirim…";
+    try { await Req.add(t, a, $("#rN").value.trim()); toast("Permintaan terkirim"); viewRequests(); } catch (err) { m.textContent = "Gagal: " + (err.code || err.message); f.querySelector("[type=submit]").disabled = false; }
+  };
+}
+
+/* ================================================================ PENGATURAN */
+function viewSettings() {
+  const u = Cloud.user, vs = window.speechSynthesis ? speechSynthesis.getVoices().filter((v) => /^id|^in/i.test(v.lang)) : [];
+  const theme = Prefs.get("theme", "auto");
+  app.innerHTML = `<section class="view" style="max-width:720px"><div class="phead"><span class="label">Akun</span><h1 class="d">Pengaturan</h1></div>
+    <div class="panel"><h3>Akun</h3><p>${esc(u?.displayName || Me.s.prefs?.name || "")}</p><p class="small muted">${esc(u?.email || (DEMO ? "Mode lokal" : ""))} · ${Cloud.isAdmin ? "Admin" : "Anggota"}</p>
+      <p class="small muted" style="margin-top:6px">${DEMO ? "Data tersimpan di perangkat ini." : `Tersinkron${ls.get("lastSync") ? " · " + esc(new Date(ls.get("lastSync")).toLocaleString("id-ID", { dateStyle: "medium", timeStyle: "short" })) : ""}`}${Cloud.err ? `<br><span style="color:var(--bad)">${esc(Cloud.err)}</span>` : ""}</p>
+      <div class="row" style="margin-top:12px">${DEMO ? "" : `<button class="btn sm" type="button" data-sync>Sinkronkan</button><button class="btn sm" type="button" data-logout>Keluar</button>`}${Cloud.isAdmin ? `<button class="btn sm pri" type="button" data-go="admin">Buka Admin</button>` : ""}</div></div>
+    <div class="panel"><h3>Tampilan</h3>
+      <div class="field"><label>Tema</label><div class="seg">${[["auto", "Ikuti perangkat"], ["light", "Terang"], ["dark", "Gelap"]].map(([k, l]) => `<button type="button" data-theme="${k}" aria-pressed="${theme === k}">${l}</button>`).join("")}</div></div>
+      <div class="field"><label for="sFs">Ukuran huruf bacaan</label><input id="sFs" type="range" min="1" max="1.5" step="0.04" value="${Prefs.get("fs", 1.18)}"></div></div>
+    <div class="panel"><h3>Mendengar</h3>
+      <label class="switch"><span>Lanjut otomatis ke bab berikutnya</span><input type="checkbox" id="sAuto" ${Prefs.get("autoNext", true) ? "checked" : ""}></label>
+      ${vs.length ? `<div class="field" style="margin-top:10px"><label for="sV">Suara perangkat (bila bab belum punya narasi)</label><select id="sV"><option value="">Otomatis</option>${vs.map((v) => `<option ${v.name === Prefs.get("voiceName", "") ? "selected" : ""}>${esc(v.name)}</option>`).join("")}</select></div>` : ""}
+      <button class="btn sm" type="button" data-cache-all>${I.down}Simpan semua narasi untuk offline</button><p class="small muted" id="cMsg" style="margin-top:6px"></p></div>
+    <p class="small muted" style="text-align:center;margin-top:20px">Bo’Bo’ · Quiet Knowledge, Deep Growth</p></section>`;
+  $("#sFs").oninput = (e) => Prefs.set("fs", +e.target.value);
+  $("#sAuto").onchange = (e) => Prefs.set("autoNext", e.target.checked);
+  const sv = $("#sV"); if (sv) sv.onchange = (e) => Prefs.set("voiceName", e.target.value);
+}
+async function cacheAll(btn) {
+  btn.disabled = true; const m = $("#cMsg"); let n = 0, t = 0;
+  for (const b of Lib.visible) for (const c of b.chapters) if (c.audio) { t++; if (await AudioStore.cached(b, c)) { n++; continue; } m.textContent = `Mengunduh ${b.title} bab ${c.n}…`; try { await AudioStore.url(b, c); n++; } catch {} }
+  m.textContent = t ? `${n}/${t} narasi tersimpan di perangkat.` : "Belum ada narasi."; btn.disabled = false;
+}
+
+/* ================================================================ ADMIN */
+let ATab = "buku";
+async function viewAdmin() {
+  app.innerHTML = `<div class="skel"></div>`;
+  let html = "";
+  try {
+    if (ATab === "buku") {
+      const bs = Lib.books;
+      html = `<div class="row" style="margin-bottom:14px"><button class="btn pri sm" type="button" data-go="edit">${I.plus}Buku baru</button><button class="btn sm" type="button" data-go="import">${I.upload}Impor JSON</button></div>
+        ${bs.length ? `<div class="list">${bs.map((b) => { const a = b.chapters.filter((c) => c.audio).length; return `<div class="lrow"><div class="main"><b>${esc(b.title)}</b><small>${esc(b.author || "")} · ${b.chapters.length} bab · narasi ${a}/${b.chapters.length} · ${esc(fmtDate(b.updatedAt))}</small></div>
+          <div class="act"><span class="chip st-${b.pub === "published" ? "published" : "draft"}">${b.pub === "published" ? "Terbit" : "Draf"}</span>
+          <button class="btn sm" type="button" data-open-book="${esc(b.id)}">Lihat</button><button class="btn sm" type="button" data-go="edit" data-arg="${esc(b.id)}">${I.pen}Sunting</button>
+          <button class="btn sm ${b.pub === "published" ? "" : "pri"}" type="button" data-pub="${esc(b.id)}" data-to="${b.pub === "published" ? "draft" : "published"}">${b.pub === "published" ? "Jadikan draf" : "Terbitkan"}</button></div></div>`; }).join("")}</div>`
+        : `<div class="empty"><h3>Belum ada buku</h3><p>Buat manual, impor JSON, atau minta AI meringkas.</p></div>`}`;
+    } else if (ATab === "anggota") {
+      if (DEMO) html = `<div class="notice">Persetujuan anggota aktif setelah Firebase diatur.</div>`;
+      else {
+        const { F, db } = Cloud.fb; const ms = (await F.getDocs(F.collection(db, "members"))).docs.map((d) => ({ id: d.id, ...d.data() })).sort((a, z) => (a.status === "pending" ? -1 : 0) - (z.status === "pending" ? -1 : 0) || String(z.createdAt).localeCompare(String(a.createdAt)));
+        html = ms.length ? `<div class="list">${ms.map((m) => `<div class="lrow"><div class="main"><b>${esc(m.name || m.email)}</b><small>${esc(m.email)} · daftar ${esc(fmtDate(m.createdAt))}</small></div>
+          <div class="act"><span class="chip st-${m.status}">${{ pending: "Menunggu", approved: "Disetujui", rejected: "Ditolak" }[m.status] || m.status}</span>
+          ${m.status !== "approved" ? `<button class="btn pri sm" type="button" data-mem="${m.id}" data-st="approved">Setujui</button>` : ""}
+          ${m.status !== "rejected" ? `<button class="btn sm" type="button" data-mem="${m.id}" data-st="rejected">${m.status === "approved" ? "Cabut akses" : "Tolak"}</button>` : ""}
+          <button class="ib" type="button" data-mem-del="${m.id}" aria-label="Hapus">${I.trash}</button></div></div>`).join("")}</div>`
+          : `<div class="empty"><h3>Belum ada pendaftar</h3><p>Bagikan alamat aplikasi. Pendaftar baru akan muncul di sini.</p></div>`;
+      }
+    } else if (ATab === "permintaan") {
+      const list = await Req.list(); html = list.length ? `<div class="list">${list.map(reqRow).join("")}</div>` : `<div class="empty"><h3>Belum ada permintaan</h3></div>`;
+    } else if (ATab === "suara") {
+      await Keys.load(); const bs = Lib.books;
+      html = `<div class="panel studio"><h3>${I.wave}Studio Suara · Google AI Studio</h3><p class="small muted">Susun narasi semua bab langsung dari sini. Pengaturan suara berlaku untuk semua buku.</p>
+        ${Keys.v.gemKey ? "" : `<div class="notice" style="margin-top:10px">Isi API key Gemini di tab AI dulu.</div>`}
+        <div class="two" style="margin-top:10px"><div class="field"><label for="tsVA">Suara</label>${voiceSel("tsVA", ttsVoice())}</div><div class="field"><label>Catatan</label><p class="small muted">Karakter bacaan mengikuti suara yang dipilih. Hanya teks bab yang dikirim, sehingga tidak ada instruksi yang ikut terbaca.</p></div></div>
+        <div class="row"><button class="btn sm" type="button" data-tts-try>${I.play}Coba suara</button>${TtsJob ? `<button class="btn sm" type="button" data-tts-stop>Hentikan</button>` : ""}</div></div>
+        ${bs.length ? `<div class="list">${bs.map((b) => { const miss = b.chapters.filter((c) => c.text?.trim() && !c.audio).length, has = b.chapters.length - miss; return `<div class="lrow" data-tts-row="${esc(b.id)}"><div class="main"><b>${esc(b.title)}</b><small>narasi ${has}/${b.chapters.length} bab${b.pub === "published" ? "" : " · draf"}</small><small data-tts-msg></small><div class="prog-line" data-tts-bar hidden><i style="width:0"></i></div></div>
+          <div class="act">${miss ? `<button class="btn pri sm" type="button" data-tts-book="${esc(b.id)}" data-mode="miss" ${Keys.v.gemKey && !TtsJob ? "" : "disabled"}>${I.wave}Susun ${miss} bab</button>` : `<span class="chip st-done">Lengkap</span>`}
+          <button class="btn sm" type="button" data-tts-book="${esc(b.id)}" data-mode="all" ${Keys.v.gemKey && !TtsJob ? "" : "disabled"}>Ulang semua</button></div></div>`; }).join("")}</div>` : `<div class="empty"><h3>Belum ada buku</h3></div>`}`;
+    } else if (ATab === "ai") {
+      await Keys.load(); if (Keys.v.gemKey && !GemModels.list) await GemModels.refresh().catch((e) => console.warn(e)); const v = Keys.v, prov = v.aiProvider || "gemini", mask = (k) => (v[k] ? "tersimpan · …" + esc(String(v[k]).slice(-4)) : "belum diisi");
+      html = `<div class="panel"><h3>AI peringkas (opsional)</h3><p class="small muted">Untuk tombol "Ringkas dengan AI" di halaman Buku baru. Kunci disimpan di Firestore dan <b>hanya bisa dibaca akun admin</b>. Tanpa kunci pun kamu tetap bisa memakai Impor JSON.</p>
+        <div class="seg" style="margin:12px 0"><button type="button" data-prov="gemini" aria-pressed="${prov === "gemini"}">Gemini (Google AI Studio)</button><button type="button" data-prov="claude" aria-pressed="${prov === "claude"}">Claude (Anthropic)</button></div>
+        <div class="two"><div class="field"><label for="kG">API key Gemini <span class="muted">(${mask("gemKey")})</span></label><input id="kG" type="password" autocomplete="off" placeholder="AIza…"><span class="hint">aistudio.google.com → Get API key</span></div>
+          <div class="field"><label for="kGM">Model Gemini (ringkasan)</label>${modelPick("kGM", "text", v.gemModel || "gemini-3.8-flash")}</div></div>
+        <div class="panel" style="background:var(--surface);margin:6px 0 14px"><h3>Format ringkasan · khusus admin</h3><p class="small muted">Tidak ditampilkan ke anggota. Berlaku untuk tombol Ringkas AI, prompt impor, dan batas bab di editor.</p>
+          <div class="two" style="margin-top:10px"><div class="field"><label for="kMC">Jumlah bab maksimal</label><select id="kMC">${[5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 40, 50].map((n) => `<option ${n === MAX_CH ? "selected" : ""}>${n}</option>`).join("")}</select></div>
+          <div class="field"><label for="kCM">Durasi per bab</label><select id="kCM">${[1, 2, 3, 5].map((n) => `<option value="${n}" ${n === CH_MIN ? "selected" : ""}>±${n} menit (${n * 120}–${n * 150} kata)</option>`).join("")}</select></div></div></div>
+        <div class="field"><label for="kTM">Model suara Google AI Studio (TTS)</label>${modelPick("kTM", "tts", v.ttsModel || "gemini-3.8-flash-tts")}<span class="hint">${GemModels.list ? `${GemModels.list.text.length} model teks & ${GemModels.list.tts.length} model suara dari akun Google AI Studio Anda` : "Isi API key lalu tekan Simpan: daftar model dimuat otomatis"} · <button class="linkbtn" type="button" data-models-refresh ${v.gemKey ? "" : "disabled"}>Muat ulang daftar</button></span></div>
+        <div class="two"><div class="field"><label for="kA">API key Anthropic <span class="muted">(${mask("antKey")})</span></label><input id="kA" type="password" autocomplete="off" placeholder="sk-ant-…"></div>
+          <div class="field"><label for="kAM">Model Claude</label><input id="kAM" value="${esc(v.antModel || "claude-sonnet-5-5")}"></div></div>
+        <div class="row"><button class="btn pri sm" type="button" data-keys-save>Simpan</button><button class="btn sm" type="button" data-keys-test>Uji</button><button class="btn sm danger" type="button" data-keys-clear>Hapus kunci</button></div><p class="small" id="kM" style="margin-top:8px"></p></div>`;
+    } else if (ATab === "cadangan") {
+      html = `<div class="panel"><h3>Ekspor cadangan</h3><p class="small muted">Paket Spark tidak punya backup otomatis. Simpan berkas ini berkala (misalnya ke Google Drive). Audio tidak ikut; simpan berkas audio aslinya.</p>
+        <button class="btn pri sm" type="button" data-export>${I.down}Ekspor JSON</button><p class="small" id="exM" style="margin-top:8px"></p></div>
+        <div class="panel"><h3>Pemulihan</h3><p class="small muted">Impor kembali buku dari berkas cadangan lewat Impor JSON (format cadangan dikenali otomatis).</p><button class="btn sm" type="button" data-go="import">${I.upload}Buka Impor JSON</button></div>`;
+    }
+  } catch (e) { html = `<div class="notice">${esc(e.code === "permission-denied" ? "Ditolak Firestore. Pastikan firestore.rules terbaru sudah dideploy dan kamu masuk dengan " + ADMIN_EMAIL + "." : e.message || e)}</div>`; }
+  if (route.name !== "admin") return;
+  const tabs = [["buku", "Buku"], ["anggota", `Anggota${Cloud.pendingMembers ? ` (${Cloud.pendingMembers})` : ""}`], ["permintaan", `Permintaan${Cloud.pendingReq ? ` (${Cloud.pendingReq})` : ""}`], ["suara", "Studio Suara"], ["ai", "AI"], ["cadangan", "Cadangan"]];
+  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Khusus admin</span><h1 class="d">Admin</h1></div>
+    <div class="seg" role="tablist" style="margin-bottom:18px">${tabs.map(([k, l]) => `<button type="button" role="tab" data-atab="${k}" aria-pressed="${k === ATab}">${l}</button>`).join("")}</div>${html}</section>`;
+}
+async function adminExport() {
+  const m = $("#exM"); m.textContent = "Menyiapkan…"; const out = { app: "BoBo", kind: "backup", exportedAt: now(), books: Lib.books.map(({ chapters, ...b }) => ({ ...b, chapters: chapters.map(({ audio, ...c }) => ({ ...c, hadAudio: !!audio })) })) };
+  if (!DEMO) { const { F, db } = Cloud.fb; const grab = async (c) => (await F.getDocs(F.collection(db, c))).docs.map((d) => ({ id: d.id, ...d.data() })); out.members = await grab("members"); out.requests = await grab("requests"); }
+  saveFile(`bobo-cadangan-${dayKey()}.json`, JSON.stringify(out, null, 1), "application/json"); m.textContent = `Selesai: ${out.books.length} buku.`;
+}
+
+/* ---------- daftar model dari akun Google AI Studio (dropdown) ---------- */
+const GemModels = {
+  list: ls.get("gemModels", null),
+  async refresh() {
+    if (!Keys.v.gemKey) throw new Error("Isi API key Gemini dulu.");
+    const out = { text: [], tts: [], at: Date.now() }; let token = "";
+    do {
+      const r = await fetch(`${GEM_BASE}/models?pageSize=1000${token ? "&pageToken=" + token : ""}`, { headers: { "x-goog-api-key": Keys.v.gemKey } });
+      if (!r.ok) { let m = ""; try { m = (await r.json()).error?.message || ""; } catch {} throw new Error("API key ditolak Google: " + (m || r.status)); }
+      const j = await r.json();
+      for (const m of j.models || []) {
+        const id = String(m.name || "").replace(/^models\//, ""), meth = m.supportedGenerationMethods || [];
+        if (/embed|aqa|imagen|veo|lyria|live|image|banana|robotics|computer|transcribe/.test(id)) continue;
+        if (/tts/.test(id)) out.tts.push(id); else if (!meth.length || meth.includes("generateContent")) out.text.push(id);
+      }
+      token = j.nextPageToken || "";
+    } while (token);
+    out.text.sort((a, z) => (/pro|flash/.test(z) - /pro|flash/.test(a)) || z.localeCompare(a)); out.tts.sort((a, z) => z.localeCompare(a));
+    this.list = out; ls.set("gemModels", out); return out;
+  },
+};
+function modelPick(id, kind, cur) {
+  const l = [...(GemModels.list?.[kind] || [])]; if (cur && !l.includes(cur)) l.unshift(cur);
+  return `<select id="${id}">${l.map((m) => `<option value="${esc(m)}" ${m === cur ? "selected" : ""}>${esc(m)}${GemModels.list && !GemModels.list[kind].includes(m) ? " (tidak ditemukan di akun)" : ""}</option>`).join("")}</select>`;
+}
+/* ================================================================ STUDIO SUARA (Google AI Studio / Gemini TTS)
+   Memakai API key Gemini dari Admin → AI. Hasil PCM 24 kHz → MP3 48 kbps → Firestore. */
+const GEM_BASE = "https://generativelanguage.googleapis.com/v1beta";
+const GEM_VOICES = [["Charon", "Pria", "informatif"], ["Iapetus", "Pria", "jernih"], ["Sadaltager", "Pria", "berwawasan"], ["Achird", "Pria", "ramah"], ["Algieba", "Pria", "halus"], ["Schedar", "Pria", "datar & tenang"], ["Orus", "Pria", "tegas"], ["Umbriel", "Pria", "santai"], ["Enceladus", "Pria", "lembut"],
+  ["Sulafat", "Wanita", "hangat"], ["Vindemiatrix", "Wanita", "lembut"], ["Achernar", "Wanita", "halus & pelan"], ["Gacrux", "Wanita", "dewasa"], ["Erinome", "Wanita", "jernih"], ["Despina", "Wanita", "halus"], ["Kore", "Wanita", "tegas"], ["Aoede", "Wanita", "segar"]];
+const GEM_STYLES = [["tenang", "Tenang (narator buku)", "tenang, pelan, jernih, dan teduh seperti narator buku audio yang bijak"], ["hangat", "Hangat bercerita", "hangat dan penuh perasaan seperti sedang bercerita kepada sahabat"], ["santai", "Santai", "santai dan ramah seperti sedang mengobrol"], ["bijak", "Bijak berwibawa", "bijak, berwibawa, pelan, dan dalam"], ["semangat", "Bersemangat", "jelas dan bersemangat seperti pembicara inspiratif, tetap tidak berlebihan"]];
+const voiceSel = (id, cur) => `<select id="${id}">${["Pria", "Wanita"].map((g) => `<optgroup label="${g}">${GEM_VOICES.filter((v) => v[1] === g).map((v) => `<option value="${v[0]}" ${v[0] === cur ? "selected" : ""}>${v[0]} · ${v[2]}</option>`).join("")}</optgroup>`).join("")}</select>`;
+const styleSel = (id, cur) => `<select id="${id}">${GEM_STYLES.map((s) => `<option value="${s[0]}" ${s[0] === cur ? "selected" : ""}>${s[1]}</option>`).join("")}</select>`;
+const ttsVoice = () => ls.get("ttsVoice", "Charon"), ttsStyle = () => ls.get("ttsStyle", "tenang");
+function b64ToBytes(b64) { const s = atob(b64); const u = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) u[i] = s.charCodeAt(i); return u; }
+function pcmFrom(bytes, mime = "") {
+  const dv = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+  if (bytes.length > 12 && String.fromCharCode(...bytes.subarray(0, 4)) === "RIFF") {
+    let p = 12, rate = 24000, ch = 1;
+    while (p + 8 <= bytes.length) { const id = String.fromCharCode(...bytes.subarray(p, p + 4)), size = dv.getUint32(p + 4, true);
+      if (id === "fmt ") { ch = dv.getUint16(p + 10, true); rate = dv.getUint32(p + 12, true); }
+      if (id === "data") { const end = Math.min(bytes.length, p + 8 + size), n = Math.floor((end - p - 8) / 2 / ch), pcm = new Int16Array(n); for (let i = 0; i < n; i++) pcm[i] = dv.getInt16(p + 8 + i * 2 * ch, true); return { pcm, rate }; }
+      p += 8 + size + (size & 1); }
+  }
+  const rate = +((mime.match(/rate=(\d+)/) || [])[1] || 24000), n = Math.floor(bytes.length / 2), pcm = new Int16Array(n);
+  for (let i = 0; i < n; i++) pcm[i] = dv.getInt16(i * 2, true); return { pcm, rate };
+}
+async function gemFetch(path, body) {
+  const r = await fetch(GEM_BASE + path, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": Keys.v.gemKey }, body: JSON.stringify(body) });
+  if (!r.ok) {
+    let m = "", wait = 0; try { const e = (await r.json()).error || {}; m = e.message || ""; const ri = (e.details || []).find((d) => /RetryInfo/.test(d["@type"] || "")); wait = parseFloat(ri?.retryDelay || (m.match(/retry in ([\d.]+)s/i) || [])[1] || 0); } catch {}
+    throw { code: "api_" + r.status, wait, daily: /per ?day|PerDay|daily/i.test(m), message: "Google AI Studio: " + (m || "HTTP " + r.status).slice(0, 220) };
+  }
+  return r.json();
+}
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+/* Hanya TEKS BAB yang dikirim, tanpa instruksi gaya: instruksi ikut terbaca oleh model TTS. Karakter suara ditentukan pilihan suara. */
+async function gemSpeak(text, voice, onWait) {
+  const model = Keys.v.ttsModel || "gemini-3.8-flash-tts";
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const j = await gemFetch(`/models/${encodeURIComponent(model)}:generateContent`, { contents: [{ role: "user", parts: [{ text }] }],
+        generationConfig: { responseModalities: ["AUDIO"], speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: voice } } } } });
+      const d = j.candidates?.[0]?.content?.parts?.find((p) => p.inlineData)?.inlineData; if (!d) throw new Error("Google tidak mengirim audio.");
+      return pcmFrom(b64ToBytes(d.data), d.mimeType || "");
+    } catch (e) {
+      if (e.code === "api_429" && !e.daily && attempt < 4) { // batas per menit: tunggu lalu ulangi otomatis
+        const w = Math.ceil(e.wait || 30 * (attempt + 1)) + 2;
+        for (let k = w; k > 0; k--) { onWait && onWait(k); await sleep(1000); if (TtsJob?.stop) throw new Error("Dihentikan."); }
+        continue;
+      }
+      if (e.code === "api_429") throw new Error("Kuota harian Google AI Studio habis. Bab yang sudah jadi tersimpan; tekan \"Susun bab yang belum bernarasi\" besok untuk melanjutkan.");
+      throw e;
+    }
+  }
+}
+async function pcmToMp3(pcm, rate) {
+  try { await loadLame(); } catch (e) { console.warn(e); const f = new Float32Array(pcm.length); for (let i = 0; i < pcm.length; i++) f[i] = pcm[i] / 32768; return wav16(f, rate); } let peak = 1; for (let i = 0; i < pcm.length; i++) peak = Math.max(peak, Math.abs(pcm[i]));
+  const g = Math.min(2.5, 31000 / peak), x = new Int16Array(pcm.length); for (let i = 0; i < pcm.length; i++) x[i] = Math.max(-32768, Math.min(32767, Math.round(pcm[i] * g)));
+  const enc = new lamejs.Mp3Encoder(1, rate, 48), parts = [];
+  for (let i = 0; i < x.length; i += 1152) { const m = enc.encodeBuffer(x.subarray(i, i + 1152)); if (m.length) parts.push(new Uint8Array(m)); }
+  const end = enc.flush(); if (end.length) parts.push(new Uint8Array(end)); return new Blob(parts, { type: "audio/mpeg" });
+}
+let TtsJob = null;
+/* susun audio untuk bab-bab (idxs) buku b. save(): menyimpan buku setelah tiap bab */
+async function studioRun(b, idxs, save, onStep) {
+  await Keys.load(); if (!Keys.v.gemKey) throw new Error("Isi API key Gemini (Google AI Studio) dulu di Admin → AI.");
+  if (TtsJob) throw new Error("Masih ada proses suara yang berjalan.");
+  TtsJob = { stop: false }; let ok = 0;
+  try {
+    for (const i of idxs) {
+      if (TtsJob.stop) break; const c = b.chapters[i]; if (!c?.text?.trim()) continue;
+      onStep(`Bab ${c.n}: Google AI Studio menyuarakan…`, ok, idxs.length);
+      const { pcm, rate } = await gemSpeak(narration(c), ttsVoice(), (k) => onStep(`Bab ${c.n}: batas per menit Google tercapai, lanjut otomatis dalam ${k} detik…`, ok, idxs.length));
+      const expect = words(narration(c)) / (WPM / 60);
+      if (pcm.length / rate < expect * 0.45) onStep(`Bab ${c.n}: audio hanya ${fmtTime(pcm.length / rate)}, lebih pendek dari teks. Periksa setelah selesai.`, ok, idxs.length);
+      onStep(`Bab ${c.n}: mengompres & menyimpan…`, ok, idxs.length);
+      await AudioStore.store(b, c, await pcmToMp3(pcm, rate), { dur: pcm.length / rate, src: "gemini-tts", voice: ttsVoice() });
+      await save(); ok++;
+    }
+  } finally { const stopped = TtsJob?.stop; TtsJob = null; onStep(stopped ? `Dihentikan. ${ok} bab selesai.` : `Selesai: ${ok} bab bernarasi.`, ok, idxs.length, true); }
+  return ok;
+}
+function studioPanel(b, where) {
+  const miss = b.chapters.filter((c) => c.text?.trim() && !c.audio).length, has = b.chapters.filter((c) => c.audio).length;
+  return `<div class="panel studio" data-studio-panel="${where}"><h3>${I.wave}Studio Suara · Google AI Studio</h3>
+    <p class="small muted">Menyusun narasi tiap bab langsung dengan suara Gemini (Google AI Studio), lalu menyimpannya untuk semua anggota. ${has}/${b.chapters.length} bab sudah bernarasi.</p>
+    ${Keys.v.gemKey ? "" : `<div class="notice" style="margin-top:10px">Isi API key Gemini di <button class="linkbtn" type="button" data-go="admin" data-atab-go="ai">Admin → AI</button> (gratis dari aistudio.google.com).</div>`}
+    <div class="two" style="margin-top:10px"><div class="field"><label for="tsV${where}">Suara</label>${voiceSel("tsV" + where, ttsVoice())}</div><div class="field"><label>Catatan</label><p class="small muted">Hanya teks bab yang dikirim ke Google, jadi tidak ada instruksi yang ikut terbaca. Akun gratis dibatasi per menit (dilanjutkan otomatis) dan per hari.</p></div></div>
+    <div class="row">${TtsJob ? `<button class="btn sm" type="button" data-tts-stop>Hentikan</button>` : `<button class="btn sm" type="button" data-tts-try>${I.play}Coba suara</button>
+      ${miss ? `<button class="btn pri sm" type="button" data-tts-run="${where}" data-mode="miss" ${Keys.v.gemKey ? "" : "disabled"}>${I.wave}Susun ${miss} bab yang belum bernarasi</button>` : ""}
+      ${has ? `<button class="btn sm" type="button" data-tts-run="${where}" data-mode="all" ${Keys.v.gemKey ? "" : "disabled"}>Susun ulang semua</button>` : ""}`}</div>
+    <p class="small" data-tts-msg style="margin-top:8px"></p><div class="prog-line" data-tts-bar hidden><i style="width:0"></i></div></div>`;
+}
+
+/* ================================================================ SUNTING BUKU (8 bab + audio per bab) */
+let Draft = null;
+function blankBook() { return { id: "", title: "", author: "", category: "", synopsis: "", cover: "", hue: 0, pub: "draft", requestId: ls.get("pendingReq", null), createdAt: now(), chapters: [{ n: 1, title: "", text: "", points: [] }] }; }
+async function viewEdit() {
+  if (!Keys._loaded) { await Keys.load(); Keys._loaded = true; }
+  const id = route.a; if (!Draft || Draft._for !== (id || "new")) { const src = id ? Lib.find(id) : null; if (id && !src) { go("admin", null, null, { replace: true }); return; } Draft = src ? JSON.parse(JSON.stringify(src)) : blankBook(); Draft._for = id || "new"; }
+  const b = Draft, isNew = !id;
+  app.innerHTML = `<section class="view" style="max-width:820px">
+    <button class="btn ghost sm" type="button" data-back style="margin-left:-10px">${I.back}Kembali</button>
+    <div class="phead"><span class="label">Admin · ${isNew ? "buku baru" : "sunting"}</span><h1 class="d">${isNew ? "Buku baru" : esc(b.title)}</h1><p>Maksimal ${MAX_CH} bab, tiap bab ${wordTarget()} kata (±${CH_MIN} menit dibacakan) · ubah di Admin → AI.</p></div>
+    ${isNew ? `<div class="panel"><h3>${I.spark.replace("<svg", '<svg width="16" height="16" style="vertical-align:-3px"')} Ringkas dengan AI</h3><p class="small muted">Isi judul & penulis di bawah, lalu tekan tombol ini. Butuh kunci di Admin → AI. Hasilnya draf yang bisa kamu periksa.</p>
+      <div class="row" style="margin-top:10px"><button class="btn sm pri" type="button" data-ai-sum>Buat ${MAX_CH} bab</button><button class="btn sm" type="button" data-copy-prompt>${I.copy}Salin prompt (untuk Claude/Gemini di luar aplikasi)</button></div><ul class="steps" id="aiSteps"></ul></div>` : ""}
+    <div class="panel"><div class="two"><div class="field"><label for="eT">Judul</label><input id="eT" data-f="title" value="${esc(b.title)}" maxlength="140"></div>
+      <div class="field"><label for="eA">Penulis</label><input id="eA" data-f="author" value="${esc(b.author)}" maxlength="100"></div></div>
+      <div class="two"><div class="field"><label for="eC">Kategori</label><select id="eC" data-f="category"><option value="">Pilih…</option>${CATS.map((c) => `<option ${c === b.category ? "selected" : ""}>${c}</option>`).join("")}</select></div>
+        <div class="field"><label>Sampul</label><div class="row"><div style="width:44px">${coverHTML(b)}</div><button class="btn sm" type="button" data-cover-find>${I.search}Cari</button><label class="btn sm" for="eCov">${I.image}Unggah</label><input id="eCov" type="file" accept="image/*" hidden>${b.cover ? `<button class="btn sm ghost danger" type="button" data-cover-clear>Hapus</button>` : ""}</div></div></div>
+      <div class="field"><label for="eS">Sinopsis (2–3 kalimat)</label><textarea id="eS" data-f="synopsis" rows="3" maxlength="600">${esc(b.synopsis)}</textarea></div></div>
+    <div class="sec-h"><h2 class="d">Bab</h2><div class="row"><button class="btn sm" type="button" data-studio>${I.copy}Naskah untuk AI Studio</button><label class="btn sm" for="bulkA">${I.upload}Unggah audio sekaligus</label><input id="bulkA" type="file" accept="audio/*" multiple hidden></div></div>
+    ${studioPanel(b, "edit")}
+    <p class="small muted" style="margin:-4px 0 12px">Tanpa API key? Salin naskah → buat suara di aistudio.google.com (Generate speech) → unduh WAV per bab → unggah di sini. Audio dikompres otomatis ke MP3 ±360 KB/menit.</p>
+    <div id="chs">${b.chapters.map((c, i) => chEditor(c, i)).join("")}</div>
+    ${b.chapters.length < MAX_CH ? `<button class="btn block" type="button" data-ch-add>${I.plus}Tambah bab (${b.chapters.length}/${MAX_CH})</button>` : ""}
+    <div class="panel" style="margin-top:18px"><div class="row"><button class="btn pri" type="button" data-save="draft">Simpan draf</button><button class="btn gold" type="button" data-save="published">Simpan & terbitkan</button>
+      ${isNew ? "" : `<span class="sp"></span><button class="btn ghost danger" type="button" data-book-del>${I.trash}Hapus buku</button>`}</div><p class="small" id="eM" style="margin-top:8px"></p></div>
+  </section>`;
+  $$("[data-f]").forEach((el) => (el.oninput = () => { b[el.dataset.f] = el.value; }));
+  $("#eCov").onchange = async (e) => { const f = e.target.files[0]; if (!f) return; try { b.cover = await resizeImage(URL.createObjectURL(f)); viewEdit(); } catch (err) { toast(err.message); } };
+  $("#bulkA").onchange = (e) => bulkAudio([...e.target.files]);
+  bindChEditors();
+}
+function chEditor(c, i) {
+  const w = words(c.text), cls = w > CH_MIN * 175 ? "over" : w >= CH_MIN * 110 ? "good" : "";
+  return `<div class="ched" data-ci="${i}"><header><span class="no">${i + 1}</span><input data-cf="title" value="${esc(c.title)}" placeholder="Judul bab" maxlength="80" aria-label="Judul bab ${i + 1}"><span class="wc ${cls}" data-wc>${w} kata · ±${(w / WPM).toFixed(1)} mnt</span></header>
+    <textarea data-cf="text" rows="6" placeholder="Isi ringkasan bab…" aria-label="Isi bab ${i + 1}">${esc(c.text)}</textarea>
+    <div class="field" style="margin:10px 0 0"><label>Poin inti (satu per baris)</label><textarea data-cf="points" rows="2">${esc((c.points || []).join("\n"))}</textarea></div>
+    <div class="audio-slot">${c.audio ? `<span class="chip st-done">${I.listen.replace("<svg", '<svg width="14" height="14"')}Narasi ${fmtTime(c.audio.dur)} · ${Math.round(c.audio.bytes / 1024)} KB</span><button class="btn sm" type="button" data-a-play="${i}">${I.play}Putar</button><button class="btn sm ghost danger" type="button" data-a-del="${i}">Hapus audio</button>` : `<span class="small muted">Belum ada narasi (memakai suara perangkat)</span>`}
+      <label class="btn sm" for="af${i}">${I.upload}${c.audio ? "Ganti" : "Unggah"} audio</label><input id="af${i}" type="file" accept="audio/*" hidden data-a-file="${i}">
+      <button class="btn sm ghost" type="button" data-tts-one="${i}" ${c.text?.trim() ? "" : "disabled"}>${I.wave}Suarakan (AI Studio)</button><button class="btn sm ghost" type="button" data-copy-ch="${i}">${I.copy}Salin naskah</button>
+      ${i > 0 ? `<button class="btn sm ghost" type="button" data-ch-up="${i}" aria-label="Naikkan bab">↑</button>` : ""}<button class="btn sm ghost danger" type="button" data-ch-del="${i}" aria-label="Hapus bab">${I.trash}</button><span class="small" data-ast></span></div></div>`;
+}
+function bindChEditors() {
+  $$(".ched").forEach((el) => {
+    const c = Draft.chapters[+el.dataset.ci];
+    $$("[data-cf]", el).forEach((f) => (f.oninput = () => {
+      if (f.dataset.cf === "points") c.points = f.value.split("\n").map((s) => s.trim()).filter(Boolean); else c[f.dataset.cf] = f.value;
+      if (f.dataset.cf === "text") { const w = words(c.text), wc = $("[data-wc]", el); wc.textContent = `${w} kata · ±${(w / WPM).toFixed(1)} mnt`; wc.className = "wc " + (w > CH_MIN * 175 ? "over" : w >= CH_MIN * 110 ? "good" : ""); }
+    }));
+    const af = $("[data-a-file]", el); af.onchange = () => { if (af.files[0]) attachAudio(+el.dataset.ci, af.files[0]); };
+  });
+}
+function renumber() { Draft.chapters.forEach((c, i) => (c.n = i + 1)); }
+async function ensureId() { if (!Draft.id) { if (!Draft.title.trim()) throw new Error("Isi judul buku dulu."); Draft.id = slug(Draft.title) + "-" + Date.now().toString(36).slice(-4); Draft.hue = hueOf(Draft.title); } }
+async function attachAudio(i, file) {
+  const el = $(`.ched[data-ci="${i}"] [data-ast]`), st = (t) => el && (el.textContent = t);
+  try {
+    await ensureId(); const c = Draft.chapters[i]; renumber();
+    const { blob, dur } = await compressAudio(file, st);
+    if (dur > CH_MIN * 150) toast(`Bab ${i + 1}: audio ${fmtTime(dur)}, lebih panjang dari target.`);
+    st("menyimpan…");
+    if (c.audio && Draft._savedOnce !== false) { /* ganti: hapus potongan lama ditangani store() */ }
+    await AudioStore.store(Draft, c, blob, { dur, src: file.name.slice(0, 80), voice: Prefs.get("studioVoice", "") });
+    await persistDraft(); st("tersimpan"); viewEdit(); toast(`Narasi bab ${i + 1} tersimpan`);
+  } catch (e) { console.warn(e); st(""); toast("Gagal: " + (e.message || e)); }
+}
+async function bulkAudio(files) {
+  if (!files.length) return;
+  const num = (f) => +((f.name.match(/(\d+)/) || [])[1] || 0);
+  const sorted = files.slice().sort((a, z) => num(a) - num(z) || a.name.localeCompare(z.name));
+  const hasNums = sorted.every((f) => num(f) >= 1 && num(f) <= MAX_CH) && new Set(sorted.map(num)).size === sorted.length;
+  for (let k = 0; k < sorted.length; k++) {
+    const i = hasNums ? num(sorted[k]) - 1 : k; if (i >= Draft.chapters.length) { toast(`${sorted[k].name}: bab ${i + 1} belum ada, dilewati`); continue; }
+    toast(`Memproses ${sorted[k].name} → bab ${i + 1}`); await attachAudio(i, sorted[k]);
+  }
+}
+async function persistDraft(pub) {
+  const b = Draft; await ensureId(); renumber();
+  b.title = b.title.trim(); if (!b.title) throw new Error("Judul wajib diisi.");
+  b.chapters = b.chapters.filter((c) => c.title.trim() || c.text.trim() || c.audio); renumber();
+  if (pub) b.pub = pub; if (b.pub === "published" && !b.publishedAt) b.publishedAt = now();
+  if (!b.hue) b.hue = hueOf(b.title);
+  const { _for, ...clean } = b; await Lib.save(clean);
+  if (Draft._for === "new") { Draft._for = b.id; history.replaceState(null, "", "#/edit/" + encodeURIComponent(b.id)); route = parseHash(); }
+  if (b.requestId) { await Req.setStatus(b.requestId, b.pub === "published" ? "done" : "processing", b.id).catch(() => {}); if (b.pub === "published") ls.set("pendingReq", null); }
+}
+async function saveDraft(pub, btn) {
+  const m = $("#eM"); const b = Draft;
+  const errs = []; if (!b.title.trim()) errs.push("Judul wajib diisi.");
+  const chs = b.chapters.filter((c) => c.title.trim() || c.text.trim());
+  if (!chs.length) errs.push("Minimal 1 bab berisi.");
+  chs.forEach((c, i) => { if (!c.title.trim()) errs.push(`Bab ${i + 1}: judul kosong.`); if (!c.text.trim()) errs.push(`Bab ${i + 1}: isi kosong.`); });
+  if (pub === "published" && errs.length) { m.textContent = errs.join(" "); m.style.color = "var(--bad)"; return; }
+  btn.disabled = true; m.style.color = ""; m.textContent = "Menyimpan…";
+  try { await persistDraft(pub); toast(pub === "published" ? "Buku terbit" : "Draf tersimpan"); m.textContent = "Tersimpan " + new Date().toLocaleTimeString("id-ID", { timeStyle: "short" }) + (pub === "published" ? " · terbit untuk semua anggota" : " · draf (hanya admin)"); }
+  catch (e) { m.textContent = "Gagal: " + (e.message || e); m.style.color = "var(--bad)"; }
+  btn.disabled = false;
+}
+function studioScript(c, all) {
+  return `Bab ${c.n}. ${c.title}.\n\n${String(c.text || "").trim()}`;
+}
+const STUDIO_STYLE = "Gaya bacakan (tempel di kolom Style instructions AI Studio): Bacakan dalam bahasa Indonesia dengan suara tenang, hangat, dan jernih, seperti narator buku yang bijak. Tempo sedang-pelan, beri jeda singkat antarparagraf, tanpa nada berlebihan.";
+async function aiSummarize(btn) {
+  const b = Draft, st = $("#aiSteps"), step = (t) => (st.innerHTML = `<li>${esc(t)}</li>`);
+  if (!b.title.trim()) { toast("Isi judul dulu"); $("#eT").focus(); return; }
+  await Keys.load(); if (!Keys.ok) { step("Kunci AI belum diisi. Buka Admin → AI, atau pakai Salin prompt + Impor JSON."); return; }
+  btn.disabled = true; step("Meringkas… (±20–60 detik)");
+  try {
+    const j = parseJSON(await aiText(summaryPrompt(b.title, b.author)));
+    const it = normalizeImport(j)[0]; if (!it || it.errors.length) throw new Error(it?.errors.join(" ") || "Format tidak dikenali");
+    Object.assign(b, { author: b.author || it.book.author || "", category: b.category || it.book.category || "", synopsis: it.book.synopsis || b.synopsis, chapters: it.chapters });
+    step(`Selesai: ${it.chapters.length} bab. Periksa isinya, lalu simpan.`); viewEdit(); $("#aiSteps").innerHTML = `<li>Selesai: ${it.chapters.length} bab. Periksa, lalu simpan.</li>`;
+  } catch (e) { step("Gagal: " + (e.message || e)); }
+  btn.disabled = false;
+}
+async function findCover() {
+  const b = Draft; if (!b.title.trim()) { toast("Isi judul dulu"); return; }
+  try {
+    const r = await fetch("https://openlibrary.org/search.json?limit=5&fields=cover_i,title,author_name&q=" + encodeURIComponent(b.title + " " + (b.author || ""))); const j = await r.json();
+    const hit = (j.docs || []).find((d) => d.cover_i); if (!hit) { toast("Sampul tidak ditemukan. Unggah gambar sendiri."); return; }
+    b.cover = await resizeImage(`https://covers.openlibrary.org/b/id/${hit.cover_i}-L.jpg`).catch(() => `https://covers.openlibrary.org/b/id/${hit.cover_i}-L.jpg`);
+    viewEdit(); toast("Sampul ditemukan");
+  } catch { toast("Gagal mencari sampul"); }
+}
+
+/* ================================================================ IMPOR JSON */
+let ImportState = null;
+function normalizeImport(j) {
+  const items = j.kind === "backup" || Array.isArray(j.books) ? (j.books || []).map((b) => ({ book: b, chapters: b.chapters || [] })) : [{ book: j.book || {}, chapters: j.chapters || [] }];
+  return items.map((it) => {
+    const b = { ...it.book }; delete b.chapters; const errors = [], warns = [];
+    if (!String(b.title || "").trim()) errors.push("book.title wajib diisi.");
+    let chs = (it.chapters || []).slice().sort((a, z) => (+a.order || +a.n || 0) - (+z.order || +z.n || 0));
+    if (!chs.length) errors.push("chapters kosong.");
+    if (chs.length > MAX_CH) { warns.push(`${chs.length} bab dipangkas menjadi ${MAX_CH}.`); chs = chs.slice(0, MAX_CH); }
+    const chapters = chs.map((c, i) => {
+      const text = String(c.text || "").trim(), w = words(text);
+      if (!String(c.title || "").trim()) errors.push(`Bab ${i + 1}: judul kosong.`); if (!text) errors.push(`Bab ${i + 1}: isi kosong.`);
+      if (w > CH_MIN * 190) warns.push(`Bab ${i + 1}: ${w} kata (lebih dari ±${CH_MIN} menit).`);
+      return { n: i + 1, title: String(c.title || "").trim(), text, points: (c.points || c.keyPoints || []).map(String).slice(0, 4) };
+    });
+    const dup = Lib.books.find((x) => (b.id && x.id === b.id) || fold(x.title) === fold(b.title));
+    if (dup) warns.push(`Sudah ada "${dup.title}".`);
+    return { book: b, chapters, errors, warns: [...new Set(warns)], dup: dup?.id || null };
+  });
+}
+function viewImport() {
+  const s = ImportState;
+  app.innerHTML = `<section class="view" style="max-width:820px"><button class="btn ghost sm" type="button" data-back style="margin-left:-10px">${I.back}Kembali</button>
+    <div class="phead"><span class="label">Admin · tambah buku</span><h1 class="d">Impor JSON</h1><p>Minta Claude atau Gemini membuat ringkasan dengan prompt di bawah, simpan hasilnya sebagai .json, lalu unggah di sini.</p></div>
+    <details class="panel"><summary>Prompt peringkas (ganti [JUDUL] & [PENULIS])</summary><pre class="prompt" style="margin-top:10px">${esc(summaryPrompt("[JUDUL]", "[PENULIS]"))}</pre><button class="btn sm" type="button" data-copy-prompt>${I.copy}Salin prompt</button></details>
+    <label class="drop" for="impF">${I.upload}<span><b>Pilih berkas .json</b><small>atau tempel teks JSON di bawah</small></span><input id="impF" type="file" accept="application/json,.json,.txt" hidden></label>
+    <div class="field"><label for="impT">Tempel JSON</label><textarea id="impT" rows="6" spellcheck="false"></textarea></div>
+    <button class="btn pri" type="button" id="impC">Periksa</button><div id="impO" style="margin-top:16px"></div></section>`;
+  const check = async () => {
+    let j; try { j = parseJSON($("#impT").value); } catch (e) { $("#impO").innerHTML = `<div class="notice">Bukan JSON valid: ${esc(e.message)}</div>`; return; }
+    const reqs = (await Req.list().catch(() => [])).filter((r) => r.status === "pending" || r.status === "processing");
+    ImportState = { items: normalizeImport(j), reqs }; drawImport();
+  };
+  $("#impF").onchange = async (e) => { const f = e.target.files[0]; if (f) { $("#impT").value = await f.text(); check(); } };
+  $("#impC").onclick = check; if (s) drawImport();
+}
+function drawImport() {
+  const s = ImportState; $("#impO").innerHTML = s.items.map((it, i) => `<div class="panel"><span class="label">Pratinjau</span><h2 class="d" style="margin:4px 0">${esc(it.book.title || "(tanpa judul)")}</h2>
+    <p class="small muted">${esc(it.book.author || "")} · ${it.chapters.length} bab · ±${Math.round(it.chapters.reduce((a, c) => a + words(c.text), 0) / WPM)} menit</p>
+    ${it.errors.length ? `<div class="notice" style="margin-top:10px">${it.errors.map(esc).join("<br>")}</div>` : ""}${it.warns.length ? `<p class="small" style="color:var(--warn);margin-top:8px">${it.warns.map(esc).join("<br>")}</p>` : ""}
+    <ol class="small" style="padding-left:20px">${it.chapters.map((c) => `<li><b>${esc(c.title)}</b> <span class="muted">· ${words(c.text)} kata</span></li>`).join("")}</ol>
+    ${it.errors.length ? "" : `<div class="field"><label for="iR${i}">Hubungkan ke permintaan</label><select id="iR${i}"><option value="">Tidak ada</option>${s.reqs.map((q) => `<option value="${esc(q.id)}" ${fold(q.title) === fold(it.book.title) ? "selected" : ""}>${esc(q.title)} · ${esc(q.name || "")}</option>`).join("")}</select></div>
+      <div class="row">${it.dup ? `<label class="small"><input type="checkbox" id="iO${i}" style="width:auto"> Timpa buku yang sudah ada</label>` : ""}<button class="btn" type="button" data-imp="${i}" data-p="draft">Simpan draf</button><button class="btn pri" type="button" data-imp="${i}" data-p="published">Simpan & terbitkan</button><button class="btn ghost" type="button" data-imp-edit="${i}">Buka di editor</button></div>`}</div>`).join("");
+}
+async function importSave(i, pub, toEditor) {
+  const it = ImportState.items[i], over = $("#iO" + i)?.checked && it.dup;
+  const old = over ? Lib.find(it.dup) : null;
+  const id = over ? it.dup : slug(it.book.title) + "-" + Date.now().toString(36).slice(-4);
+  const book = { id, title: it.book.title.trim(), author: it.book.author || "", category: CATS.includes(it.book.category) ? it.book.category : "", synopsis: it.book.synopsis || "", cover: it.book.cover || old?.cover || "", hue: hueOf(it.book.title), pub, requestId: $("#iR" + i)?.value || null, createdAt: old?.createdAt || now(),
+    chapters: it.chapters.map((c) => ({ ...c, audio: old?.chapters.find((x) => x.n === c.n)?.audio })) };
+  if (toEditor) { Draft = { ...book, _for: "new", id: "" }; ImportState = null; go("edit"); return; }
+  if (pub === "published") book.publishedAt = now();
+  await Lib.save(book);
+  if (book.requestId) await Req.setStatus(book.requestId, pub === "published" ? "done" : "processing", id).catch(() => {});
+  ImportState = null; toast(pub === "published" ? "Buku terbit" : "Draf tersimpan"); go("book", id);
+}
+
+/* ================================================================ EVENTS */
+document.addEventListener("click", async (e) => {
+  const t = e.target.closest("button, [data-go], label.btn"); if (!t) { if (e.target.closest("[data-close-sheet]")) closeSheet(); return; }
+  const d = t.dataset;
+  if (d.closeSheet !== undefined) { closeSheet(); return; }
+  if (d.add !== undefined) { if (Cloud.isAdmin) { Draft = null; ls.set("pendingReq", null); go("edit"); } else go("requests"); return; }
+  if (d.search !== undefined) { go("library"); setTimeout(() => $("#lq")?.focus(), 120); return; }
+  if (d.openGoal !== undefined) { openGoal(); return; }
+  if (d.goal) { Prefs.set("goal", +d.goal); paintGoalChip(); openGoal(); if (route.name === "home") viewHome(); return; }
+  if (d.copyResume !== undefined) { const t = resumeText(); t ? copyText(t) : toast("Belum ada bab selesai hari ini"); return; }
+  if (d.slide !== undefined) { showSlide(+d.slide); return; }
+  if (d.atabGo) ATab = d.atabGo;
+  if (d.modelsRefresh !== undefined) { t.disabled = true; try { await Keys.load(); const r = await GemModels.refresh(); toast(`${r.text.length} model teks, ${r.tts.length} model suara`); } catch (err) { toast(err.message || err); } viewAdmin(); return; }
+  if (d.ttsStop !== undefined) { if (TtsJob) TtsJob.stop = true; toast("Berhenti setelah bab ini selesai"); return; }
+  if (d.ttsTry !== undefined) { t.disabled = true; try { await Keys.load(); if (!Keys.v.gemKey) throw new Error("Isi API key Gemini dulu di Admin → AI."); toast("Menyiapkan contoh suara…"); const { pcm, rate } = await gemSpeak("Selamat datang di Bo'Bo'. Satu bab, satu gagasan. Mari tumbuh perlahan.", ttsVoice()); Player.stop(); const a = $("#audio"); a.src = URL.createObjectURL(await pcmToMp3(pcm, rate)); a.play(); } catch (err) { toast(err.message || err); } t.disabled = false; return; }
+  if (d.ttsOne !== undefined || d.ttsRun || d.ttsBook) {
+    let b, save, idxs, box;
+    if (d.ttsBook) { b = Lib.find(d.ttsBook); save = () => Lib.save(b); box = t.closest("[data-tts-row]"); }
+    else { try { await ensureId(); } catch (err) { toast(err.message); return; } renumber(); b = Draft; save = () => persistDraft(); box = $("[data-studio-panel]") || t.closest(".ched"); }
+    idxs = d.ttsOne !== undefined ? [+d.ttsOne] : b.chapters.map((c, i) => i).filter((i) => b.chapters[i].text?.trim() && (d.mode === "all" || !b.chapters[i].audio));
+    if (!idxs.length) { toast("Tidak ada bab untuk disuarakan"); return; }
+    $$("[data-tts-run],[data-tts-book],[data-tts-one]").forEach((x) => (x.disabled = true));
+    const msg = $("[data-tts-msg]", box), bar = $("[data-tts-bar]", box);
+    const step = (txt, ok, n, fin) => { if (msg) msg.textContent = txt; if (bar) { bar.hidden = !!fin; $("i", bar).style.width = ((ok / n) * 100) + "%"; } };
+    try { const n = await studioRun(b, idxs, save, step); toast(`Narasi tersimpan: ${n} bab`); } catch (err) { console.warn(err); if (msg) msg.textContent = "Gagal: " + (err.message || err); toast("Gagal: " + (err.message || err)); }
+    if (route.name === "edit") viewEdit(); else if (route.name === "admin") viewAdmin(); return;
+  }
+  if (d.go) { if (d.go === "edit") { Draft = null; if (!d.arg) ls.set("pendingReq", null); } go(d.go, d.arg); return; }
+  if (d.back !== undefined) { history.length > 1 ? history.back() : go("home"); return; }
+  if (d.themeToggle !== undefined) { Prefs.set("theme", isDark() ? "light" : "dark"); return; }
+  if (d.theme) { Prefs.set("theme", d.theme); viewSettings(); return; }
+  if (d.logout !== undefined) { await Cloud.signOut(); location.hash = ""; render(); return; }
+  if (d.sync !== undefined) { t.disabled = true; await Lib.sync(); await Me.load(); toast("Tersinkron"); viewSettings(); return; }
+  if (d.lmode) { loginMode = d.lmode; viewLogin(); return; }
+  if (d.openBook) { go("book", d.openBook); return; }
+  if (d.cat) { libCat = d.cat; libQ = ""; go("library"); return; }
+  if (d.lcat !== undefined) { libCat = d.lcat; viewLibrary(); return; }
+  if (d.read) { go("read", d.read, d.ch); return; }
+  if (d.readDone !== undefined) { finishRead(+d.readDone); return; }
+  if (d.listen) {
+    const b = Lib.find(d.listen); if (!b) return; const i = +d.ch || 0;
+    if (d.toggle !== undefined && Player.book?.id === b.id && Player.idx === i) { Player.toggle(); return; }
+    await Player.load(b, i, { autoplay: true }); if (d.toggle === undefined) openPlayer(); return;
+  }
+  if (d.openPlayer !== undefined) { openPlayer(); return; }
+  if (d.pp !== undefined) { Player.toggle(); return; }
+  if (d.pstop !== undefined) { Player.stop(); return; }
+  if (d.pskip) { Player.skip(+d.pskip); return; }
+  if (d.pjump) { Player.jump(+d.pjump); return; }
+  if (d.rate) { Player.setRate(+d.rate); return; }
+  if (d.readNow !== undefined) { const b = Player.book, i = Player.idx; closeSheet(); go("read", b.id, i); return; }
+  if (d.fs !== undefined) { const v = Prefs.get("fs", 1.18), n = v >= 1.42 ? 1.02 : Math.round((v + 0.12) * 100) / 100; Prefs.set("fs", n); toast("Ukuran huruf " + Math.round(n * 100 / 1.18) + "%"); return; }
+  if (d.markch) { const on = Me.toggleMark(route.a, +d.markch); toast(on ? "Bab ditandai" : "Penanda dihapus"); t.innerHTML = on ? I.markF : I.mark; t.setAttribute("aria-pressed", on); return; }
+  if (d.saveQuote !== undefined) { const q = getSelection().toString().trim(); const b = Lib.find(route.a); if (q && b) { Me.addQuote(b.id, b.chapters[+route.b || 0].n, q); toast("Kutipan disimpan"); getSelection().removeAllRanges(); $("#qbar").hidden = true; } return; }
+  if (d.delmark) { Me.delMark(d.delmark); viewMarks(); return; }
+  if (d.copy) { copyText(d.copy); return; }
+  if (d.cacheAll !== undefined) { cacheAll(t); return; }
+  // permintaan
+  if (d.reqDel) { if (!confirmBtn(t, "Hapus?")) return; await Req.remove(d.reqDel); toast("Permintaan dihapus"); route.name === "admin" ? viewAdmin() : viewRequests(); return; }
+  if (d.reqMake) { const list = await Req.list(); const r = list.find((x) => x.id === d.reqMake); await Req.setStatus(d.reqMake, "processing").catch(() => {}); ls.set("pendingReq", d.reqMake); Draft = { ...blankBook(), title: r?.title || "", author: r?.author || "", requestId: d.reqMake, _for: "new" }; go("edit"); return; }
+  // admin
+  if (d.atab) { ATab = d.atab; viewAdmin(); return; }
+  if (d.mem) { const { F, db } = Cloud.fb; await F.updateDoc(F.doc(db, "members", d.mem), { status: d.st, reviewedAt: now() }); toast(d.st === "approved" ? "Anggota disetujui" : "Status diperbarui"); viewAdmin(); return; }
+  if (d.memDel) { if (!confirmBtn(t, "Hapus?")) return; const { F, db } = Cloud.fb; await F.deleteDoc(F.doc(db, "members", d.memDel)); viewAdmin(); return; }
+  if (d.pub && d.to) { t.disabled = true; try { await Lib.setPub(d.pub, d.to); toast(d.to === "published" ? "Buku terbit untuk semua anggota" : "Buku dijadikan draf"); } catch (err) { toast("Gagal: " + (err.message || err)); } viewAdmin(); return; }
+  if (d.export !== undefined) { adminExport(); return; }
+  if (d.prov) { await Keys.save({ aiProvider: d.prov }); viewAdmin(); return; }
+  if (d.keysSave !== undefined || d.keysTest !== undefined) {
+    const v = {}, val = (id) => $("#" + id)?.value.trim(); if (val("kG")) v.gemKey = val("kG"); if (val("kA")) v.antKey = val("kA"); v.gemModel = val("kGM") || "gemini-3.8-flash"; v.ttsModel = val("kTM") || "gemini-3.8-flash-tts"; v.antModel = val("kAM") || "claude-sonnet-5-5"; if (val("kMC")) v.maxCh = +val("kMC"); if (val("kCM")) v.chMin = +val("kCM"); if (!Keys.v.aiProvider) v.aiProvider = "gemini";
+    const m = $("#kM"); t.disabled = true;
+    try { await Keys.save(v); if (d.keysSave !== undefined) { if (v.gemKey) { GemModels.list = null; try { await GemModels.refresh(); } catch (err) { toast(err.message || "Gagal memuat model"); } } toast("Kunci tersimpan"); viewAdmin(); return; } m.textContent = "Menguji…"; const r = await aiText('Balas JSON {"ok":"siap"}'); m.textContent = "AI terhubung: " + r.trim().slice(0, 60); } catch (err) { m.textContent = err.message || err; }
+    t.disabled = false; return;
+  }
+  if (d.keysClear !== undefined) { if (!confirmBtn(t, "Yakin hapus?")) return; await Keys.save({ gemKey: "", antKey: "" }); toast("Kunci dihapus"); viewAdmin(); return; }
+  // editor
+  if (d.chAdd !== undefined) { if (Draft.chapters.length >= MAX_CH) return; Draft.chapters.push({ n: Draft.chapters.length + 1, title: "", text: "", points: [] }); viewEdit(); return; }
+  if (d.chDel !== undefined) { if (!confirmBtn(t, "Hapus bab?")) return; const c = Draft.chapters[+d.chDel]; if (c.audio && Draft.id) await AudioStore.remove(Draft, c, true).catch(() => {}); Draft.chapters.splice(+d.chDel, 1); if (!Draft.chapters.length) Draft.chapters.push({ n: 1, title: "", text: "", points: [] }); renumber(); viewEdit(); toast("Bab dihapus. Simpan untuk menerapkan."); return; }
+  if (d.chUp !== undefined) { const i = +d.chUp; if (Draft.chapters.some((c) => c.audio)) { toast("Audio terikat ke nomor bab. Hapus audio dulu bila ingin mengubah urutan."); return; } [Draft.chapters[i - 1], Draft.chapters[i]] = [Draft.chapters[i], Draft.chapters[i - 1]]; renumber(); viewEdit(); return; }
+  if (d.aDel !== undefined) { if (!confirmBtn(t, "Hapus audio?")) return; await AudioStore.remove(Draft, Draft.chapters[+d.aDel], true); await persistDraft(); viewEdit(); return; }
+  if (d.aPlay !== undefined) { const c = Draft.chapters[+d.aPlay]; const u = await AudioStore.url(Draft, c); if (u) { const a = $("#audio"); Player.stop(); a.src = u; a.play(); } return; }
+  if (d.copyCh !== undefined) { const c = Draft.chapters[+d.copyCh]; renumber(); copyText(studioScript(c)); return; }
+  if (d.studio !== undefined) { renumber(); copyText(STUDIO_STYLE + "\n\n" + Draft.chapters.map((c) => "===== FILE: bab-" + c.n + ".wav =====\n" + studioScript(c, true)).join("\n\n")); return; }
+  if (d.save) { saveDraft(d.save, t); return; }
+  if (d.bookDel !== undefined) { if (!confirmBtn(t, "Yakin hapus buku ini?")) return; await Lib.remove(Draft.id); Draft = null; toast("Buku dihapus"); go("admin", null, null, { replace: true }); return; }
+  if (d.aiSum !== undefined) { aiSummarize(t); return; }
+  if (d.copyPrompt !== undefined) { copyText(summaryPrompt(Draft?.title || "[JUDUL]", Draft?.author || "[PENULIS]")); return; }
+  if (d.coverFind !== undefined) { findCover(); return; }
+  if (d.coverClear !== undefined) { Draft.cover = ""; viewEdit(); return; }
+  if (d.imp !== undefined) { t.disabled = true; try { await importSave(+d.imp, d.p); } catch (err) { toast("Gagal: " + (err.message || err)); t.disabled = false; } return; }
+  if (d.impEdit !== undefined) { importSave(+d.impEdit, "draft", true); return; }
+});
+document.addEventListener("change", async (e) => {
+  if (/^tsV/.test(e.target.id)) { ls.set("ttsVoice", e.target.value); return; }
+  if (/^tsS/.test(e.target.id)) { ls.set("ttsStyle", e.target.value); return; }
+  const s = e.target.closest("[data-req-status]"); if (!s) return;
+  try { await Req.setStatus(s.dataset.reqStatus, s.value); toast("Status: " + REQ_ST[s.value]); } catch (err) { toast("Gagal: " + (err.code || err.message)); }
+});
+document.addEventListener("input", (e) => { if (e.target.matches("[data-scrub]")) { e.target._drag = true; Player.seekFrac(+e.target.value / 1000); setTimeout(() => (e.target._drag = false), 300); } });
+document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeSheet(); if (e.key === " " && Player.book && !/INPUT|TEXTAREA|SELECT|BUTTON/.test(document.activeElement.tagName)) { e.preventDefault(); Player.toggle(); } });
+addEventListener("scroll", () => $("#appbar").classList.toggle("scrolled", scrollY > 4), { passive: true });
+matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", () => Prefs.apply());
+if (window.speechSynthesis) speechSynthesis.onvoiceschanged = () => {};
+
+/* ================================================================ BOOT */
+(async () => {
+  Prefs.apply(); Player.init();
+  if (DEMO) $("#demoBanner").hidden = false;
+  await Local.open(); await Lib.loadLocal();
+  await Cloud.init();
+  if (DEMO || !Cloud.user) await Me.load();
+  render();
+  if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
+  addEventListener("online", () => { if (Cloud.user && Cloud.approved) Lib.sync().then(() => { if (["home", "library"].includes(route.name)) render(); }); });
+})();
+})();
+</script>
+</body>
+</html>

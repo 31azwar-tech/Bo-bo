@@ -1,0 +1,84 @@
+rules_version = '2';
+// Bo'Bo' — Firestore Security Rules (paket Spark, tanpa Cloud Functions)
+// Admin  : 31azwar@gmail.com (akun Email/Password yang DIBUAT DULU di Firebase Console, atau Google terverifikasi)
+// Anggota: members/{uid}.status == 'approved'. Sebelum disetujui tidak bisa membaca data apa pun.
+service cloud.firestore {
+  match /databases/{db}/documents {
+
+    function signedIn() { return request.auth != null; }
+    function isAdmin() {
+      // dikunci ke UID akun admin (31azwar@gmail.com) yang dibuat di Firebase Console
+      return signedIn() && request.auth.uid == 'CijuOhEyzlNMTcaX3mutZwXeS7o1';
+    }
+    function isMember() {
+      return signedIn()
+        && exists(/databases/$(db)/documents/members/$(request.auth.uid))
+        && get(/databases/$(db)/documents/members/$(request.auth.uid)).data.status == 'approved';
+    }
+    function canRead() { return isAdmin() || isMember(); }
+
+    // Pendaftaran: dibuat sendiri saat login pertama, selalu 'pending'
+    match /members/{uid} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == uid);
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['uid', 'email', 'name', 'photo', 'status', 'createdAt'])
+        && request.resource.data.uid == uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.email == request.auth.token.email;
+      allow update, delete: if isAdmin();
+    }
+
+    // Buku: 1 buku = 1 dokumen (maks. 8 bab di field "data"). Anggota hanya membaca yang terbit.
+    match /books/{id} {
+      allow read: if isAdmin() || (isMember() && resource.data.status == 'published');
+      allow create, update: if isAdmin()
+        && request.resource.data.status in ['draft', 'published']
+        && request.resource.data.data is string
+        && request.resource.data.data.size() < 1000000
+        && request.resource.data.chapterCount <= 60;
+      allow delete: if isAdmin();
+    }
+
+    // Peta buku terbit untuk sinkron hemat
+    match /meta/{id} {
+      allow read: if canRead();
+      allow write: if isAdmin();
+    }
+
+    // Audio narasi per bab (MP3, dipotong ±700 KB)
+    match /audio/{id} {
+      allow read: if canRead();
+      allow write: if isAdmin();
+    }
+
+    // Kunci AI: hanya admin
+    match /secrets/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    // Permintaan buku
+    match /requests/{id} {
+      allow read: if canRead();
+      allow create: if isMember()
+        && request.resource.data.keys().hasOnly(['uid', 'name', 'email', 'title', 'author', 'note', 'status', 'createdAt'])
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.title is string
+        && request.resource.data.title.size() > 0
+        && request.resource.data.title.size() <= 200
+        && request.resource.data.author.size() <= 120
+        && request.resource.data.note.size() <= 300;
+      allow update: if isAdmin();
+      allow delete: if isAdmin() || (isMember() && resource.data.uid == request.auth.uid && resource.data.status == 'pending');
+    }
+
+    // Data pribadi (penanda, posisi, riwayat menit, preferensi): 1 dokumen per pengguna
+    match /users/{uid} {
+      allow read, write: if canRead() && request.auth.uid == uid;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

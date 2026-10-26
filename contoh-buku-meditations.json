@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "book": {
+    "title": "Meditations",
+    "author": "Marcus Aurelius",
+    "category": "Filsafat & Pemikiran",
+    "synopsis": "Catatan pribadi seorang kaisar Romawi yang tidak pernah dimaksudkan untuk dibaca orang lain. Di dalamnya, Marcus Aurelius berbicara pada dirinya sendiri tentang cara tetap tenang, adil, dan berguna di tengah dunia yang tidak bisa ia kendalikan."
+  },
+  "chapters": [
+    {
+      "order": 1,
+      "title": "Utang budi pada orang-orang baik",
+      "text": "Marcus membuka catatannya bukan dengan teori, melainkan dengan daftar terima kasih. Dari kakeknya ia belajar kelembutan. Dari ibunya, kesederhanaan dan rasa hormat pada Tuhan. Dari gurunya, kesabaran menghadapi orang yang keliru.\n\nSetiap nama disertai satu pelajaran kecil yang ia bawa seumur hidup. Ia tidak menulis tentang kejayaan perang atau kebesaran kekaisaran, tetapi tentang watak yang ia tiru dari orang-orang di sekitarnya.\n\nPesannya sederhana namun dalam. Karakter kita tidak tumbuh sendirian. Ia dibentuk oleh orang-orang yang kita perhatikan dengan sungguh-sungguh. Maka langkah pertama untuk menjadi baik adalah mengenali kebaikan yang sudah kita terima, lalu menyebutnya satu per satu.",
+      "points": ["Watak dibentuk oleh orang yang kita teladani", "Bersyukur secara spesifik, bukan umum", "Mulai dari mengenali kebaikan yang sudah diterima"]
+    },
+    {
+      "order": 2,
+      "title": "Bersiap menghadapi hari ini",
+      "text": "Setiap pagi Marcus mengingatkan dirinya: hari ini aku akan bertemu orang yang usil, tidak tahu terima kasih, sombong, dan curang. Ini bukan sikap sinis. Ini persiapan.\n\nMereka bersikap begitu karena belum memahami apa yang baik dan buruk. Sementara aku sudah melihatnya, maka aku tidak bisa dirugikan oleh mereka. Tak seorang pun bisa memaksaku berbuat buruk.\n\nKita diciptakan untuk bekerja sama, seperti dua tangan atau dua kelopak mata. Melawan sesama sama dengan melawan kodrat kita sendiri. Dengan menyiapkan hati sebelum hari dimulai, kita tidak lagi terkejut oleh perilaku orang lain. Kita cukup memilih tanggapan yang tenang dan tetap berbuat baik.",
+      "points": ["Siapkan hati sebelum hari dimulai", "Orang lain tidak bisa memaksa kita berbuat buruk", "Manusia diciptakan untuk bekerja sama"]
+    },
+    {
+      "order": 3,
+      "title": "Yang bisa dan tidak bisa dikendalikan",
+      "text": "Inti ajaran Marcus terletak pada satu pembedaan. Ada hal yang berada dalam kendali kita: penilaian, niat, dan tindakan. Ada pula yang tidak: tubuh, harta, reputasi, dan perilaku orang lain.\n\nKegelisahan muncul ketika kita memperlakukan hal di luar kendali seolah-olah milik kita. Kita cemas pada pendapat orang, lalu kehilangan ketenangan atas sesuatu yang memang bukan wewenang kita.\n\nMarcus mengajak kita mengalihkan energi ke tempat yang tepat. Bukan berarti tidak peduli, tetapi peduli dengan cara yang benar. Kerjakan bagianmu sebaik mungkin, lalu lepaskan hasilnya. Di sanalah kebebasan batin dimulai.",
+      "points": ["Fokus pada penilaian, niat, dan tindakan", "Cemas lahir dari menggenggam yang bukan milik kita", "Kerjakan bagianmu, lepaskan hasilnya"]
+    },
+    {
+      "order": 4,
+      "title": "Benteng di dalam diri",
+      "text": "Orang mencari tempat menyepi di pantai atau pegunungan. Marcus menulis bahwa tempat paling tenang sebenarnya ada di dalam pikiran sendiri, dan bisa dikunjungi kapan saja.\n\nYang mengganggu kita bukanlah peristiwa, melainkan penilaian kita tentang peristiwa itu. Bila penilaian itu dilepaskan, keluhan ikut hilang. Bila keluhan hilang, luka pun reda.\n\nKarena itu ia sering kembali ke dalam dirinya, seperti pulang ke rumah. Ia merapikan pikirannya dengan beberapa prinsip singkat yang mudah diingat. Pikiran yang bebas dari nafsu, katanya, adalah benteng. Tak ada tempat berlindung yang lebih kuat bagi manusia daripada itu.",
+      "points": ["Ketenangan bisa dikunjungi kapan saja di dalam diri", "Yang melukai adalah penilaian, bukan peristiwanya", "Siapkan prinsip singkat untuk kembali tenang"]
+    },
+    {
+      "order": 5,
+      "title": "Semua bersifat sementara",
+      "text": "Marcus berulang kali mengingatkan dirinya tentang betapa singkatnya segala sesuatu. Kaisar-kaisar besar sebelum dia telah dilupakan. Nama-nama yang dulu dielu-elukan kini hanya tinggal kata.\n\nIni bukan ajakan untuk murung. Justru kesadaran akan kefanaan membuat kita lebih jernih. Pujian tidak perlu dikejar mati-matian, karena yang memuji pun akan berlalu. Kehilangan tidak perlu disesali berlarut-larut, karena semua memang sedang berubah.\n\nSeperti sungai yang terus mengalir, hidup tidak pernah diam. Yang tersisa bagi kita adalah saat ini. Maka gunakan saat ini dengan baik: berpikir jernih, bertindak adil, dan menerima apa yang datang dengan lapang.",
+      "points": ["Kesadaran akan kefanaan menjernihkan prioritas", "Pujian dan kehilangan sama-sama berlalu", "Yang benar-benar kita miliki hanyalah saat ini"]
+    },
+    {
+      "order": 6,
+      "title": "Rintangan menjadi jalan",
+      "text": "Salah satu kalimat Marcus yang paling terkenal berbunyi: penghalang bagi tindakan justru memajukan tindakan. Yang menghalangi jalan, menjadi jalan.\n\nMaksudnya, setiap hambatan bisa diubah menjadi kesempatan untuk melatih kebajikan. Orang yang kasar memberi kita kesempatan berlatih sabar. Kegagalan memberi kesempatan berlatih rendah hati. Sakit memberi kesempatan berlatih tabah.\n\nPikiran yang terlatih seperti api yang besar. Apa pun yang dilemparkan ke dalamnya justru menjadi bahan bakar. Kita tidak selalu bisa memilih keadaan, tetapi selalu bisa memilih bagaimana memanfaatkannya. Dengan cara pandang ini, tidak ada hari yang benar-benar sia-sia.",
+      "points": ["Yang menghalangi jalan bisa menjadi jalan", "Setiap hambatan adalah latihan kebajikan", "Pilih cara memanfaatkan keadaan"]
+    },
+    {
+      "order": 7,
+      "title": "Bekerja untuk kebaikan bersama",
+      "text": "Marcus mengakui bahwa ada pagi-pagi ketika ia enggan bangun dari tempat tidur. Lalu ia bertanya pada dirinya: apakah aku diciptakan untuk berselimut hangat, atau untuk bekerja sebagai manusia?\n\nLihatlah tumbuhan, burung, semut, dan lebah. Masing-masing menjalankan perannya dalam tatanan alam. Manusia pun punya peran, yaitu berbuat baik bagi sesama.\n\nMenurut Marcus, apa yang tidak baik bagi sarang lebah juga tidak baik bagi lebahnya. Kebahagiaan pribadi tidak terpisah dari kebaikan bersama. Maka kerjakan tugasmu tanpa menunggu pujian, seperti pohon anggur yang berbuah lalu diam, siap berbuah lagi di musim berikutnya.",
+      "points": ["Kita diciptakan untuk berguna bagi sesama", "Kebaikan pribadi tak terpisah dari kebaikan bersama", "Berbuat baik tanpa menunggu pujian"]
+    },
+    {
+      "order": 8,
+      "title": "Hidup seakan hari terakhir",
+      "text": "Di bagian akhir catatannya, Marcus menulis tentang kesempurnaan watak: menjalani setiap hari seolah-olah hari terakhir, tanpa gelisah, tanpa lesu, dan tanpa berpura-pura.\n\nIa tidak sedang menakut-nakuti dirinya dengan kematian. Ia mengingatkan bahwa waktu kita terbatas, sehingga tidak ada ruang untuk menunda menjadi baik. Jangan lagi berdebat tentang seperti apa orang baik itu. Jadilah orang baik.\n\nMeditations ditutup dengan ketenangan. Bila kelak waktu kita usai, pergilah dengan lapang, seperti buah zaitun matang yang jatuh sambil bersyukur pada pohon yang menumbuhkannya. Hidup yang bermakna bukan yang panjang, tetapi yang dijalani dengan sadar.",
+      "points": ["Jangan menunda menjadi baik", "Berhenti berdebat, mulai bertindak", "Hidup bermakna adalah hidup yang dijalani dengan sadar"]
+    }
+  ]
+}
