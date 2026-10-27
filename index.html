@@ -807,10 +807,15 @@ async function compressAudio(file, onStep) {
 
 /* ================================================================ AI (opsional, khusus admin)
    Kunci disimpan di Firestore secrets/keys (Rules: hanya admin). Anggota tidak memerlukannya. */
-const KEY_FIELDS = ["aiProvider", "gemKey", "gemModel", "ttsModel", "antKey", "antModel", "maxCh", "chMin"];
+const KEY_FIELDS = ["aiProvider", "gemKey", "gemKeys", "gemModel", "ttsModel", "antKey", "antModel", "maxCh", "chMin"];
 const Keys = {
   v: {},
-  async load() { if (DEMO) { this.v = ls.get("keys", {}); } else { try { const { F, db } = Cloud.fb; const s = await F.getDoc(F.doc(db, "secrets", "keys")); this.v = s.exists() ? s.data() : {}; } catch (e) { console.warn(e); } } MAX_CH = +this.v.maxCh || 8; CH_MIN = +this.v.chMin || 1; },
+  async load() { if (DEMO) { this.v = ls.get("keys", {}); } else { try { const { F, db } = Cloud.fb; const s = await F.getDoc(F.doc(db, "secrets", "keys")); this.v = s.exists() ? s.data() : {}; } catch (e) { console.warn(e); } } MAX_CH = +this.v.maxCh || 8; CH_MIN = +this.v.chMin || 1; this.pick(); },
+  /* beberapa API key Gemini: dipakai bergiliran, pindah otomatis saat satu key kena batas */
+  get gemList() { return [...new Set([...(this.v.gemKeys || []), this.v.gemKey].filter(Boolean))]; },
+  rest(k) { const r = ls.get("keyRest", {})[k]; return r && r > Date.now() ? r : 0; },
+  pick() { const L = this.gemList; this.v.gemKey = L.find((k) => !this.rest(k)) || L.sort((a, z) => this.rest(a) - this.rest(z))[0] || ""; return this.v.gemKey; },
+  benchCurrent(ms) { const m = ls.get("keyRest", {}); m[this.v.gemKey] = Date.now() + ms; ls.set("keyRest", m); const prev = this.v.gemKey; this.pick(); return this.v.gemKey !== prev && !this.rest(this.v.gemKey); },
   async save(p) { this.v = { ...this.v, ...p, updatedAt: now() }; if (DEMO) { ls.set("keys", this.v); return; } const { F, db } = Cloud.fb; await F.setDoc(F.doc(db, "secrets", "keys"), Object.fromEntries(Object.entries(this.v).filter(([k]) => KEY_FIELDS.includes(k) || k === "updatedAt"))); },
   get ok() { return this.v.aiProvider === "claude" ? !!this.v.antKey : !!this.v.gemKey; },
 };
@@ -881,7 +886,9 @@ function deviceVoice() {
   const pick = Prefs.get("voiceName", ""); return vs.find((v) => v.name === pick) || vs.find((v) => /google/i.test(v.name)) || vs[0] || null;
 }
 function utter(text, rate) { const u = new SpeechSynthesisUtterance(text); const v = deviceVoice(); if (v) u.voice = v; u.lang = v?.lang || "id-ID"; u.rate = 0.95 * rate; return u; }
-const narration = (c) => `Bab ${c.n}. ${c.title}.\n\n${c.text}`;
+const APP_VER = "v5 · 26 Okt 2026";
+/* teks yang dibacakan: hanya judul & isi bab; baris instruksi (mis. "Bacakan…", "Gaya…") dibuang bila ada */
+const narration = (c) => `Bab ${c.n}. ${c.title}.\n\n${String(c.text || "").split(/\n/).filter((l) => !/^\s*(bacakan|gaya( bacaan| bacakan)?|style|instruksi|narator:)/i.test(l)).join("\n").trim()}`;
 
 /* ================================================================ PLAYER */
 const Player = {
@@ -1351,7 +1358,11 @@ async function viewAdmin() {
       await Keys.load(); if (Keys.v.gemKey && !GemModels.list) await GemModels.refresh().catch((e) => console.warn(e)); const v = Keys.v, prov = v.aiProvider || "gemini", mask = (k) => (v[k] ? "tersimpan · …" + esc(String(v[k]).slice(-4)) : "belum diisi");
       html = `<div class="panel"><h3>AI peringkas (opsional)</h3><p class="small muted">Untuk tombol "Ringkas dengan AI" di halaman Buku baru. Kunci disimpan di Firestore dan <b>hanya bisa dibaca akun admin</b>. Tanpa kunci pun kamu tetap bisa memakai Impor JSON.</p>
         <div class="seg" style="margin:12px 0"><button type="button" data-prov="gemini" aria-pressed="${prov === "gemini"}">Gemini (Google AI Studio)</button><button type="button" data-prov="claude" aria-pressed="${prov === "claude"}">Claude (Anthropic)</button></div>
-        <div class="two"><div class="field"><label for="kG">API key Gemini <span class="muted">(${mask("gemKey")})</span></label><input id="kG" type="password" autocomplete="off" placeholder="AIza…"><span class="hint">aistudio.google.com → Get API key</span></div>
+        <div class="field"><label>API key Gemini (Google AI Studio) · ${Keys.gemList.length} tersimpan</label>
+          ${Keys.gemList.length ? `<div class="list" style="gap:6px;margin-bottom:8px">${Keys.gemList.map((k, i) => { const r = Keys.rest(k); return `<div class="lrow" style="padding:8px 12px"><div class="main"><b>Key ${i + 1} · …${esc(k.slice(-4))}</b><small>${k === Keys.v.gemKey && !r ? "sedang dipakai" : r ? "istirahat sampai " + esc(new Date(r).toLocaleString("id-ID", { weekday: "short", hour: "2-digit", minute: "2-digit" })) : "siap"}</small></div><div class="act">${r ? `<button class="btn sm ghost" type="button" data-key-wake="${i}">Aktifkan</button>` : ""}<button class="ib" type="button" data-key-del="${i}" aria-label="Hapus key">${I.trash}</button></div></div>`; }).join("")}</div>` : ""}
+          <textarea id="kG" rows="2" autocomplete="off" spellcheck="false" placeholder="Tambah API key, satu per baris (AIza…)"></textarea>
+          <span class="hint">Dipakai bergiliran: bila satu key kena batas, otomatis pindah ke key berikutnya. Kuota dihitung per <b>proyek</b> Google Cloud, jadi tiap key harus dibuat di proyek berbeda.</span></div>
+        <div class="two">
           <div class="field"><label for="kGM">Model Gemini (ringkasan)</label>${modelPick("kGM", "text", v.gemModel || "gemini-3.8-flash")}</div></div>
         <div class="panel" style="background:var(--surface);margin:6px 0 14px"><h3>Format ringkasan · khusus admin</h3><p class="small muted">Tidak ditampilkan ke anggota. Berlaku untuk tombol Ringkas AI, prompt impor, dan batas bab di editor.</p>
           <div class="two" style="margin-top:10px"><div class="field"><label for="kMC">Jumlah bab maksimal</label><select id="kMC">${[5, 6, 7, 8, 10, 12, 15, 20, 25, 30, 40, 50].map((n) => `<option ${n === MAX_CH ? "selected" : ""}>${n}</option>`).join("")}</select></div>
@@ -1368,7 +1379,7 @@ async function viewAdmin() {
   } catch (e) { html = `<div class="notice">${esc(e.code === "permission-denied" ? "Ditolak Firestore. Pastikan firestore.rules terbaru sudah dideploy dan kamu masuk dengan " + ADMIN_EMAIL + "." : e.message || e)}</div>`; }
   if (route.name !== "admin") return;
   const tabs = [["buku", "Buku"], ["anggota", `Anggota${Cloud.pendingMembers ? ` (${Cloud.pendingMembers})` : ""}`], ["permintaan", `Permintaan${Cloud.pendingReq ? ` (${Cloud.pendingReq})` : ""}`], ["suara", "Studio Suara"], ["ai", "AI"], ["cadangan", "Cadangan"]];
-  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Khusus admin</span><h1 class="d">Admin</h1></div>
+  app.innerHTML = `<section class="view"><div class="phead"><span class="label">Khusus admin · ${APP_VER}</span><h1 class="d">Admin</h1></div>
     <div class="seg" role="tablist" style="margin-bottom:18px">${tabs.map(([k, l]) => `<button type="button" role="tab" data-atab="${k}" aria-pressed="${k === ATab}">${l}</button>`).join("")}</div>${html}</section>`;
 }
 async function adminExport() {
@@ -1425,10 +1436,21 @@ function pcmFrom(bytes, mime = "") {
   for (let i = 0; i < n; i++) pcm[i] = dv.getInt16(i * 2, true); return { pcm, rate };
 }
 async function gemFetch(path, body) {
+  for (let i = 0; i <= Keys.gemList.length; i++) {
+    try { return await gemFetch1(path, body); }
+    catch (e) {
+      if (e.code !== "api_429" || Keys.gemList.length < 2) throw e;
+      const tomorrow = new Date(); tomorrow.setHours(24, 5, 0, 0);
+      const switched = Keys.benchCurrent(e.daily ? tomorrow - Date.now() : Math.max(30, e.wait || 60) * 1000);
+      if (!switched) throw e; toast(`Key …${Keys.v.gemKey.slice(-4)} dipakai (key sebelumnya kena batas)`);
+    }
+  }
+}
+async function gemFetch1(path, body) {
   const r = await fetch(GEM_BASE + path, { method: "POST", headers: { "content-type": "application/json", "x-goog-api-key": Keys.v.gemKey }, body: JSON.stringify(body) });
   if (!r.ok) {
     let m = "", wait = 0; try { const e = (await r.json()).error || {}; m = e.message || ""; const ri = (e.details || []).find((d) => /RetryInfo/.test(d["@type"] || "")); wait = parseFloat(ri?.retryDelay || (m.match(/retry in ([\d.]+)s/i) || [])[1] || 0); } catch {}
-    throw { code: "api_" + r.status, wait, daily: /per ?day|PerDay|daily/i.test(m), message: "Google AI Studio: " + (m || "HTTP " + r.status).slice(0, 220) };
+    throw { code: "api_" + r.status, wait, daily: /per ?day|PerDay|daily|exceeded your current quota/i.test(m), zero: /limit: ?0\b/.test(m), message: "Google AI Studio: " + (m || "HTTP " + r.status).slice(0, 220) };
   }
   return r.json();
 }
@@ -1448,7 +1470,8 @@ async function gemSpeak(text, voice, onWait) {
         for (let k = w; k > 0; k--) { onWait && onWait(k); await sleep(1000); if (TtsJob?.stop) throw new Error("Dihentikan."); }
         continue;
       }
-      if (e.code === "api_429") throw new Error("Kuota harian Google AI Studio habis. Bab yang sudah jadi tersimpan; tekan \"Susun bab yang belum bernarasi\" besok untuk melanjutkan.");
+      if (e.code === "api_429" && e.zero) throw new Error("Model suara ini tidak punya kuota gratis di proyek Google tersebut (limit: 0). Pilih model TTS lain di Admin → AI, atau aktifkan billing di proyek Google AI Studio.");
+      if (e.code === "api_429") throw new Error((Keys.gemList.length > 1 ? "Kuota harian SEMUA API key habis." : "Kuota harian Google AI Studio habis.") + " Bab yang sudah jadi tersimpan; tekan \"Susun bab yang belum bernarasi\" besok untuk melanjutkan.");
       throw e;
     }
   }
@@ -1741,12 +1764,14 @@ document.addEventListener("click", async (e) => {
   if (d.export !== undefined) { adminExport(); return; }
   if (d.prov) { await Keys.save({ aiProvider: d.prov }); viewAdmin(); return; }
   if (d.keysSave !== undefined || d.keysTest !== undefined) {
-    const v = {}, val = (id) => $("#" + id)?.value.trim(); if (val("kG")) v.gemKey = val("kG"); if (val("kA")) v.antKey = val("kA"); v.gemModel = val("kGM") || "gemini-3.8-flash"; v.ttsModel = val("kTM") || "gemini-3.8-flash-tts"; v.antModel = val("kAM") || "claude-sonnet-5-5"; if (val("kMC")) v.maxCh = +val("kMC"); if (val("kCM")) v.chMin = +val("kCM"); if (!Keys.v.aiProvider) v.aiProvider = "gemini";
+    const v = {}, val = (id) => $("#" + id)?.value.trim(); if (val("kG")) { const add = val("kG").split(/[\s,]+/).filter((k) => /^AIza[\w-]{20,}$/.test(k)); if (!add.length) { $("#kM").textContent = "Format API key tidak dikenali (harus diawali AIza…)."; return; } v.gemKeys = [...new Set([...Keys.gemList, ...add])]; v.gemKey = v.gemKeys[0]; } if (val("kA")) v.antKey = val("kA"); v.gemModel = val("kGM") || "gemini-3.8-flash"; v.ttsModel = val("kTM") || "gemini-3.8-flash-tts"; v.antModel = val("kAM") || "claude-sonnet-5-5"; if (val("kMC")) v.maxCh = +val("kMC"); if (val("kCM")) v.chMin = +val("kCM"); if (!Keys.v.aiProvider) v.aiProvider = "gemini";
     const m = $("#kM"); t.disabled = true;
-    try { await Keys.save(v); if (d.keysSave !== undefined) { if (v.gemKey) { GemModels.list = null; try { await GemModels.refresh(); } catch (err) { toast(err.message || "Gagal memuat model"); } } toast("Kunci tersimpan"); viewAdmin(); return; } m.textContent = "Menguji…"; const r = await aiText('Balas JSON {"ok":"siap"}'); m.textContent = "AI terhubung: " + r.trim().slice(0, 60); } catch (err) { m.textContent = err.message || err; }
+    try { await Keys.save(v); if (d.keysSave !== undefined) { if (v.gemKeys) { GemModels.list = null; try { await GemModels.refresh(); } catch (err) { toast(err.message || "Gagal memuat model"); } } toast("Kunci tersimpan"); viewAdmin(); return; } m.textContent = "Menguji…"; const r = await aiText('Balas JSON {"ok":"siap"}'); m.textContent = "AI terhubung: " + r.trim().slice(0, 60); } catch (err) { m.textContent = err.message || err; }
     t.disabled = false; return;
   }
-  if (d.keysClear !== undefined) { if (!confirmBtn(t, "Yakin hapus?")) return; await Keys.save({ gemKey: "", antKey: "" }); toast("Kunci dihapus"); viewAdmin(); return; }
+  if (d.keyDel !== undefined) { if (!confirmBtn(t, "Hapus?")) return; const L = Keys.gemList; L.splice(+d.keyDel, 1); await Keys.save({ gemKeys: L, gemKey: L[0] || "" }); Keys.pick(); toast("Key dihapus"); viewAdmin(); return; }
+  if (d.keyWake !== undefined) { const m = ls.get("keyRest", {}); delete m[Keys.gemList[+d.keyWake]]; ls.set("keyRest", m); Keys.pick(); viewAdmin(); return; }
+  if (d.keysClear !== undefined) { if (!confirmBtn(t, "Yakin hapus?")) return; await Keys.save({ gemKey: "", gemKeys: [], antKey: "" }); toast("Kunci dihapus"); viewAdmin(); return; }
   // editor
   if (d.chAdd !== undefined) { if (Draft.chapters.length >= MAX_CH) return; Draft.chapters.push({ n: Draft.chapters.length + 1, title: "", text: "", points: [] }); viewEdit(); return; }
   if (d.chDel !== undefined) { if (!confirmBtn(t, "Hapus bab?")) return; const c = Draft.chapters[+d.chDel]; if (c.audio && Draft.id) await AudioStore.remove(Draft, c, true).catch(() => {}); Draft.chapters.splice(+d.chDel, 1); if (!Draft.chapters.length) Draft.chapters.push({ n: 1, title: "", text: "", points: [] }); renumber(); viewEdit(); toast("Bab dihapus. Simpan untuk menerapkan."); return; }
