@@ -886,7 +886,7 @@ function deviceVoice() {
   const pick = Prefs.get("voiceName", ""); return vs.find((v) => v.name === pick) || vs.find((v) => /google/i.test(v.name)) || vs[0] || null;
 }
 function utter(text, rate) { const u = new SpeechSynthesisUtterance(text); const v = deviceVoice(); if (v) u.voice = v; u.lang = v?.lang || "id-ID"; u.rate = 0.95 * rate; return u; }
-const APP_VER = "v5 · 26 Okt 2026";
+const APP_VER = "v5.1 · 27 Okt 2026";
 /* teks yang dibacakan: hanya judul & isi bab; baris instruksi (mis. "Bacakan…", "Gaya…") dibuang bila ada */
 const narration = (c) => `Bab ${c.n}. ${c.title}.\n\n${String(c.text || "").split(/\n/).filter((l) => !/^\s*(bacakan|gaya( bacaan| bacakan)?|style|instruksi|narator:)/i.test(l)).join("\n").trim()}`;
 
@@ -1360,7 +1360,7 @@ async function viewAdmin() {
         <div class="seg" style="margin:12px 0"><button type="button" data-prov="gemini" aria-pressed="${prov === "gemini"}">Gemini (Google AI Studio)</button><button type="button" data-prov="claude" aria-pressed="${prov === "claude"}">Claude (Anthropic)</button></div>
         <div class="field"><label>API key Gemini (Google AI Studio) · ${Keys.gemList.length} tersimpan</label>
           ${Keys.gemList.length ? `<div class="list" style="gap:6px;margin-bottom:8px">${Keys.gemList.map((k, i) => { const r = Keys.rest(k); return `<div class="lrow" style="padding:8px 12px"><div class="main"><b>Key ${i + 1} · …${esc(k.slice(-4))}</b><small>${k === Keys.v.gemKey && !r ? "sedang dipakai" : r ? "istirahat sampai " + esc(new Date(r).toLocaleString("id-ID", { weekday: "short", hour: "2-digit", minute: "2-digit" })) : "siap"}</small></div><div class="act">${r ? `<button class="btn sm ghost" type="button" data-key-wake="${i}">Aktifkan</button>` : ""}<button class="ib" type="button" data-key-del="${i}" aria-label="Hapus key">${I.trash}</button></div></div>`; }).join("")}</div>` : ""}
-          <textarea id="kG" rows="2" autocomplete="off" spellcheck="false" placeholder="Tambah API key, satu per baris (AIza…)"></textarea>
+          <textarea id="kG" rows="2" autocomplete="off" spellcheck="false" placeholder="Tempel satu atau beberapa API key, satu per baris (AIza… atau AQ.…)"></textarea>
           <span class="hint">Dipakai bergiliran: bila satu key kena batas, otomatis pindah ke key berikutnya. Kuota dihitung per <b>proyek</b> Google Cloud, jadi tiap key harus dibuat di proyek berbeda.</span></div>
         <div class="two">
           <div class="field"><label for="kGM">Model Gemini (ringkasan)</label>${modelPick("kGM", "text", v.gemModel || "gemini-3.8-flash")}</div></div>
@@ -1764,7 +1764,7 @@ document.addEventListener("click", async (e) => {
   if (d.export !== undefined) { adminExport(); return; }
   if (d.prov) { await Keys.save({ aiProvider: d.prov }); viewAdmin(); return; }
   if (d.keysSave !== undefined || d.keysTest !== undefined) {
-    const v = {}, val = (id) => $("#" + id)?.value.trim(); if (val("kG")) { const add = val("kG").split(/[\s,]+/).filter((k) => /^AIza[\w-]{20,}$/.test(k)); if (!add.length) { $("#kM").textContent = "Format API key tidak dikenali (harus diawali AIza…)."; return; } v.gemKeys = [...new Set([...Keys.gemList, ...add])]; v.gemKey = v.gemKeys[0]; } if (val("kA")) v.antKey = val("kA"); v.gemModel = val("kGM") || "gemini-3.8-flash"; v.ttsModel = val("kTM") || "gemini-3.8-flash-tts"; v.antModel = val("kAM") || "claude-sonnet-5-5"; if (val("kMC")) v.maxCh = +val("kMC"); if (val("kCM")) v.chMin = +val("kCM"); if (!Keys.v.aiProvider) v.aiProvider = "gemini";
+    const v = {}, val = (id) => $("#" + id)?.value.trim(); if (val("kG")) { const add = val("kG").split(/[\s,]+/).map((k) => k.replace(/^["']|["']$/g, "")).filter((k) => /^(AIza[\w-]{20,}|AQ\.[\w.-]{20,}|[\w.-]{30,})$/.test(k)); if (!add.length) { $("#kM").textContent = "Format API key tidak dikenali. Salin ulang key dari aistudio.google.com (diawali AIza… atau AQ.…)."; return; } v.gemKeys = [...new Set([...Keys.gemList, ...add])]; v.gemKey = v.gemKeys[0]; } if (val("kA")) v.antKey = val("kA"); v.gemModel = val("kGM") || "gemini-3.8-flash"; v.ttsModel = val("kTM") || "gemini-3.8-flash-tts"; v.antModel = val("kAM") || "claude-sonnet-5-5"; if (val("kMC")) v.maxCh = +val("kMC"); if (val("kCM")) v.chMin = +val("kCM"); if (!Keys.v.aiProvider) v.aiProvider = "gemini";
     const m = $("#kM"); t.disabled = true;
     try { await Keys.save(v); if (d.keysSave !== undefined) { if (v.gemKeys) { GemModels.list = null; try { await GemModels.refresh(); } catch (err) { toast(err.message || "Gagal memuat model"); } } toast("Kunci tersimpan"); viewAdmin(); return; } m.textContent = "Menguji…"; const r = await aiText('Balas JSON {"ok":"siap"}'); m.textContent = "AI terhubung: " + r.trim().slice(0, 60); } catch (err) { m.textContent = err.message || err; }
     t.disabled = false; return;
